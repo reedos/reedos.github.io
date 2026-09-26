@@ -730,15 +730,24 @@ function paths(mode, cutoff) {
       // Finish with the investment capture aligned to the viewport's top.
       const travel = film ? scene.querySelector('.ledger-capture-crop').offsetTop : 0;
       const first = film ? 'translateY(0px)' : 'scale(1)';
-      const last = film ? `translateY(-${travel}px)` : 'scale(1.08)';
-      animation = target.animate([
+      const last = film ? `translateY(-${travel}px)` : 'scale(1.18)';
+      const keyframes = film ? [
         { transform: first, offset: 0 },
         { transform: first, offset: .12 },
-        { transform: last, offset: film ? .4 : .45 },
-        { transform: last, offset: film ? .65 : .57 },
+        { transform: last, offset: .4 },
+        { transform: last, offset: .65 },
         { transform: first, offset: .9 },
         { transform: first, offset: 1 }
-      ], { duration: film ? 12000 : 13000, iterations: Infinity, easing: 'ease-in-out' });
+      ] : [
+        { transform: first, offset: 0, easing: 'ease-in-out' },
+        { transform: last, offset: .5, easing: 'ease-in-out' },
+        { transform: first, offset: 1 }
+      ];
+      animation = target.animate(keyframes, {
+        duration: film ? 12000 : 13000,
+        iterations: Infinity,
+        easing: film ? 'ease-in-out' : 'linear'
+      });
       animation.pause(); animation.currentTime = time; sync();
     };
     button.hidden = false;
