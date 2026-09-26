@@ -10,7 +10,7 @@
   let step = 0;
   let visible = false;
   let paused = false;
-  let hovering = false;
+  let motionOptIn = false;
   let focused = false;
   let interval;
   let highlight;
@@ -23,31 +23,36 @@
   };
   const visit = () => {
     const level = sequence[step++ % sequence.length];
-    cursor.style.transform = `translate(280px, ${478 - level * 63 + 55}px)`;
-    slabs.forEach(slab => slab.classList.remove('is-demo-active'));
+    cursor.style.transform = `translate(280px, ${478 - level * 63 + 55}px) scale(1.8)`;
+    // Keep the current highlight visible while the pointer travels to the next layer.
     highlight = setTimeout(() => {
+      slabs.forEach(slab => slab.classList.remove('is-demo-active'));
       slabs.find(slab => Number(slab.dataset.level) === level)?.classList.add('is-demo-active');
     }, 650);
   };
   const sync = () => {
     clear();
-    button.disabled = reduced.matches;
-    button.textContent = reduced.matches ? 'Reduced motion enabled' : paused ? 'Play animation' : 'Pause animation';
-    button.setAttribute('aria-pressed', String(!paused && !reduced.matches));
-    if (paused || reduced.matches || !visible || document.hidden || hovering || focused) return;
+    const motionAllowed = !reduced.matches || motionOptIn;
+    svg.dataset.motionOptIn = String(motionOptIn);
+    button.textContent = !motionAllowed || paused ? 'Play animation' : 'Pause animation';
+    button.setAttribute('aria-pressed', String(!paused && motionAllowed));
+    if (paused || !motionAllowed || !visible || document.hidden || focused) return;
     svg.classList.add('is-playing');
+    slabs.find(slab => Number(slab.dataset.level) === sequence[step % sequence.length])?.classList.add('is-demo-active');
     visit();
     interval = setInterval(visit, 1800);
   };
   button.hidden = false;
-  button.addEventListener('click', () => { paused = !paused; sync(); });
-  svg.addEventListener('pointerenter', () => { hovering = true; sync(); });
-  svg.addEventListener('pointerleave', () => { hovering = false; sync(); });
+  button.addEventListener('click', () => {
+    if (reduced.matches && !motionOptIn) { motionOptIn = true; paused = false; }
+    else paused = !paused;
+    sync();
+  });
   const link = svg.closest('a');
   link.addEventListener('focus', () => { focused = true; sync(); });
   link.addEventListener('blur', () => { focused = false; sync(); });
   document.addEventListener('visibilitychange', sync);
-  reduced.addEventListener('change', sync);
+  reduced.addEventListener('change', () => { motionOptIn = false; sync(); });
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(svg);
   sync();
 })();
@@ -641,4 +646,69 @@ function paths(mode, cutoff) {
   motion.addEventListener('change', syncMotion);
   syncMotion();
   root.querySelector('.ee-demo-controls').hidden = false;
+})();
+
+/* Analytic Smith-chart sweep. Synthetic load values, never measured telemetry. */
+(() => {
+  const svg = document.querySelector('.rf-preview');
+  const button = document.querySelector('.rf-motion-toggle');
+  if (!svg || !button) return;
+  const get = name => svg.querySelector(`[data-rf-${name}]`);
+  const marker = get('marker'), vector = get('vector'), ring = get('ring');
+  const load = get('load'), vswr = get('vswr'), loss = get('loss');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let visible = false, paused = false, motionOptIn = false, frame;
+  let elapsed = 0, previous;
+  function reflection(resistance, reactance) {
+    const denominator = (resistance + 50) ** 2 + reactance ** 2;
+    const real = (resistance ** 2 + reactance ** 2 - 50 ** 2) / denominator;
+    const imaginary = 100 * reactance / denominator;
+    const magnitude = Math.hypot(real, imaginary);
+    return { real, imaginary, magnitude, vswr: (1 + magnitude) / (1 - magnitude), loss: magnitude === 0 ? Infinity : -20 * Math.log10(magnitude) };
+  }
+  function sample(phase) {
+    const resistance = 75 + 50 * Math.sin(phase);
+    const reactance = 80 * Math.sin(2 * phase);
+    return { resistance, reactance, ...reflection(resistance, reactance) };
+  }
+  function draw(phase) {
+    const value = sample(phase);
+    const x = 500 + 398 * value.real, y = 500 - 398 * value.imaginary;
+    marker.setAttribute('cx', x); marker.setAttribute('cy', y);
+    vector.setAttribute('d', `M500 500L${x} ${y}`);
+    ring.setAttribute('r', 398 * value.magnitude);
+    const displayedX = Math.round(value.reactance * 10) / 10;
+    load.textContent = `${value.resistance.toFixed(1)} ${displayedX < 0 ? '−' : '+'} j${Math.abs(displayedX).toFixed(1)} Ω`;
+    vswr.textContent = value.vswr.toFixed(3);
+    loss.textContent = `${value.loss.toFixed(3)} dB`;
+  }
+  const trace = Array.from({ length: 361 }, (_, i) => {
+    const value = sample(i / 360 * 2 * Math.PI);
+    return `${i ? 'L' : 'M'}${500 + 398 * value.real} ${500 - 398 * value.imaginary}`;
+  }).join('');
+  get('trace').setAttribute('d', trace);
+  draw(0);
+  function tick(time) {
+    if (previous !== undefined) elapsed += Math.min(time - previous, 100);
+    previous = time;
+    draw(elapsed / 18000 * 2 * Math.PI);
+    frame = requestAnimationFrame(tick);
+  }
+  function sync() {
+    cancelAnimationFrame(frame); previous = undefined;
+    const allowed = !reduced.matches || motionOptIn;
+    button.textContent = paused || !allowed ? 'Play animation' : 'Pause animation';
+    button.setAttribute('aria-pressed', String(!paused && allowed));
+    if (visible && !paused && allowed && !document.hidden) frame = requestAnimationFrame(tick);
+  }
+  button.hidden = false;
+  button.addEventListener('click', () => {
+    if (reduced.matches && !motionOptIn) { motionOptIn = true; paused = false; }
+    else paused = !paused;
+    sync();
+  });
+  document.addEventListener('visibilitychange', sync);
+  reduced.addEventListener('change', () => { motionOptIn = false; sync(); });
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(svg);
+  sync();
 })();

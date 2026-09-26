@@ -1,5 +1,41 @@
 (() => {
   const track = document.querySelector('.photo-review-track');
+  if (!track) return;
+  // The shipped gallery has no visible transport controls. Any interaction
+  // permanently holds playback for this visit, preserving manual exploration.
+  if (track.classList.contains('field-track')) {
+    const slides = [...track.querySelectorAll('figure')];
+    const status = document.querySelector('[data-photo-status]');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    let visible = false;
+    let held = false;
+    let timer;
+    const current = () => Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / track.clientWidth)));
+    const move = (step) => {
+      const next = (current() + step + slides.length) % slides.length;
+      track.scrollTo({ left: next * track.clientWidth, behavior: reduced.matches ? 'instant' : 'smooth' });
+    };
+    const sync = () => {
+      clearInterval(timer);
+      if (visible && !held && !document.hidden && !reduced.matches) timer = setInterval(() => move(1), 4000);
+    };
+    const hold = () => { held = true; sync(); status.setAttribute('aria-live', 'polite'); };
+    track.addEventListener('pointerdown', hold);
+    track.addEventListener('mouseenter', hold);
+    track.addEventListener('focusin', hold);
+    track.addEventListener('wheel', hold, { passive: true });
+    track.addEventListener('keydown', (event) => {
+      hold();
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault(); move(event.key === 'ArrowRight' ? 1 : -1);
+      }
+    });
+    track.addEventListener('scroll', () => { status.textContent = `${current() + 1} / ${slides.length}`; }, { passive: true });
+    document.addEventListener('visibilitychange', sync);
+    reduced.addEventListener('change', sync);
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(track);
+    return;
+  }
   const controls = document.querySelector('.photo-review-controls');
   const slides = [...track.querySelectorAll('figure')];
   const play = document.querySelector('[data-photo-play]');

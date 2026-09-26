@@ -26,6 +26,11 @@
 .gradient-preview .slab.is-demo-active, .gradient-preview .slab:hover { transform: translateY(-6px); filter: brightness(1.3); }
 .stack-demo-cursor { opacity: 0; pointer-events: none; transition: transform .65s ease-in-out, opacity .2s; }
 .gradient-preview.is-playing .stack-demo-cursor { opacity: 1; }
+.gradient-preview .slab.is-demo-active .slab-top { stroke-opacity: 1; stroke-width: 2; }
+.rf-preview { display: block; width: 100%; height: auto; }
+.rf-motion-toggle { background: transparent; border: 0; padding: 0; font-size: .75rem; }
+.field-gallery-position { display: flex; justify-content: space-between; gap: 1rem; padding-top: 1rem; font: 400 .6875rem/1.5 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .gradient-preview-footer { display: flex; flex-wrap: wrap; gap: .5rem 1rem; justify-content: space-between; align-items: center; }
 .stack-motion-toggle { background: transparent; border: 0; padding: 0; font-size: .75rem; }
 @media (prefers-reduced-motion: reduce) {
@@ -331,3 +336,5 @@ html[data-layout='gallery'] .gallery-controls:not([hidden]) { display: flex; ali
   .project-picker { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; }
   .project-category:last-child { grid-column: 1 / -1; }
 }
+/* Explicit playback can opt into motion even when the device preference is reduced. */
+.gradient-preview[data-motion-opt-in='true'] .stack-demo-cursor { display: block; transition: transform .65s ease-in-out, opacity .2s !important; }
