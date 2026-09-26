@@ -8,6 +8,8 @@ Reed requested a live, unlisted preview with no search indexing. The review site
 
 ## Reed’s photographs
 
+The Field section’s primary “View photographs” link opens Reed’s [wildlife photography site](https://reedos.github.io/wildlife-site/index.html). Instagram remains linked in the navigation and Contact section.
+
 There are **no placeholder images remaining**. Five standalone photographs come from Reed’s public [wildlife-site repository](https://github.com/reedos/wildlife-site). Its [About page](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/about.html) explicitly attributes the collection to Reed’s camera and links his exact Instagram handle. Species labels come from that collection. No capture locations or dates have been added.
 
 These are published website exports, not camera raw masters. Downloaded on 2026-09-25, resized proportionally and compressed to WebP without copying EXIF metadata. No generative editing or photo content changes. The complete exported frame is retained in each asset; CSS crops the two backgrounds responsively. All five files together are about 364 KiB. Only the hero loads eagerly.

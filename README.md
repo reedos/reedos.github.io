@@ -56,6 +56,7 @@ The About section includes a compact experience and education block with a Linke
 | Field Catalog | https://github.com/reedos/field-catalog/releases | https://github.com/reedos/field-catalog |
 
 - GitHub profile: https://github.com/reedos
+- Wildlife photography: https://reedos.github.io/wildlife-site/index.html
 - Instagram: https://www.instagram.com/reed.wildlife.photography/
 - LinkedIn: https://www.linkedin.com/in/reed-osaki/
 
