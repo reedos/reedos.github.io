@@ -4,7 +4,6 @@
   const button = document.querySelector('.stack-motion-toggle');
   if (!svg || !button) return;
   const slabs = [...svg.querySelectorAll('.slab')];
-  const cursor = svg.querySelector('.stack-demo-cursor');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const sequence = [7, 6, 5, 4, 3, 2, 1, 0, 1, 2, 3, 4, 5, 6];
   let step = 0;
@@ -23,12 +22,11 @@
   };
   const visit = () => {
     const level = sequence[step++ % sequence.length];
-    cursor.style.transform = `translate(280px, ${478 - level * 63 + 55}px) scale(1.8)`;
-    // Keep the current highlight visible while the pointer travels to the next layer.
+    // Cycle the native layer highlight without an illustrative mouse pointer.
     highlight = setTimeout(() => {
       slabs.forEach(slab => slab.classList.remove('is-demo-active'));
       slabs.find(slab => Number(slab.dataset.level) === level)?.classList.add('is-demo-active');
-    }, 650);
+    }, 250);
   };
   const sync = () => {
     clear();
@@ -575,7 +573,9 @@ function paths(mode, cutoff) {
   const slider = byId('ee-cutoff');
   const play = byId('ee-play');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let mode = 'lowpass', playing = false, frame = 0, started = 0, lastDraw = 0;
+  let mode = 'highpass', playing = false, frame = 0, lastDraw = 0;
+  let visible = false, wanted = true, motionOptIn = false, elapsed = 0, previous;
+  let phaseOffset = Math.acos((1150 - Number(slider.value)) / 1050);
   function draw() {
     const cutoff = Number(slider.value);
     const p = paths(mode, cutoff);
@@ -598,28 +598,26 @@ function paths(mode, cutoff) {
     byId('ee-cutoff-value').value = cutoff + ' Hz';
     slider.setAttribute('aria-valuetext', cutoff + ' hertz');
   }
-  function stop() {
-    playing = false;
+  function syncMotion() {
     cancelAnimationFrame(frame);
-    play.setAttribute('aria-pressed', 'false');
-    play.textContent = motion.matches ? 'Motion off' : 'Play filter sweep';
+    previous = undefined;
+    const allowed = !motion.matches || motionOptIn;
+    playing = wanted && allowed && visible && !document.hidden;
+    play.setAttribute('aria-pressed', String(wanted && allowed));
+    play.textContent = wanted && allowed ? 'Pause filter sweep' : 'Play filter sweep';
+    if (playing) frame = requestAnimationFrame(tick);
   }
   function tick(now) {
     if (!playing) return;
-    if (!started) started = now;
+    if (previous !== undefined) elapsed += Math.min(now - previous, 100);
+    previous = now;
     if (now - lastDraw >= 50) {
-      // A parameter sweep, not fake signal movement. Every frame is recomputed.
-      const progress = (now - started) / 7000;
-      slider.value = Math.round((1150 - 1050 * Math.cos(progress * Math.PI * 2)) / 10) * 10;
+      const phase = elapsed / 7000 * Math.PI * 2 + phaseOffset;
+      slider.value = Math.round((1150 - 1050 * Math.cos(phase)) / 10) * 10;
       draw();
       lastDraw = now;
     }
     frame = requestAnimationFrame(tick);
-  }
-  function syncMotion() {
-    stop();
-    play.disabled = motion.matches;
-    play.title = motion.matches ? 'Animation follows your reduced-motion preference. You can still adjust the filter.' : '';
   }
   for (const nextMode of ['lowpass', 'highpass']) {
     byId('ee-' + nextMode).addEventListener('click', () => {
@@ -628,22 +626,22 @@ function paths(mode, cutoff) {
       draw();
     });
   }
-  slider.addEventListener('input', () => { stop(); draw(); });
-  play.addEventListener('click', () => {
-    if (playing) { stop(); return; }
-    if (motion.matches || document.hidden) return;
-    playing = true;
-    started = 0;
-    lastDraw = 0;
-    play.setAttribute('aria-pressed', 'true');
-    play.textContent = 'Pause filter sweep';
-    frame = requestAnimationFrame(tick);
+  slider.addEventListener('input', () => {
+    wanted = false; elapsed = 0;
+    phaseOffset = Math.acos((1150 - Number(slider.value)) / 1050);
+    syncMotion(); draw();
   });
-  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+  play.addEventListener('click', () => {
+    if (motion.matches && !motionOptIn) { motionOptIn = true; wanted = true; }
+    else wanted = !wanted;
+    syncMotion();
+  });
+  document.addEventListener('visibilitychange', syncMotion);
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => { if (!entries[0].isIntersecting) stop(); }, { threshold: 0 }).observe(root);
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; syncMotion(); }, { threshold: .2 }).observe(root);
   }
-  motion.addEventListener('change', syncMotion);
+  motion.addEventListener('change', () => { motionOptIn = false; syncMotion(); });
+  draw();
   syncMotion();
   root.querySelector('.ee-demo-controls').hidden = false;
 })();
@@ -711,4 +709,52 @@ function paths(mode, cutoff) {
   reduced.addEventListener('change', () => { motionOptIn = false; sync(); });
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(svg);
   sync();
+})();
+
+/* Low-cost visual tours. Only images move; text and links remain still. */
+(() => {
+  document.querySelectorAll('[data-motion-scene]').forEach(scene => {
+    const film = scene.querySelector('.ledger-film');
+    const target = film || scene.querySelector('img');
+    const button = scene.querySelector('.scene-motion-toggle');
+    if (!target || !button || !target.animate) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    let animation, visible = false, wanted = true, motionOptIn = false;
+    const sync = () => {
+      const allowed = !reduced.matches || motionOptIn;
+      const active = wanted && allowed;
+      button.textContent = `${active ? 'Pause' : 'Play'} ${film ? 'preview' : 'motion'}`;
+      button.setAttribute('aria-pressed', String(active));
+      if (!animation) return;
+      if (active && visible && !document.hidden) animation.play();
+      else animation.pause();
+    };
+    const build = () => {
+      const time = animation?.currentTime || 0;
+      animation?.cancel();
+      const travel = film ? Math.max(0, film.getBoundingClientRect().height - scene.querySelector('.ledger-window').clientHeight) : 0;
+      const first = film ? 'translateY(0px)' : 'scale(1)';
+      const last = film ? `translateY(-${travel}px)` : 'scale(1.08)';
+      animation = target.animate([
+        { transform: first, offset: 0 },
+        { transform: first, offset: .12 },
+        { transform: last, offset: .45 },
+        { transform: last, offset: .57 },
+        { transform: first, offset: .9 },
+        { transform: first, offset: 1 }
+      ], { duration: film ? 24000 : 26000, iterations: Infinity, easing: 'ease-in-out' });
+      animation.pause(); animation.currentTime = time; sync();
+    };
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      if (reduced.matches && !motionOptIn) { motionOptIn = true; wanted = true; }
+      else wanted = !wanted;
+      sync();
+    });
+    document.addEventListener('visibilitychange', sync);
+    reduced.addEventListener('change', () => { motionOptIn = false; sync(); });
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(scene);
+    new ResizeObserver(build).observe(scene);
+    build();
+  });
 })();

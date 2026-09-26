@@ -11,7 +11,7 @@
   "preset": "https://github.com/reedos/ee-labs/blob/fbfb067d187b85f8e1e4081ea7c485dc032de714/apps/signal-lab/src/presets.js#L484",
   "type": "Interactive mathematical demonstration and static fallback; not an app screenshot",
   "default": {
-    "mode": "lowpass",
+    "mode": "highpass",
     "cutoffHz": 700,
     "q": 0.7071067811865476,
     "sampleRateHz": 8000,
@@ -22,12 +22,12 @@
   },
   "notes": [
     "Uses exact native biquad functions and square-wave sample rule.",
-    "Low-pass initial state matches the native preset.",
+    "Default is high-pass at 700 Hz; this comparison uses the shared 8 kHz sample rate rather than the native high-pass preset sampling rate.",
     "High-pass uses same 8 kHz sample rate for comparison; the native high-pass preset uses 16 kHz.",
     "The frequency plot is transfer magnitude, not an FFT of the square wave.",
     "Waveforms show discrete samples connected by straight lines, not continuous-time reconstruction.",
     "The waveform automatically scales to include the true filtered transient; amplitude tick positions update with the scale.",
-    "No animation on page load; parameter sweep is opt-in and pauses offscreen / hidden / reduced motion."
+    "High-pass default; automatic parameter sweep while visible. Manual pause, offscreen/hidden suspension, and reduced-motion support with explicit Play opt-in."
   ],
   "checks": [
     {
@@ -100,5 +100,11 @@
       "stable": true,
       "dftChecks": 3
     }
-  ]
+  ],
+  "currentPresentation": {
+    "defaultMode": "highpass",
+    "cutoffHz": 700,
+    "autoplay": "when visible, unless reduced motion or manually paused",
+    "staticFallback": "highpass"
+  }
 }
