@@ -26,7 +26,7 @@
     "High-pass uses same 8 kHz sample rate for comparison; the native high-pass preset uses 16 kHz.",
     "The frequency plot is transfer magnitude, not an FFT of the square wave.",
     "Waveforms show discrete samples connected by straight lines, not continuous-time reconstruction.",
-    "The waveform automatically scales to include the true filtered transient; amplitude tick positions update with the scale.",
+    "All axes are fixed: 0\u20134000 Hz linear frequency, \u221260 to +3 dB magnitude, 0\u201320 ms time, and \u00b12.5 waveform amplitude. The complete cutoff range in both modes fits without clipping.",
     "High-pass default; automatic parameter sweep while visible. Manual pause, offscreen/hidden suspension, and reduced-motion support with explicit Play opt-in."
   ],
   "checks": [
@@ -105,6 +105,12 @@
     "defaultMode": "highpass",
     "cutoffHz": 700,
     "autoplay": "when visible, unless reduced motion or manually paused",
-    "staticFallback": "highpass"
+    "staticFallback": "highpass",
+    "frequencyAxis": {
+      "scale": "linear",
+      "minHz": 0,
+      "maxHz": 4000
+    },
+    "waveformLimit": 2.5
   }
 }

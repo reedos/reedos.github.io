@@ -557,15 +557,15 @@ function paths(mode, cutoff) {
     if (n >= 0) { input.push(x); output.push(y); }
   }
   const f = n => n.toFixed(2);
-  const waveLimit = Math.max(1.25, Math.ceil(Math.max(1, ...output.map(Math.abs)) * 1.15 * 4) / 4);
+  const waveLimit = 2.5; // Fixed for both modes and the full cutoff sweep; no amplitude autoscaling.
   const wave = values => values.map((v, n) => `${n ? 'L' : 'M'}${f(96 + n / 160 * 1032)},${f(341 - v / waveLimit * 130)}`).join(' ');
   const response = [];
   for (let n = 0; n <= 320; n++) {
-    const freq = 40 * 100 ** (n / 320);
+    const freq = 4000 * n / 320; // Fixed 0–4 kHz linear axis, independent of cutoff.
     const db = Math.max(-60, Math.min(3, 20 * Math.log10(Math.max(1e-12, biquadResponse(coeffs, freq, fs)))));
     response.push(`${n ? 'L' : 'M'}${f(96 + n / 320 * 1032)},${f(822 - (db + 60) / 63 * 232)}`);
   }
-  return { input: wave(input), output: wave(output), response: response.join(' '), waveLimit, cutoffX: 96 + Math.log10(cutoff / 40) / 2 * 1032, cutoffY: 822 - (-3.010299956639812 + 60) / 63 * 232 };
+  return { input: wave(input), output: wave(output), response: response.join(' '), waveLimit, cutoffX: 96 + cutoff / 4000 * 1032, cutoffY: 822 - (-3.010299956639812 + 60) / 63 * 232 };
 }
   const root = document.getElementById('ee-demo');
   if (!root) return;
@@ -585,15 +585,10 @@ function paths(mode, cutoff) {
     byId('ee-cutoff-line').setAttribute('d', 'M' + p.cutoffX + ' 590V822');
     byId('ee-cutoff-dot').setAttribute('cx', p.cutoffX);
     byId('ee-cutoff-dot').setAttribute('cy', p.cutoffY);
-    for (const amp of [-1, 0, 1]) {
-      const y = 341 - amp / p.waveLimit * 130;
-      byId('ee-amp-grid-' + (amp + 1)).setAttribute('d', 'M96 ' + y + 'H1128');
-      byId('ee-amp-label-' + (amp + 1)).setAttribute('y', y + 7);
-    }
     const heading = (mode === 'lowpass' ? 'Low-pass' : 'High-pass') + ' a square';
     byId('ee-plot-heading').textContent = heading;
     byId('ee-plot-title').textContent = 'Signal Lab: ' + heading.toLowerCase();
-    byId('ee-plot-desc').textContent = 'A sampled 250 Hz square wave before and after a ' + cutoff + ' Hz second-order ' + mode + ' filter. The lower plot shows magnitude response: minus 3.01 decibels at cutoff. Sample rate 8000 Hz; Q equals one over the square root of two.';
+    byId('ee-plot-desc').textContent = 'A sampled 250 Hz square wave before and after a ' + cutoff + ' Hz second-order ' + mode + ' filter. The lower plot uses a fixed linear 0 to 4000 Hz axis and a fixed minus 60 to plus 3 decibel range. The response is minus 3.01 decibels at cutoff. Sample rate 8000 Hz; Q equals one over the square root of two.';
     byId('ee-plot-cutoff').textContent = cutoff + ' Hz';
     byId('ee-cutoff-value').value = cutoff + ' Hz';
     slider.setAttribute('aria-valuetext', cutoff + ' hertz');

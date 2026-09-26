@@ -71,7 +71,7 @@ The two screenshots use a dark `#090d11` stage. Native app colors are retained i
 
 ### EE Labs Signal Lab demonstration
 
-The default is a 250 Hz, amplitude-1 square wave through a second-order high-pass filter, cutoff 700 Hz, Q = 1/√2, sample rate 8000 Hz, and 20 ms time span. Waveforms use the upstream sample rule and biquad processor with 4096 warmup samples. The frequency plot is the exact transfer magnitude, not an FFT of the square wave. Lines connect discrete samples; they are not continuous-time reconstruction.
+The default is a 250 Hz, amplitude-1 square wave through a second-order high-pass filter, cutoff 700 Hz, Q = 1/√2, sample rate 8000 Hz, and 20 ms time span. Waveforms use the upstream sample rule and biquad processor with 4096 warmup samples. The frequency plot is the exact transfer magnitude, not an FFT of the square wave. Its fixed linear axis spans 0–4000 Hz, and its fixed gain range is −60 to +3 dB. The waveform stays on a fixed ±2.5 range with a fixed 0–20 ms time axis; neither mode nor cutoff changes the grid. Lines connect discrete samples; they are not continuous-time reconstruction.
 
 The low-pass/high-pass buttons and cutoff control calculate actual results. The cutoff sweep starts automatically when visible, with a Pause control. It pauses offscreen and in hidden tabs, resumes when visible unless manually paused, and stops when the user adjusts the cutoff. Reduced motion disables automatic playback; explicit Play can enable it. The no-JavaScript SVG also shows the default high-pass result. The comparison keeps 8000 Hz for both filters, while the native app’s separate high-pass preset uses 16000 Hz. This is a small mathematical demonstration, not a recording or imitation of the full application.
 
