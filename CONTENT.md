@@ -172,3 +172,8 @@ The header uses sun/moon action icons with accessible labels indicating the dest
 ## Home-screen icon
 
 `apple-touch-icon.png` is an opaque 180 × 180 PNG for iPhone/iPad home-screen bookmarks. Its editable source is `assets/home-icon.svg`: near-white RO lettering and a gold vertical rule on black. The artwork uses vector paths and no external font. iOS applies its own corner mask. The suggested home-screen name is Reed Osaki. The existing browser favicon remains `assets/mark.svg`.
+
+
+## Signal Lab harmonics
+
+A responsive spectrum beneath the 4:3 demonstration shows H1, H3, H5, H7, H9, H11, H13, and H15 at 250, 750, 1250, 1750, 2250, 2750, 3250, and 3750 Hz. Paired bars show normalized input and filtered peak amplitudes on a fixed 0–1.4 linear scale, separate from the response plot gain axis. Input amplitudes are the exact one-sided discrete Fourier coefficients for the 32-sample 50% duty square, 4/(32 sin(pi h/32)); filtered amplitudes multiply these by the digital biquad magnitude at each frequency. Even harmonics vanish. Values were independently verified against the settled time-domain waveform DFT across 422 filter states.

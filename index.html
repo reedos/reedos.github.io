@@ -26,8 +26,8 @@
     </script>
     <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-condensed-600.woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=mobile-index-4">
-    <script src="main.js?v=refined-preview-3" defer></script>
+    <link rel="stylesheet" href="styles.css?v=harmonics-5">
+    <script src="main.js?v=harmonics-5" defer></script>
     <script src="photo-options.js?v=refined-preview-3" defer></script>
   </head>
   <body>
@@ -148,6 +148,14 @@
     </label>
     <button type="button" id="ee-play" aria-pressed="true">Pause filter sweep</button>
   </div>
+
+  <section class="ee-spectrum" aria-labelledby="ee-spectrum-title">
+    <div class="spectrum-heading"><h4 id="ee-spectrum-title">Fundamental &amp; harmonics</h4><p><span class="spectrum-key input-key">Input</span><span class="spectrum-key output-key">Filtered</span></p></div>
+    <p class="spectrum-description">250 Hz fundamental. Odd harmonics below 4 kHz.</p>
+    <div class="harmonic-spectrum"><div class="harmonic-column" data-harmonic="1"><div class="harmonic-bars" aria-hidden="true"><span class="harmonic-input" style="height:91.09194%"></span><span class="harmonic-output" style="height:11.02764%"></span></div><span class="harmonic-frequency">250</span><span class="harmonic-order">H1</span><span class="visually-hidden" data-harmonic-reading>250 Hz: input 1.275, output 0.154 normalized peak amplitude.</span></div><div class="harmonic-column" data-harmonic="3"><div class="harmonic-bars" aria-hidden="true"><span class="harmonic-input" style="height:30.75798%"></span><span class="harmonic-output" style="height:23.26968%"></span></div><span class="harmonic-frequency">750</span><span class="harmonic-order">H3</span><span class="visually-hidden" data-harmonic-reading>750 Hz: input 0.431, output 0.326 normalized peak amplitude.</span></div><div class="harmonic-column" data-harmonic="5"><div class="harmonic-bars" aria-hidden="true"><span class="harmonic-input" style="height:18.94067%"></span><span class="harmonic-output" style="height:18.24673%"></span></div><span class="harmonic-frequency">1.25k</span><span class="harmonic-order">H5</span><span class="visually-hidden" data-harmonic-reading>1250 Hz: input 0.265, output 0.255 normalized peak amplitude.</span></div><div class="harmonic-column" data-harmonic="7"><div class="harmonic-bars" aria-hidden="true"><span class="harmonic-input" style="height:14.07419%"></span><span class="harmonic-output" style="height:13.97706%"></span></div><span class="harmonic-frequency">1.75k</span><span class="harmonic-order">H7</span><span class="visually-hidden" data-harmonic-reading>1750 Hz: input 0.197, output 0.196 normalized peak amplitude.</span></div><div class="harmonic-column" data-harmonic="9"><div class="harmonic-bars" aria-hidden="true"><span class="harmonic-input" style="height:11.55039%"></span><span class="harmonic-output" style="height:11.53385%"></span></div><span class="harmonic-frequency">2.25k</span><span class="harmonic-order">H9</span><span class="visually-hidden" data-harmonic-reading>2250 Hz: input 0.162, output 0.161 normalized peak amplitude.</span></div><div class="harmonic-column" data-harmonic="11"><div class="harmonic-bars" aria-hidden="true"><span class="harmonic-input" style="height:10.12400%"></span><span class="harmonic-output" style="height:10.12139%"></span></div><span class="harmonic-frequency">2.75k</span><span class="harmonic-order">H11</span><span class="visually-hidden" data-harmonic-reading>2750 Hz: input 0.142, output 0.142 normalized peak amplitude.</span></div><div class="harmonic-column" data-harmonic="13"><div class="harmonic-bars" aria-hidden="true"><span class="harmonic-input" style="height:9.33033%"></span><span class="harmonic-output" style="height:9.33008%"></span></div><span class="harmonic-frequency">3.25k</span><span class="harmonic-order">H13</span><span class="visually-hidden" data-harmonic-reading>3250 Hz: input 0.131, output 0.131 normalized peak amplitude.</span></div><div class="harmonic-column" data-harmonic="15"><div class="harmonic-bars" aria-hidden="true"><span class="harmonic-input" style="height:8.97177%"></span><span class="harmonic-output" style="height:8.97177%"></span></div><span class="harmonic-frequency">3.75k</span><span class="harmonic-order">H15</span><span class="visually-hidden" data-harmonic-reading>3750 Hz: input 0.126, output 0.126 normalized peak amplitude.</span></div></div>
+    <p class="spectrum-scale">Frequency / Hz · Peak amplitude, fixed 0–1.4 scale</p>
+    <p class="spectrum-description">The 50% duty-cycle square wave has no even harmonics. These amplitudes match the sampled signal at 8 ksample/s.</p>
+  </section>
   <p class="ee-demo-note">Fixed scales: frequency 0–4 kHz; gain −60 to +3 dB; normalized amplitude −2.5 to +2.5.</p>
 </div>
 

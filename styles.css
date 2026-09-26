@@ -478,3 +478,20 @@ html[data-theme='light'] .sun-icon { display: none; }
   .project-picker a { font-size: .8125rem; line-height: 1.4; gap: .5rem; min-height: 44px; }
   .project-picker a span { flex-shrink: 0; }
 }
+
+/* Harmonic amplitudes use a separate fixed linear scale, not the gain axis. */
+.ee-spectrum { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+.spectrum-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; }
+.spectrum-heading h4 { margin: 0; font: 600 .9375rem/1.5 var(--body); }
+.spectrum-heading p { display: flex; gap: 1rem; font-size: .75rem; }
+.spectrum-key::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 6px; background: var(--muted); }
+.output-key::before { background: var(--accent); }
+.spectrum-description,.spectrum-scale { color: var(--muted); font-size: .75rem; line-height: 1.6; margin-top: .5rem; }
+.harmonic-spectrum { display: grid; grid-template-columns: repeat(8,minmax(0,1fr)); gap: .4rem; margin-top: 1rem; }
+.harmonic-column { min-width: 0; text-align: center; }
+.harmonic-bars { height: 108px; display: flex; align-items: end; justify-content: center; gap: 3px; border-bottom: 1px solid var(--line); background: repeating-linear-gradient(to top,transparent 0,transparent calc(25% - 1px),var(--line) 25%); }
+.harmonic-bars span { width: 24%; max-width: 14px; min-width: 5px; }
+.harmonic-input { background: var(--muted); }
+.harmonic-output { background: var(--accent); }
+.harmonic-frequency { display: block; font: 400 .75rem/1.5 var(--mono); margin-top: .4rem; }
+.harmonic-order { display: block; color: var(--muted); font: 400 .6875rem/1.5 var(--mono); }

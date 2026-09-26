@@ -531,6 +531,17 @@ function square(n, fs) {
   const p = 250 * (n / fs);
   return p - Math.floor(p) < 0.5 ? 1 : -1;
 }
+// Exact one-sided peak amplitudes of the 32-sample, 50% duty square.
+// A_h = 4 / (N sin(pi h/N)); unlike the continuous 4/(pi h) series,
+// this includes sampling effects and matches the waveform being processed.
+function harmonicLevels(mode, cutoff) {
+  const coeffs = designBiquad({ mode, freq: cutoff, q: Math.SQRT1_2 }, 8000);
+  return Array.from({ length: 8 }, (_, i) => {
+    const order = 2 * i + 1, frequency = order * 250;
+    const input = 4 / (32 * Math.sin(Math.PI * order / 32));
+    return { order, frequency, input, output: input * biquadResponse(coeffs, frequency, 8000) };
+  });
+}
 function paths(mode, cutoff) {
   const fs = 8000;
   const coeffs = designBiquad({ mode, freq: cutoff, q: Math.SQRT1_2 }, fs);
@@ -565,6 +576,11 @@ function paths(mode, cutoff) {
   function draw() {
     const cutoff = Number(slider.value);
     const p = paths(mode, cutoff);
+    for (const h of harmonicLevels(mode, cutoff)) {
+      const column = root.querySelector(`[data-harmonic="${h.order}"]`);
+      column.querySelector('.harmonic-output').style.height = `${h.output / 1.4 * 100}%`;
+      column.querySelector('[data-harmonic-reading]').textContent = `${h.frequency} Hz: input ${h.input.toFixed(3)}, output ${h.output.toFixed(3)} normalized peak amplitude.`;
+    }
     byId('ee-input-path').setAttribute('d', p.input);
     byId('ee-output-path').setAttribute('d', p.output);
     byId('ee-response-path').setAttribute('d', p.response);
