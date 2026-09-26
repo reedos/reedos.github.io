@@ -38,7 +38,7 @@
     svg.classList.add('is-playing');
     slabs.find(slab => Number(slab.dataset.level) === sequence[step % sequence.length])?.classList.add('is-demo-active');
     visit();
-    interval = setInterval(visit, 1800);
+    interval = setInterval(visit, 900);
   };
   button.hidden = false;
   button.addEventListener('click', () => {
@@ -737,7 +737,7 @@ function paths(mode, cutoff) {
         { transform: last, offset: .57 },
         { transform: first, offset: .9 },
         { transform: first, offset: 1 }
-      ], { duration: film ? 24000 : 26000, iterations: Infinity, easing: 'ease-in-out' });
+      ], { duration: film ? 12000 : 13000, iterations: Infinity, easing: 'ease-in-out' });
       animation.pause(); animation.currentTime = time; sync();
     };
     button.hidden = false;
