@@ -6,8 +6,8 @@
     <meta name="robots" content="noindex, nofollow, noimageindex">
     <meta name="color-scheme" content="dark light">
     <meta name="theme-color" content="#000000">
-    <title>Reed Cameron Osaki — Hardware, open tools, wildlife</title>
-    <meta name="description" content="Datacenter hardware engineer in Southern California. Open tools for circuits, RF, and AI infrastructure. Wildlife photography.">
+    <title>Reed Cameron Osaki — Hardware, personal projects, wildlife</title>
+    <meta name="description" content="Hardware engineer in Southern California working on datacenter interconnects. Personal projects in engineering, AI research, and photography.">
     <script>
       (() => {
         let preference = 'dark';
@@ -24,15 +24,15 @@
     </script>
     <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-condensed-600.woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=chapters-4">
-    <script src="main.js?v=chapters-4" defer></script>
+    <link rel="stylesheet" href="styles.css?v=projects-5">
+    <script src="main.js?v=projects-5" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="header-inner page-width">
         <a class="identity" href="#intro" aria-label="Reed Osaki, introduction"><span class="brand-mark" aria-hidden="true">R<span>O</span></span><span class="brand-name">Reed Osaki</span></a>
-        <nav id="navigation" aria-label="Main navigation"><a href="#work">Work</a><a href="#field">Field</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://github.com/reedos">GitHub</a><a href="https://www.instagram.com/reed.wildlife.photography/" aria-label="Reed’s Instagram">IG</a></nav>
+        <nav id="navigation" aria-label="Main navigation"><a href="#work">Projects</a><a href="#field">Field</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://github.com/reedos">GitHub</a><a href="https://www.instagram.com/reed.wildlife.photography/" aria-label="Reed’s Instagram">IG</a></nav>
         <div class="header-controls">
           <button class="theme-toggle" type="button" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" fill="currentColor" stroke="none"/></svg><span class="theme-label">Dark</span></button>
           <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" hidden><span class="menu-label">Menu</span><span class="menu-icon" aria-hidden="true"></span></button>
@@ -51,31 +51,38 @@
         <div class="hero-content page-width">
           <p class="eyebrow">Southern California</p>
           <h1 id="intro-title">Reed Cameron<br>Osaki</h1>
-          <p class="hero-role">Datacenter hardware engineer.<br>High-speed, RF &amp; optical interconnect.</p>
-          <a class="button-link" href="#work">Explore the work</a>
+          <p class="hero-role">Hardware engineer.<br>High-speed, RF, and datacenter interconnects.</p>
+          <a class="button-link" href="#work">Explore the projects</a>
         </div>
-        <div class="hero-foot page-width"><span>Hardware / Open tools / Photography</span><span>Photograph by Reed</span></div>
+        <div class="hero-foot page-width"><span>Hardware / Personal projects / Photography</span><span>Photograph by Reed</span></div>
       </section>
 
       <section class="work-section chapter" id="work" aria-labelledby="work-title">
         <div class="section-intro page-width">
-          <div><p class="eyebrow">01 / Selected work</p><h2 id="work-title">Tools you can use.</h2></div>
-          <p>Public tools for circuits, RF bench work, language models, and AI infrastructure.</p>
+          <div><p class="eyebrow">01 / Personal projects</p><h2 id="work-title">Personal projects.</h2></div>
+          <p>These are personal projects I build outside my professional work: engineering tools, research, guides, and photography software.</p>
         </div>
-        <nav class="project-picker page-width" aria-label="Select a project">
-            <a href="#project-ee" data-project-choice="0"><span>01</span> EE Labs</a>
-            <a href="#project-rf" data-project-choice="1"><span>02</span> RF Reference</a>
-            <a href="#project-gradient" data-project-choice="2"><span>03</span> Gradient Ascent</a>
-            <a href="#project-stack" data-project-choice="3"><span>04</span> Stack Ledger</a>
-            <a href="#project-catalog" data-project-choice="4"><span>05</span> Field Catalog</a>
+        <nav class="project-picker page-width" aria-label="Personal project categories">
+          <div class="project-category" role="group" aria-labelledby="category-engineering">
+            <p class="category-label" id="category-engineering">Engineering tools</p>
+            <div class="category-links"><a href="#project-ee" data-project-choice="0"><span>01</span> EE Labs</a><a href="#project-rf" data-project-choice="1"><span>02</span> RF Reference</a></div>
+          </div>
+          <div class="project-category" role="group" aria-labelledby="category-research">
+            <p class="category-label" id="category-research">Research &amp; guides</p>
+            <div class="category-links"><a href="#project-gradient" data-project-choice="2"><span>03</span> Gradient Ascent</a><a href="#project-stack" data-project-choice="3"><span>04</span> Stack Ledger</a></div>
+          </div>
+          <div class="project-category" role="group" aria-labelledby="category-photography">
+            <p class="category-label" id="category-photography">Photography tools</p>
+            <div class="category-links"><a href="#project-catalog" data-project-choice="4"><span>05</span> Field Catalog</a></div>
+          </div>
         </nav>
         <p class="gallery-hint page-width">Swipe through the projects, or select one above.</p>
         <div class="projects-track page-width" aria-label="Projects">
           <article class="project" id="project-ee" aria-labelledby="title-ee">
             <div class="project-copy">
-              <p class="eyebrow">01 / Circuits / signals / control</p>
+              <p class="eyebrow">01 / Engineering tools</p>
               <h3 id="title-ee">EE Labs</h3>
-              <p>Four interactive labs. 153 experiments in circuits, signals, and control. Plots and numbers stay consistent; tests block a bad deploy. MIT licensed.</p>
+              <p>Four interactive labs cover circuits, signals, and control through 153 experiments. Plots and calculations stay consistent, and tests block faulty deployments. The code is MIT-licensed.</p>
               <div class="project-links"><a class="button-link" href="https://reedos.github.io/ee-labs/">Open lab</a><a class="source-link" href="https://github.com/reedos/ee-labs">Source</a></div>
             </div>
             <div class="project-visual">
@@ -145,9 +152,9 @@
           </article>
           <article class="project" id="project-rf" aria-labelledby="title-rf">
             <div class="project-copy">
-              <p class="eyebrow">02 / RF bench</p>
+              <p class="eyebrow">02 / Engineering tools</p>
               <h3 id="title-rf">RF Reference</h3>
-              <p>Eight RF bench calculators for phone and tablet. The math uses your numbers. State stays in the URL.</p>
+              <p>Eight RF bench calculators run on phones and tablets. Calculations use your inputs, and the URL preserves your settings.</p>
               <div class="project-links"><a class="button-link" href="https://reedos.github.io/rf_lab_reference/">Open reference</a><a class="source-link" href="https://github.com/reedos/rf_lab_reference">Source</a></div>
             </div>
             <div class="project-visual">
@@ -159,9 +166,9 @@
           </article>
           <article class="project" id="project-gradient" aria-labelledby="title-gradient">
             <div class="project-copy">
-              <p class="eyebrow">03 / Language models</p>
+              <p class="eyebrow">03 / Research &amp; guides</p>
               <h3 id="title-gradient">Gradient Ascent</h3>
-              <p>A guide to working with language models. 49 techniques, 8 levels, and 66 runnable examples. Selected pages include measured local-30B results. In progress.</p>
+              <p>This guide covers 49 techniques across 8 levels and includes 66 runnable examples. Selected pages report measured results from a local 30-billion-parameter model. The guide is a work in progress.</p>
               <div class="project-links"><a class="button-link" href="https://reedos.github.io/gradient_ascent/">Read the guide</a><a class="source-link" href="https://github.com/reedos/gradient_ascent">Source</a></div>
             </div>
             <div class="project-visual">
@@ -173,9 +180,9 @@
           </article>
           <article class="project" id="project-stack" aria-labelledby="title-stack">
             <div class="project-copy">
-              <p class="eyebrow">04 / AI infrastructure</p>
+              <p class="eyebrow">04 / Research &amp; guides</p>
               <h3 id="title-stack">Stack Ledger</h3>
-              <p>An evidence-graded ledger of the AI buildout, from energy and chips to models and apps. Sources include IEA, DOE, Epoch AI, BLS, and Census. CSV and JSON export.</p>
+              <p>This evidence-graded ledger tracks the AI buildout, from energy and chips to models and apps. Sources include IEA, DOE, Epoch AI, BLS, and Census. Data can be exported as CSV or JSON.</p>
               <div class="project-links"><a class="button-link" href="https://reedos.github.io/stack_ledger/">Explore the ledger</a><a class="source-link" href="https://github.com/reedos/stack_ledger">Source</a></div>
             </div>
             <div class="project-visual">
@@ -187,9 +194,9 @@
           </article>
           <article class="project" id="project-catalog" aria-labelledby="title-catalog">
             <div class="project-copy">
-              <p class="eyebrow">05 / Photography workflow</p>
+              <p class="eyebrow">05 / Photography tools</p>
               <h3 id="title-catalog">Field Catalog</h3>
-              <p>Cull and catalog wildlife photos locally on Windows. Compare bursts, use optional species identification, and keep a life list and map. Rejects stay on disk until you choose to delete them.</p>
+              <p>Cull and catalog wildlife photos locally on Windows. Compare bursts, use optional local or API-based species identification, and maintain a life list and map. Rejected photos stay on disk until you choose to delete them.</p>
               <div class="project-links"><a class="button-link" href="https://github.com/reedos/field-catalog/releases">View releases</a><a class="source-link" href="https://github.com/reedos/field-catalog">Source</a></div>
             </div>
             <div class="project-visual">
@@ -205,7 +212,7 @@
 
       <section class="field-section chapter" id="field" aria-labelledby="field-title">
         <div class="field-layout page-width">
-          <div class="field-copy"><p class="eyebrow">02 / Field work</p><h2 id="field-title">Wildlife.<br>In the field.</h2><p>Photographs by Reed Cameron Osaki.</p><a class="button-link" href="https://reedos.github.io/wildlife-site/index.html">Explore the photographs</a><a class="source-link" href="https://www.instagram.com/reed.wildlife.photography/">Follow on Instagram</a></div>
+          <div class="field-copy"><p class="eyebrow">02 / Fieldwork</p><h2 id="field-title">Wildlife.<br>In the field.</h2><p>Photographs by Reed Cameron Osaki.</p><a class="button-link" href="https://reedos.github.io/wildlife-site/index.html">Explore the photographs</a><a class="source-link" href="https://www.instagram.com/reed.wildlife.photography/">Follow on Instagram</a></div>
           <figure class="field-frame">
             <a href="https://reedos.github.io/wildlife-site/index.html" aria-label="Open Reed’s wildlife photography site"><img src="assets/images/great-blue-heron.webp" width="800" height="1200" loading="lazy" decoding="async" alt="A great blue heron standing in green, plant-covered water. Photograph by Reed Cameron Osaki."></a>
             <figcaption><span>Great blue heron</span><span>Reed’s wildlife</span></figcaption>
@@ -217,16 +224,16 @@
         <!-- Generated architectural illustration. This does not show Reed’s workplace. -->
         <img src="assets/images/datacenter-symmetry.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="Generated symmetrical datacenter illustration with dark racks, cyan lighting, and a central vanishing point.">
         <div class="hardware-scrim" aria-hidden="true"></div>
-        <div class="hardware-copy page-width"><p class="eyebrow">Hardware / Interconnect</p><h2 id="hardware-title">High-speed.<br>RF. Optical.</h2><p>Datacenter hardware engineering.</p></div>
+        <div class="hardware-copy page-width"><p class="eyebrow">Hardware / Interconnect</p><h2 id="hardware-title">Datacenter<br>interconnect.</h2><p>High-speed and RF hardware engineering.</p></div>
         <p class="illustration-credit">Datacenter / Generated illustration</p>
       </section>
 
       <section class="about-section chapter page-width" id="about" aria-labelledby="about-title">
         <div class="about-intro">
-          <div class="about-copy"><p class="eyebrow">03 / About</p><h2 id="about-title">Reed Cameron<br>Osaki.</h2><p>I’m a datacenter hardware engineer in Southern California. I work with high-speed, RF, and optical interconnect.</p><p>I build public tools for circuits, RF bench work, and understanding AI infrastructure. I photograph wildlife.</p><a class="text-link" href="https://www.linkedin.com/in/reed-osaki/">Full profile on LinkedIn</a></div>
+          <div class="about-copy"><p class="eyebrow">03 / About</p><h2 id="about-title">Reed Cameron<br>Osaki.</h2><p>I’m a hardware engineer in Southern California. I work on high-speed, RF, and datacenter interconnects.</p><p>Outside my professional work, I build engineering tools, research sites, guides, and photography software. I also photograph wildlife.</p><a class="text-link" href="https://www.linkedin.com/in/reed-osaki/">Full profile on LinkedIn</a></div>
           <figure class="about-portrait"><img src="assets/images/reed-portrait.jpg" width="853" height="1280" loading="lazy" decoding="async" alt="Reed Cameron Osaki wearing a hiking backpack in front of a mountain landscape."></figure>
         </div>
-        <div class="background-heading"><p class="eyebrow">Background</p><h3>Work &amp; education</h3></div>
+        <div class="background-heading"><p class="eyebrow">Background</p><h3>Professional background &amp; education</h3></div>
         <dl class="background-list">
           <div><dt>Work</dt><dd><strong>Marvell Technology</strong><span>Hardware engineering.</span></dd></div>
           <div><dt>Education</dt><dd><strong>California State University, Long Beach</strong><span>Graduate study in electrical engineering.</span></dd></div>
@@ -235,14 +242,14 @@
       </section>
 
       <section class="contact-section chapter" id="contact" aria-labelledby="contact-title">
-        <div class="page-width contact-layout"><div><p class="eyebrow">04 / Contact</p><h2 id="contact-title">Get in touch.</h2></div><div class="contact-destinations"><a href="https://www.linkedin.com/in/reed-osaki/">Connect on LinkedIn</a><a href="https://github.com/reedos">Find the work on GitHub</a><!-- TODO: Replace this paragraph with a verified mailto link. --><p class="email-placeholder"><span aria-label="Incomplete email placeholder">hello@</span><span>Email to be added.</span></p></div></div>
+        <div class="page-width contact-layout"><div><p class="eyebrow">04 / Contact</p><h2 id="contact-title">Get in touch.</h2></div><div class="contact-destinations"><a href="https://www.linkedin.com/in/reed-osaki/">Connect on LinkedIn</a><a href="https://github.com/reedos">Explore my projects on GitHub</a></div></div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="footer-main page-width">
-        <div class="footer-identity"><a class="identity" href="#intro" aria-label="Reed Osaki, back to top"><span class="brand-mark" aria-hidden="true">R<span>O</span></span><span class="brand-name">Reed Cameron Osaki</span></a><p>Hardware. Open tools. Wildlife.</p><span>Southern California</span></div>
-        <nav aria-label="Footer navigation"><p class="eyebrow">Explore</p><a href="#work">Selected work</a><a href="https://reedos.github.io/wildlife-site/index.html">Wildlife photography</a><a href="#about">About Reed</a></nav>
+        <div class="footer-identity"><a class="identity" href="#intro" aria-label="Reed Osaki, back to top"><span class="brand-mark" aria-hidden="true">R<span>O</span></span><span class="brand-name">Reed Cameron Osaki</span></a><p>Hardware. Personal projects. Wildlife.</p><span>Southern California</span></div>
+        <nav aria-label="Footer navigation"><p class="eyebrow">Explore</p><a href="#work">Personal projects</a><a href="https://reedos.github.io/wildlife-site/index.html">Wildlife photography</a><a href="#about">About Reed</a></nav>
         <nav aria-label="Social profiles"><p class="eyebrow">Elsewhere</p><a href="https://github.com/reedos">GitHub</a><a href="https://www.linkedin.com/in/reed-osaki/">LinkedIn</a><a href="https://www.instagram.com/reed.wildlife.photography/">Instagram</a></nav>
       </div>
       <div class="footer-base page-width"><p>© 2026 Reed Cameron Osaki</p><p>Hosted on GitHub Pages.</p><a href="#intro">Back to top</a></div>

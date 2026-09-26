@@ -10,6 +10,12 @@ The current page has two presentations of the same content: **Cinematic chapters
 
 Barlow Condensed 600 supplies the display typography and Manrope the body text, following Reed’s wildlife site. IBM Plex Mono is reserved for technical labels. Gold accents are `#e6ba82` on dark backgrounds and `#80531c` on light backgrounds. Photography and project art retain their own colors.
 
+## Project scope and terminology
+
+All five projects are Reed’s personal projects outside his professional work. Use **Personal Projects** as the umbrella label. Group EE Labs and RF Reference under **Engineering Tools**, Gradient Ascent and Stack Ledger under **Research & Guides**, and Field Catalog under **Photography Tools**. These categories describe their purpose; they do not imply that the guides contain only original research. Keep professional background and education in About.
+
+Use **datacenter interconnect** in place of the former optical wording. In prose, use “high-speed, RF, and datacenter interconnects.” The page uses American English, complete body sentences, and concise display labels.
+
 ## Current photographs
 
 The Field section links to Reed’s [wildlife photography site](https://reedos.github.io/wildlife-site/index.html). Instagram remains available among the profile links. No stock-photo placeholders remain.
@@ -99,25 +105,9 @@ Public sources checked on 2026-09-25:
 
 About links to LinkedIn for the full profile and does not claim to be a complete history. Still needed from Reed: exact current title, earlier roles with employer and years, completed degree names, institutions, and optional graduation years. Replace `Hardware engineering.` with his confirmed title and dates if desired. Replace `Graduate study in electrical engineering.` only with a confirmed completed degree. UCLA Extension is coursework, not an asserted degree or certificate.
 
-## Email TODO
+## Contact
 
-No email address was supplied. `hello@` is deliberately incomplete, labeled, and not linked. The exact visible sentence to replace is:
-
-> Email to be added.
-
-Replace this whole paragraph in `index.html`:
-
-```html
-<p class="email-placeholder"><span aria-label="Incomplete email placeholder">hello@</span><span>Email to be added.</span></p>
-```
-
-With a verified address in both places below; the braces are instructions, not publishable values:
-
-```html
-<a class="action-link" href="mailto:{VERIFIED_EMAIL}">{VERIFIED_EMAIL}</a>
-```
-
-Remove the adjacent email TODO comment afterward.
+Reed requested removal of the email placeholder. No email address, incomplete address, or email-to-be-added message is published. Contact uses LinkedIn and GitHub. Add an email link only if Reed later supplies an address for publication.
 
 ## Retained assets for earlier studies
 

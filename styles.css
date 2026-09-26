@@ -172,7 +172,6 @@ html[data-layout='gallery'] .gallery-controls:not([hidden]) { display: flex; ali
 .contact-layout h2 { margin-top: 1rem; }
 .contact-destinations > a { display: flex; align-items: center; min-height: 64px; padding-block: 0.75rem; border-bottom: 1px solid var(--line); font-size: 1rem; }
 .contact-destinations > a:hover { color: var(--accent); border-color: var(--accent); }
-.email-placeholder { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; font-size: 0.75rem; color: var(--muted); }
 
 .site-footer { border-top: 1px solid var(--line); }
 .footer-main { display: grid; grid-template-columns: 1.5fr 1fr 0.7fr; gap: 3rem; padding-block: 3.5rem; }
@@ -254,7 +253,7 @@ html[data-layout='gallery'] .gallery-controls:not([hidden]) { display: flex; ali
   .field-frame { max-width: none; justify-self: start; }
   .field-frame figcaption { padding: 3.5rem 1rem 1rem; }
   .hardware-scene { min-height: 650px; padding-bottom: 5rem; }
-  .hardware-copy h2 { font-size: clamp(3.7rem, 18vw, 4.7rem); }
+  .hardware-copy h2 { font-size: clamp(2.8rem, 12.5vw, 4.5rem); }
   .illustration-credit { font-size: 0.5625rem; right: auto; left: var(--gutter); }
   .about-intro { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   .about-copy h2 { font-size: 3.4rem; }
@@ -287,3 +286,14 @@ html[data-layout='gallery'] .gallery-controls:not([hidden]) { display: flex; ali
 .ee-cutoff-control output { font-variant-numeric: tabular-nums; }
 .ee-demo-note { margin: 12px 0 0; color: var(--muted, #bac2cb); font-size: 13px; line-height: 1.5; }
 .ee-demo-controls :focus-visible { outline: 2px solid var(--accent, #e6ba82); outline-offset: 4px; }
+
+/* Personal projects are grouped by purpose in both review layouts. */
+.project-picker { display: grid; grid-template-columns: 1fr 1fr 0.8fr; gap: 1.5rem; padding-block: 1rem; }
+.project-category { min-width: 0; }
+.category-label { font: 400 0.625rem/1.6 var(--mono); color: var(--accent); letter-spacing: 0.07em; text-transform: uppercase; }
+.category-links { display: flex; flex-wrap: wrap; gap: 0 1.25rem; }
+.project-picker a { min-height: 44px; }
+@media (max-width: 600px) {
+  .project-picker { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; }
+  .project-category:last-child { grid-column: 1 / -1; }
+}

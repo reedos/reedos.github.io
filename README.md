@@ -36,13 +36,15 @@ Visit `http://localhost:8000`. Python is only for local preview. Preview `404.ht
 
 ## Design and content
 
+All five sites are personal projects created outside Reed’s professional work. One Personal Projects section groups them into Engineering Tools (EE Labs, RF Reference), Research & Guides (Gradient Ascent, Stack Ledger), and Photography Tools (Field Catalog). The grouped navigation and category labels appear in both layouts. Professional background is kept in About; the photography collection has its own Field section. Public-facing copy uses American English.
+
 The full-height hero uses Reed’s landscape mountain photograph on larger screens and his portrait mountain photograph on phones. The name sits over a controlled fade. Display type is Barlow Condensed 600; body type is Manrope, matching the wildlife site’s font families. Restrained gold accents use `#e6ba82` in dark mode and `#80531c` in light mode. The translucent header contains the RO monogram, section navigation, and theme control.
 
 All five project artboards are **1200 × 900 (4:3)**. EE Labs shows a working Signal Lab filter example; RF uses the verified Smith figure; Gradient Ascent uses the native level stack; Stack Ledger and Field Catalog preserve their existing screenshots with letterboxing. These are local assets and a small mathematical demonstration, not embedded apps. EE motion starts only when requested and includes pause controls. Keep technical diagrams uncropped and undistorted.
 
 Field uses one 3:4 heron frame with a link to the wildlife site. About retains Reed’s portrait. The symmetric datacenter scene is visibly labeled as a generated illustration and does not depict an employer facility. The footer groups identity, section navigation, and profile links, with review-layout links below.
 
-[CONTENT.md](CONTENT.md) records sources, exact replacement copy, the remaining email TODO, and biography limits. [Datacenter provenance](assets/images/datacenter-symmetry-PROVENANCE.md) contains the exact generation prompt. Original assets retained for archived studies are not all used on the current homepage.
+[CONTENT.md](CONTENT.md) records sources, exact replacement copy, contact links and biography limits. [Datacenter provenance](assets/images/datacenter-symmetry-PROVENANCE.md) contains the exact generation prompt. Original assets retained for archived studies are not all used on the current homepage.
 
 ## Replace images
 
@@ -50,7 +52,7 @@ Keep master photographs elsewhere. Use web-sized files, normally below 400 KB, a
 
 Keep project artboards at 1200 × 900. Refresh screenshots from the real tools, preserve their native colors and geometry, and letterbox if their captured ratio differs. Generated or reconstructed technical visuals must remain clearly identified in the provenance. Check both themes, keyboard focus, reduced-motion behavior, and text contrast after replacement.
 
-`hello@` is a labeled, non-clickable placeholder. Replace it only with a verified address. Update the static footer year when needed.
+Contact links lead to LinkedIn and GitHub. No email address or placeholder is displayed. Update the static footer year when needed.
 
 ## Outbound URLs
 
