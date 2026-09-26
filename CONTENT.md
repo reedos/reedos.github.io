@@ -4,39 +4,57 @@ Project descriptions and the core biography come from Reed’s supplied brief. T
 
 ## Preview publication
 
-Reed requested a live, unlisted preview with no search indexing. The review site at `https://reedos.github.io/` is publicly accessible and carries `noindex, nofollow, noimageindex` on both HTML pages. These are crawler instructions, not authentication. The canonical tag is omitted until launch; README.md records the exact changes for enabling search discovery. The email and biography follow-ups below remain editable during review.
+Reed requested a live, unlisted preview with no search indexing. The review site at `https://reedos.github.io/` is publicly accessible and carries `noindex, nofollow, noimageindex` on the main page, error page, and design studies. These are crawler instructions, not authentication. The canonical tag is omitted until launch; README.md records the exact changes for enabling search discovery. The email and biography follow-ups below remain editable during review.
 
 ## Reed’s photographs
 
-The Field section’s primary “View photographs” link opens Reed’s [wildlife photography site](https://reedos.github.io/wildlife-site/index.html). Instagram remains linked in the navigation and Contact section.
+The Field section’s primary “View photographs” link opens Reed’s [wildlife photography site](https://reedos.github.io/wildlife-site/index.html). Instagram remains available in the header and Contact section.
 
-There are **no placeholder images remaining**. Five standalone photographs come from Reed’s public [wildlife-site repository](https://github.com/reedos/wildlife-site). Its [About page](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/about.html) explicitly attributes the collection to Reed’s camera and links his exact Instagram handle. Species labels come from that collection. No capture locations or dates have been added.
+No stock-photo placeholders remain. Reed supplied the new mountain and personal portrait photographs in this conversation on 2026-09-26. Their original JPEG bytes are preserved. Both files have normal orientation and no GPS, capture-date, camera, or location EXIF; the remaining EXIF records only resolution, color space, and dimensions. No generative editing or photo content changes were made. No capture locations or dates are asserted in the page.
 
-These are published website exports, not camera raw masters. Downloaded on 2026-09-25, resized proportionally and compressed to WebP without copying EXIF metadata. No generative editing or photo content changes. The complete exported frame is retained in each asset; CSS crops the two backgrounds responsively. All five files together are about 364 KiB. Only the hero loads eagerly.
+The two wildlife images in the main page come from Reed’s public [wildlife-site repository](https://github.com/reedos/wildlife-site). Its [About page](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/about.html) attributes the collection to Reed and links his Instagram handle. Species labels come from that collection. These website exports were downloaded on 2026-09-25, proportionally resized and compressed to WebP without copying EXIF; the complete exported frame remains in each asset.
 
-| File in `assets/images/` | Placement | Public original | Dimensions | Bytes |
+The Studio layout presents all standalone photographs in 3:4 or 4:3 CSS frames. The hero’s 4:3 mountain frame blends at the edge into the current theme’s name panel. The source photographs are not stretched. Only the hero loads eagerly.
+
+| File in `assets/images/` | Main-page placement / frame | Source | Original asset dimensions | Bytes |
 | --- | --- | --- | --- | --- |
-| `red-fox.webp` | Hero | [Red Fox](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/36353a3b6336e039c0b2-2400.jpg) | 1920 × 1280 | 48,310 |
-| `vermilion-flycatcher.webp` | Field | [Vermilion Flycatcher](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/ffe9c2a7b1b8bc50bd43-2400.jpg) | 1920 × 1280 | 85,642 |
-| `alpine-ibex.webp` | Photo strip | [Alpine Ibex](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/2ae43b029c597789f1bf-2400.jpg) | 900 × 1200 | 52,992 |
-| `american-robin.webp` | Photo strip | [American Robin](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/67c8705a99b85a472e85-3840.jpg) | 1440 × 960 | 84,918 |
-| `great-blue-heron.webp` | Photo strip | [Great Blue Heron](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/5649e4f4a7ff13066089-2400.jpg) | 800 × 1200 | 101,198 |
+| `mountain-ridge.jpg` | Blended hero / 4:3 | User attachment `5-Photo-5.jpg`, copied byte-for-byte | 1280 × 853 | 291,313 |
+| `reed-portrait.jpg` | About / 3:4, `object-position: 50% 70%` | User attachment `3-Photo-3.jpg`, copied byte-for-byte | 853 × 1280 | 135,784 |
+| `alpine-ibex.webp` | Field / 3:4 | [Alpine ibex original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/2ae43b029c597789f1bf-2400.jpg) | 900 × 1200 | 52,992 |
+| `vermilion-flycatcher.webp` | Field / 4:3 | [Vermilion flycatcher original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/ffe9c2a7b1b8bc50bd43-2400.jpg) | 1920 × 1280 | 85,642 |
+
+Attachments `1-Photo-1.jpg` and `2-Photo-2.jpg` were alternatives and are not published. Attachment `4-Photo-4.jpg` was a datacenter reference only; its pixels were not copied into the site or passed as an image-generation input.
 
 ### Swapping photographs
 
-Use another confirmed Reed photograph and keep the same filename, or update the HTML `src`. Update its true dimensions and literal alt text. Keep the originals elsewhere; web exports should normally stay below 400 KB each. Check the subject’s head and body at phone and desktop widths. Hero and Field have separate phone crop rules; the photo strip preserves whole frames.
+Use another confirmed Reed photograph and keep the filename, or update the HTML `src`. Set `width` and `height` to the replacement asset’s actual dimensions and replace its literal alt sentence. Keep masters elsewhere; web files should normally remain below 400 KB. Preserve the 3:4 and 4:3 wildlife frames. Check the subject’s head and body in the CSS crop on phones and desktops. Recheck the hero’s text contrast and fade in both light and dark themes.
 
-The exact existing alt sentences to replace are:
+Exact main-page alt sentences to replace:
 
-- `red-fox.webp`: “A red fox stepping forward against a pale, blurred background. Photograph by Reed Cameron Osaki.”
-- `vermilion-flycatcher.webp`: “A vermilion flycatcher perched on a branch against green foliage. Photograph by Reed Cameron Osaki.”
-- `alpine-ibex.webp`: “An Alpine ibex standing on a snow-covered rock ledge.”
-- `american-robin.webp`: “An American robin leaning toward the ground among leaves and melting snow.”
-- `great-blue-heron.webp`: “A great blue heron standing in green, plant-covered water.”
+- `mountain-ridge.jpg`: “A snow-covered mountain ridge beneath a blue sky. Photograph by Reed Cameron Osaki.”
+- `reed-portrait.jpg`: “Reed Cameron Osaki wearing a hiking backpack in front of a mountain landscape.”
+- `alpine-ibex.webp`: “An Alpine ibex standing on a snow-covered rock ledge. Photograph by Reed Cameron Osaki.”
+- `vermilion-flycatcher.webp`: “A vermilion flycatcher perched on a branch. Photograph by Reed Cameron Osaki.”
 
-Also update the matching visible labels: `Red fox / Photograph by Reed`, `Vermilion flycatcher / Photograph by Reed`, `Alpine ibex`, `American robin`, or `Great blue heron`. The heading `Field work` can stay generic. “Southern California” describes Reed, not the location of the fox photograph.
+Update the matching species caption if the image changes. Keep generic landscape wording unless Reed supplies the actual place. “Southern California” describes Reed’s location, not where any photograph was taken.
 
-The previous stock landscape, rack, and deer photographs have been removed from the deliverable. The technical sections now use only real app previews.
+### Assets retained for earlier design studies
+
+The following older exports remain available to the archived `design-directions/` studies and are not part of the main Studio page. Do not treat their presence as a requirement to add more images to the homepage.
+
+| File in `assets/images/` | Public original | Dimensions | Bytes |
+| --- | --- | --- | --- |
+| `red-fox.webp` | [Red fox](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/36353a3b6336e039c0b2-2400.jpg) | 1920 × 1280 | 48,310 |
+| `american-robin.webp` | [American robin](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/67c8705a99b85a472e85-3840.jpg) | 1440 × 960 | 84,918 |
+| `great-blue-heron.webp` | [Great blue heron](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/5649e4f4a7ff13066089-2400.jpg) | 800 × 1200 | 101,198 |
+
+These files retain their original provenance. Update any archived-study alt text if replacing one of them. The previous stock landscape, rack, and deer placeholders are not included.
+
+## Generated datacenter illustration
+
+`assets/images/datacenter-illustration.webp` is an original fictional datacenter illustration made on 2026-09-26 using the built-in `image_gen` tool, with no CLI or reference-image input. The website export is 1400 × 1050 (4:3), 186,658 bytes. Its visible caption is **Datacenter · Generated illustration**. It does not depict Reed’s workplace or an identifiable employer facility, and it is not attributed to his photography.
+
+The full final prompt and export details are in [datacenter-PROVENANCE.md](assets/images/datacenter-PROVENANCE.md). The workspace production record is `work/generated-assets/datacenter-provenance.md` outside the site repository. If replacing this asset, keep the generated label unless the new image is a verified photograph. For a verified photograph, replace the entire caption with its accurate subject and credit, and update its alt text and this provenance entry. Do not identify a facility or employer without confirmation.
 
 ## Experience and education
 
@@ -109,4 +127,4 @@ Remove the adjacent email TODO comment afterward. No other biography or project 
 - Preserve photo provenance and the font licenses.
 - Verify legibility, crop, focus indicators, and navigation on a phone and desktop.
 - Keep descriptions in sentence case. Keep outbound project URLs exactly as listed in `README.md`.
-- The copyright year is static: `© 2026` in both HTML files.
+- The copyright year is static: `© 2026` in the main page and error page.
