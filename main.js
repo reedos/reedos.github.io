@@ -4,9 +4,9 @@
     const svg = demo.querySelector('.layer-preview');
     const button = demo.querySelector('.stack-motion-toggle');
     const layers = [...svg.querySelectorAll('.slab')];
-    const number = svg.querySelector('[data-active-number]');
-    const name = svg.querySelector('[data-active-name]');
-    const detail = svg.querySelector('[data-active-detail]');
+    const number = demo.querySelector('[data-active-number]');
+    const name = demo.querySelector('[data-active-name]');
+
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const ascending = layers.map((_, i) => i);
     const sequence = [...ascending, ...ascending.slice(1, -1).reverse()];
@@ -16,8 +16,8 @@
       layers.forEach(layer => layer.classList.toggle('is-demo-active', layer === active));
       number.textContent = `${svg.dataset.layerKind === 'gradient' ? 'LEVEL' : 'LAYER'} ${active.dataset.layerNumber}`;
       name.textContent = active.dataset.layerName;
-      detail.textContent = active.dataset.layerDetail;
-      number.setAttribute('fill', active.style.color);
+
+      number.style.color = active.style.color;
     };
     const sync = () => {
       clearInterval(timer);
@@ -753,4 +753,29 @@ function paths(mode, cutoff) {
     }
     build();
   });
+})();
+
+/* Sun/moon action toggle, retaining automatic preference until selected. */
+(() => {
+  const button = document.querySelector('#appearance');
+  const root = document.documentElement;
+  const device = matchMedia('(prefers-color-scheme: dark)');
+  let preference = root.dataset.preference || 'dark';
+  const apply = () => {
+    root.dataset.preference = preference;
+    root.dataset.theme = preference === 'system' ? (device.matches ? 'dark' : 'light') : preference;
+    const action = root.dataset.theme === 'dark' ? 'Use light mode' : 'Use dark mode';
+    button.setAttribute('aria-label', action);
+    button.title = action;
+    document.querySelector('meta[name="theme-color"]').content = root.dataset.theme === 'dark' ? '#000000' : '#f1f2ed';
+  };
+  button.addEventListener('click', () => {
+    preference = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('reed-hub-theme', preference); } catch {}
+    const url = new URL(location.href);
+    if (url.searchParams.has('theme')) { url.searchParams.set('theme', preference); history.replaceState(null, '', url); }
+    apply();
+  });
+  device.addEventListener('change', apply);
+  apply();
 })();

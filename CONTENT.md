@@ -136,7 +136,7 @@ The homepage inlines the existing verified 1200 × 900 Smith artwork with namesp
 
 The earlier Stack Ledger preview used two existing 1440 × 900 captures from its actual front page: `work/project-previews/references/stack_ledger-initial.png` (exported without changes to pixels other than WebP compression as `assets/previews/stack-home.webp`) and `assets/previews/stack-ledger.webp` (the investment section). The live page was checked for the corresponding homepage heading on 2026-09-26. Fresh browser capture was unavailable. The preview is a tour of captured sections, not an uninterrupted full-page recording; the caption says “Homepage highlights / Captured sections.” The repeated navigation at the top of the second capture is clipped in CSS. The strip moves down and back inside a fixed 4:3 viewport over 12 seconds. That earlier investment panel occupied a full viewport, aligns with the top at the end of the sweep, and holds there for three seconds. The moving strip is absolutely positioned so it cannot expand its viewport. Endpoints are recomputed on image load and layout resize. The original capture itself ends midway through the lower company spending list; rows absent from that capture require a new image and are not fabricated. Images are never stretched.
 
-The generated datacenter illustration has a centered scale animation from 1 to 1.18 and back on a continuous 13-second loop with no endpoint holds. Its text and caption do not move. Both visual tours have Pause controls, stop when offscreen or the tab is hidden, and default to static with reduced motion. Explicit Play can opt into movement.
+The generated datacenter illustration has a centered scale animation from 1 to 1.18 and back on a continuous 13-second loop with no endpoint holds. Its text does not move. Both visual tours have Pause controls, stop when offscreen or the tab is hidden, and default to static with reduced motion. Explicit Play can opt into movement.
 
 ## Field Catalog theme blending
 
@@ -148,9 +148,9 @@ Reed directly confirmed that his Master of Science in Electrical Engineering fro
 
 The current role and awarded degree remain visible. A native expandable “Technical background & credentials” section contains supporting technical details, UCLA Extension coursework, and the credential list. Per Reed’s instruction, no employment, education, or credential dates or years are shown. Credential IDs and screenshot UI are not published.
 
-## Matching layer introductions
+## Earlier SVG layer introductions (superseded by refined chapters)
 
-The current Gradient Ascent and Stack Ledger previews use the same 1200 × 900 format: project introduction on the left, native SVG layer artwork on the right, and a synchronized active-layer label below the introduction. The older scrolling screenshot tour is no longer on the homepage. There is no longer an investment screenshot to clip.
+The earlier Gradient Ascent and Stack Ledger previews used the same 1200 × 900 format: project introduction on the left, native SVG layer artwork on the right, and a synchronized active-layer label below the introduction. The older scrolling screenshot tour is no longer on the homepage. There is no longer an investment screenshot to clip.
 
 - `assets/previews/gradient-layers.svg`: eight native layers from the previously documented Gradient Ascent export. The headline is adapted directly from Reed’s supplied project screenshot: “Learn to work with AI, from a question to a workforce.”
 - `assets/previews/stack-layers.svg`: five native layers extracted from Stack Ledger’s public homepage. The native paths, symbols, and layer colors are preserved. Its headline is the project’s “A public record of the AI buildout.”
@@ -158,3 +158,12 @@ The current Gradient Ascent and Stack Ledger previews use the same 1200 × 900 f
 - `assets/previews/layer-preview-provenance.json` records both sources and editorial changes. These are locally adapted project illustrations, not screenshots or recordings.
 
 The same controller steps through both previews at 800 ms per layer, then reverses the sequence. Only one layer is active at a time. The readout follows it without live screen-reader announcements. Reduced motion defaults to static; explicit Play can opt in. Each preview remains a single link to the original project, with its Pause control outside the link.
+
+
+## Approved refined chapters
+
+The current homepage uses consistent project copy/preview placement, stacking below 1100px in DOM reading order. Layer introductions use responsive HTML copy beside native SVG stacks within fixed 4:3 frames; the standalone `gradient-layers.svg` and `stack-layers.svg` files document the earlier illustration treatment. The active label changes every 800ms, while the explanatory caption remains stable.
+
+The wildlife gallery is wider, supporting headings are quieter, and the datacenter band is shorter. The heading reads “Senior Staff Engineer” with normal spaces. The hero omits Southern California; the footer retains the location. The datacenter disclosure remains in alt text rather than a visible caption. Its motion button appears on hover-capable pointer hover or keyboard focus. Reduced-motion behavior remains in place.
+
+The header uses sun/moon action icons with accessible labels indicating the destination theme. Explicit selection switches between light and dark and saves the preference. An existing system preference is honored until the visitor selects a theme.
