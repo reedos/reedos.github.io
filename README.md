@@ -33,6 +33,8 @@ Visit `http://localhost:8000`. Python is only for local preview; GitHub Pages ne
 
 ## Project previews, photos, and contact
 
+The layout uses a full-bleed photographic hero, wide Barlow display type, and five individual project scenes. Previews have no surrounding card frames; each scene has one outlined primary action and a Source link. Scenes stack into a natural single column on phones. All controls keep visible keyboard focus, navigation remains available without JavaScript, and reduced-motion preferences disable the brief hover transitions. The About and Contact sections remain compact.
+
 Every project has a clickable visual tied to the real app: RLC response, Smith matching, Gradient Ascent’s technique map, infrastructure spending charts, and Field Catalog’s photo library. Three are compressed screenshots; the technique map is an SVG export. The Smith figure is a self-contained SVG with exact analytical geometry checked against the corrected RF tool, labeled resistance/reactance lines, and a static example load. Its results are readable HTML below the plot. All five are local, load lazily, and require no live embed. Sources, captured views, and refresh instructions are recorded in [CONTENT.md](CONTENT.md).
 
 Five photographs are **Reed’s own published wildlife images**, sourced from his `wildlife-site` repository: red fox, vermilion flycatcher, Alpine ibex, American robin, and great blue heron. Compressed local WebP files total about 364 KiB. The source records, exact alt text, and swap instructions are in [CONTENT.md](CONTENT.md). No stock photo placeholders remain.
@@ -61,6 +63,6 @@ Links open in the same tab; users can choose to open a new one. Project counts a
 
 ## Typography and files
 
-Local Latin-subset fonts: Barlow 400/500, Barlow Condensed 600, and IBM Plex Mono 400, from Google Fonts. Their SIL Open Font License files are included in `assets/fonts/`. The map preview embeds its native DM Sans 600 font; its OFL is also included in `assets/fonts/`. Keep those licenses with the fonts.
+The interface uses local Latin-subset Barlow 400/500 and IBM Plex Mono 400 from Google Fonts. Barlow Condensed 600 remains available in the assets but is not loaded by the current design. Their SIL Open Font License files are included in `assets/fonts/`. The map preview embeds its native DM Sans 600 font; its OFL is also included in `assets/fonts/`. Keep those licenses with the fonts.
 
 `index.html` contains all content. `styles.css` contains all styling and responsive rules. `main.js` handles only the mobile menu, Escape, focus, and closing after navigation. `404.html` is the matching error page. `.nojekyll` disables Jekyll processing. `CONTENT.md` records photo provenance, biography sources, and the remaining email placeholder. No build or installation step is required.
