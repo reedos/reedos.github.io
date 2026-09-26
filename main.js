@@ -578,8 +578,12 @@ function paths(mode, cutoff) {
     const p = paths(mode, cutoff);
     for (const h of harmonicLevels(mode, cutoff)) {
       const column = root.querySelector(`[data-harmonic="${h.order}"]`);
-      column.querySelector('.harmonic-output').style.height = `${h.output / 1.4 * 100}%`;
-      column.querySelector('[data-harmonic-reading]').textContent = `${h.frequency} Hz: input ${h.input.toFixed(3)}, output ${h.output.toFixed(3)} normalized peak amplitude.`;
+      const x = 96 + h.frequency / 4000 * 1032;
+      const db = 20 * Math.log10(Math.max(1e-12, h.output));
+      const y = 822 - (Math.max(-60, Math.min(3, db)) + 60) / 63 * 232;
+      column.querySelector('.harmonic-output').setAttribute('d', `M${x} 822V${y}`);
+      column.querySelector('.harmonic-tip').setAttribute('cy', y);
+      column.querySelector('[data-harmonic-reading]').textContent = `${h.frequency} Hz: input ${(20 * Math.log10(h.input)).toFixed(1)} dB, filtered ${db.toFixed(1)} dB relative to unit peak amplitude.`;
     }
     byId('ee-input-path').setAttribute('d', p.input);
     byId('ee-output-path').setAttribute('d', p.output);
@@ -590,7 +594,7 @@ function paths(mode, cutoff) {
     const heading = (mode === 'lowpass' ? 'Low-pass' : 'High-pass') + ' a square';
     byId('ee-plot-heading').textContent = heading;
     byId('ee-plot-title').textContent = 'Signal Lab: ' + heading.toLowerCase();
-    byId('ee-plot-desc').textContent = 'A sampled 250 Hz square wave before and after a ' + cutoff + ' Hz second-order ' + mode + ' filter. The lower plot uses a fixed linear 0 to 4000 Hz axis and a fixed minus 60 to plus 3 decibel range. The response is minus 3.01 decibels at cutoff. Sample rate 8000 Hz; Q equals one over the square root of two.';
+    byId('ee-plot-desc').textContent = 'A sampled 250 Hz square wave before and after a ' + cutoff + ' Hz second-order ' + mode + ' filter. The lower plot uses a fixed linear 0 to 4000 Hz axis and a fixed minus 60 to plus 3 decibel range. Dashed spectral lines show input harmonics and teal lines show filtered harmonics, in decibels relative to unit peak amplitude. The gold curve is filter gain. The response is minus 3.01 decibels at cutoff. Sample rate 8000 Hz; Q equals one over the square root of two.';
     byId('ee-plot-cutoff').textContent = cutoff + ' Hz';
     byId('ee-cutoff-value').value = cutoff + ' Hz';
     slider.setAttribute('aria-valuetext', cutoff + ' hertz');
