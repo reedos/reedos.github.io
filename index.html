@@ -27,7 +27,7 @@
     <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-condensed-600.woff2" crossorigin>
     <link rel="stylesheet" href="styles.css?v=harmonic-lines-6">
-    <script src="main.js?v=harmonic-lines-6" defer></script>
+    <script src="main.js?v=harmonic-caption-7" defer></script>
     <script src="photo-options.js?v=refined-preview-3" defer></script>
   </head>
   <body>
@@ -91,7 +91,7 @@
               <!-- Live mathematical demonstration, not an app screenshot. Native EE Labs DSP equations. -->
 <div class="ee-demo" id="ee-demo">
   <div class="ee-demo-stage"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="ee-plot-title ee-plot-desc"><title id="ee-plot-title">Signal Lab: high-pass a square</title>
-<desc id="ee-plot-desc">A sampled 250 Hz square wave before and after a 700 Hz second-order high-pass filter. The lower plot uses a fixed linear 0 to 4000 Hz axis and a fixed minus 60 to plus 3 decibel range. The response is minus 3.01 decibels at cutoff. Sample rate 8000 Hz; Q equals one over the square root of two.</desc>
+<desc id="ee-plot-desc">A sampled 250 Hz square wave before and after a 700 Hz second-order high-pass filter. The lower plot uses a fixed linear 0 to 4000 Hz axis and a fixed minus 60 to plus 3 decibel range. The response is minus 3.01 decibels at cutoff. Harmonic levels are decibels relative to unit peak amplitude; normalized waveform amplitude uses a fixed minus 2.5 to plus 2.5 scale. Sample rate 8000 Hz; Q equals one over the square root of two.</desc>
 <rect width="1200" height="900" fill="#0b1118"/>
 <g font-family="Barlow, sans-serif" fill="#f4f3ed">
   <text x="58" y="65" font-size="25" letter-spacing="3" fill="#e6ba82">SIGNAL LAB</text>
@@ -160,8 +160,7 @@
   </div>
 
   <p class="ee-harmonic-legend"><span>Dashed: input harmonics</span><span>Teal: filtered harmonics</span><span>Gold: filter gain</span></p>
-  <p class="ee-demo-note">Fundamental: 250 Hz. Odd harmonics: 750 Hz, 1.25, 1.75, 2.25, 2.75, 3.25, and 3.75 kHz. Harmonic levels are dB relative to unit peak amplitude.</p>
-  <p class="ee-demo-note">Fixed scales: frequency 0–4 kHz; gain −60 to +3 dB; normalized amplitude −2.5 to +2.5.</p>
+  <p class="ee-demo-note">250 Hz square wave · odd harmonics shown.</p>
 </div>
 
               <p class="media-caption">Signal Lab / Calculated preview</p>

@@ -594,7 +594,7 @@ function paths(mode, cutoff) {
     const heading = (mode === 'lowpass' ? 'Low-pass' : 'High-pass') + ' a square';
     byId('ee-plot-heading').textContent = heading;
     byId('ee-plot-title').textContent = 'Signal Lab: ' + heading.toLowerCase();
-    byId('ee-plot-desc').textContent = 'A sampled 250 Hz square wave before and after a ' + cutoff + ' Hz second-order ' + mode + ' filter. The lower plot uses a fixed linear 0 to 4000 Hz axis and a fixed minus 60 to plus 3 decibel range. Dashed spectral lines show input harmonics and teal lines show filtered harmonics, in decibels relative to unit peak amplitude. The gold curve is filter gain. The response is minus 3.01 decibels at cutoff. Sample rate 8000 Hz; Q equals one over the square root of two.';
+    byId('ee-plot-desc').textContent = 'A sampled 250 Hz square wave before and after a ' + cutoff + ' Hz second-order ' + mode + ' filter. The lower plot uses a fixed linear 0 to 4000 Hz axis and a fixed minus 60 to plus 3 decibel range. Dashed spectral lines show input harmonics and teal lines show filtered harmonics, in decibels relative to unit peak amplitude. The gold curve is filter gain. The response is minus 3.01 decibels at cutoff. Normalized waveform amplitude uses a fixed minus 2.5 to plus 2.5 scale. Sample rate 8000 Hz; Q equals one over the square root of two.';
     byId('ee-plot-cutoff').textContent = cutoff + ' Hz';
     byId('ee-cutoff-value').value = cutoff + ' Hz';
     slider.setAttribute('aria-valuetext', cutoff + ' hertz');
