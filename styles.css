@@ -371,7 +371,7 @@ html[data-layout='gallery'] .gallery-controls:not([hidden]) { display: flex; ali
 .layer-preview .slab.is-demo-active .slab-top { stroke-opacity: 1; stroke-width: 2; }
 @media (prefers-reduced-motion: reduce) { .layer-preview .slab { transition: none; } }
 
-/* Refined chapters preview. Original production files remain unchanged. */
+/* Refined cinematic chapters. */
 .hero-photo { z-index: 0; }
 .hero-scrim { z-index: 1; pointer-events: none; }
 .hero-content { position: relative; z-index: 2; }
@@ -463,4 +463,18 @@ html[data-theme='light'] .sun-icon { display: none; }
   .illustration-credit { gap: .25rem 1rem; font-size: .6875rem; }
   .about-portrait { width: 65%; max-width: 230px; }
   .contact-layout { gap: 1.25rem; }
+}
+
+/* Compact mobile project directory: one category per row, equal link columns. */
+@media (max-width: 600px) {
+  .work-section .section-intro { gap: 1rem; padding-bottom: 1.5rem; }
+  .work-section .section-intro h2 { margin-top: .6rem; }
+  .project-picker { grid-template-columns: minmax(0, 1fr); gap: 0; padding-block: .25rem; }
+  .project-category { padding-block: .75rem; }
+  .project-category + .project-category { border-top: 1px solid var(--line); }
+  .project-category:last-child { grid-column: auto; }
+  .category-label { font-size: .6875rem; margin-bottom: .2rem; }
+  .category-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 .75rem; }
+  .project-picker a { font-size: .8125rem; line-height: 1.4; gap: .5rem; min-height: 44px; }
+  .project-picker a span { flex-shrink: 0; }
 }
