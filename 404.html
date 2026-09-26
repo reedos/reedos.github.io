@@ -1,51 +1,35 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noimageindex">
-  <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#000000">
-  <title>Page not found — Reed Cameron Osaki</title>
-  <script>
-    // Apply the saved or device appearance before the stylesheet paints.
-    (() => {
-      let preference = 'system';
-      try { preference = localStorage.getItem('reed-hub-theme') || 'system'; } catch {}
-      const requested = new URLSearchParams(location.search).get('theme');
-      if (['light', 'dark', 'system'].includes(requested)) preference = requested;
-      if (!['light', 'dark', 'system'].includes(preference)) preference = 'system';
-      document.documentElement.dataset.preference = preference;
-      document.documentElement.dataset.theme = preference === 'system'
-        ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : preference;
-      document.querySelector('meta[name="theme-color"]').content = document.documentElement.dataset.theme === 'dark' ? '#000000' : '#f5f6f7';
-    })();
-  </script>
-  <link rel="icon" type="image/svg+xml" href="/assets/mark.svg">
-  <link rel="stylesheet" href="/styles.css?v=studio-3">
-  <script src="/main.js?v=studio-3" defer></script>
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="identity" href="/" aria-label="Reed Osaki, home"><span class="brand-mark" aria-hidden="true">R<span>O</span></span><span class="brand-name">Reed Osaki</span></a>
-      <div class="header-controls">
-          <button class="theme-toggle" type="button" aria-label="Appearance" hidden>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" fill="currentColor" stroke="none"/></svg>
-            <span class="theme-label">Auto</span>
-          </button>
-        </div>
-    </div>
-  </header>
-  <main class="not-found-main page-width" id="main">
-    <div>
-      <p class="label">404 / Page not found</p>
-      <h1>Nothing here.</h1>
-      <p>This address doesn’t point to a page. The work is back at the hub.</p>
-      <a class="outline-link" href="/">Back to the hub <span aria-hidden="true">↗</span></a>
-    </div>
-  </main>
-  <footer class="site-footer page-width"><p>Reed Cameron Osaki / © 2026</p><p>Hosted on GitHub Pages.</p></footer>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noimageindex">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#000000">
+    <title>Page not found — Reed Cameron Osaki</title>
+    <script>
+      (() => {
+        let preference = 'dark';
+        try { preference = localStorage.getItem('reed-hub-theme') || 'dark'; } catch {}
+        const query = new URLSearchParams(location.search);
+        if (['dark', 'light', 'system'].includes(query.get('theme'))) preference = query.get('theme');
+        if (!['dark', 'light', 'system'].includes(preference)) preference = 'dark';
+        const root = document.documentElement;
+        root.dataset.preference = preference;
+        root.dataset.theme = preference === 'system' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : preference;
+        root.dataset.layout = query.get('layout') === 'gallery' ? 'gallery' : 'chapters';
+        document.querySelector('meta[name="theme-color"]').content = root.dataset.theme === 'dark' ? '#000000' : '#f1f2ed';
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/assets/mark.svg">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-600.woff2" crossorigin>
+    <link rel="stylesheet" href="/styles.css?v=chapters-4">
+    <script src="/main.js?v=chapters-4" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header"><div class="header-inner page-width"><a class="identity" href="/" aria-label="Reed Osaki, home"><span class="brand-mark" aria-hidden="true">R<span>O</span></span><span class="brand-name">Reed Osaki</span></a><button class="theme-toggle" type="button" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" fill="currentColor" stroke="none"/></svg><span class="theme-label">Dark</span></button></div></header>
+    <main class="not-found-main page-width" id="main"><div><p class="eyebrow">404 / Page not found</p><h1>Nothing here.</h1><p>This address doesn’t point to a page. The work is back at the hub.</p><a class="button-link" href="/">Back to the hub</a></div></main>
+    <footer class="site-footer"><div class="footer-base page-width"><p>© 2026 Reed Cameron Osaki</p><p>Hosted on GitHub Pages.</p></div></footer>
+  </body>
 </html>

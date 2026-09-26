@@ -1,25 +1,28 @@
 # Reed Cameron Osaki
 
-A static personal hub for **https://reedos.github.io**. HTML, one CSS file, and a small script for the menu and theme. No build, package manager, server runtime, analytics, or external font requests. Content and navigation remain available without JavaScript.
+A static personal hub for **https://reedos.github.io**. HTML, one CSS file, and a small JavaScript file. No build, package manager, server runtime, analytics, or external font requests. Content and navigation remain available without JavaScript.
 
 ## Review preview
 
-The site is published for feedback at **https://reedos.github.io/**. The main page, error page, and archived design studies carry `noindex, nofollow, noimageindex`. No sitemap or canonical tag is included during review. These tags ask supporting search engines to omit the preview; the URL and repository are public and do not require sign-in.
+The main page, error page, and archived design studies carry `noindex, nofollow, noimageindex`. The URL and repository are public; these tags request exclusion from supporting search engines, not sign-in protection. No sitemap or canonical tag is included during review.
 
-Do not add a root `robots.txt` with `Disallow: /`: crawlers must be able to read the `noindex` tag, and this hostname also serves Reed’s project sites. When Reed is ready for search discovery, remove the robots tag from `index.html` and restore `<link rel="canonical" href="https://reedos.github.io/">`. Keep the 404 and design studies excluded. See [Google’s noindex documentation](https://developers.google.com/search/docs/crawling-indexing/block-indexing).
+Compare the same content in two layouts:
 
-For feedback updates, edit the files, commit, and push to `main`. GitHub Pages republishes the root automatically. No Tailscale connection is needed.
+- [Chapters](https://reedos.github.io/?layout=chapters): vertical project sections, the default.
+- [Gallery](https://reedos.github.io/?layout=gallery): a horizontal project gallery with swipe and button navigation.
+
+Add `&theme=dark` or `&theme=light` to either URL for a specific appearance. Dark is the default unless a theme has been saved; Auto follows the device. Layout links are also available in the footer; earlier studies remain in [design-directions/](design-directions/).
+
+For feedback updates, edit, commit, and push to `main`. Pages republishes the root automatically. No Tailscale connection is needed. Do not add a root `robots.txt` with `Disallow: /`: crawlers need to read the noindex tag, and this hostname also serves Reed’s project sites. When ready for search discovery, remove the robots tag from `index.html` and restore `<link rel="canonical" href="https://reedos.github.io/">`. Keep error and study pages excluded. [Google’s noindex documentation](https://developers.google.com/search/docs/crawling-indexing/block-indexing).
 
 ## Publish on GitHub Pages
 
-1. Copy this folder’s **contents**, including `.nojekyll` and `assets/`, into the root of `reedos/reedos.github.io`. Commit to `main`.
-2. Open **Settings → Pages → Build and deployment**.
+1. Copy this folder’s contents, including `.nojekyll` and `assets/`, into the root of `reedos/reedos.github.io`. Commit to `main`.
+2. Open **Settings > Pages > Build and deployment**.
 3. Choose **Deploy from a branch**, select **main** and **/(root)**, and save.
-4. After deployment, visit **https://reedos.github.io/**.
+4. Visit **https://reedos.github.io/** after deployment.
 
-Alternatively, place the files in `/docs` and select **main /docs**. The public address stays the same. The 404 page uses root-relative links. No `CNAME` is needed.
-
-Official instructions: [create a Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) and [choose the publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+Alternatively, place the files in `/docs` and select **main /docs**. The 404 page uses root-relative links. No `CNAME` is needed. [GitHub Pages instructions](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
 
 ## Preview locally
 
@@ -31,17 +34,21 @@ python -m http.server 8000
 
 Visit `http://localhost:8000`. Python is only for local preview. Preview `404.html` through HTTP so its root-relative links resolve.
 
-## Layout, theme, and imagery
+## Design and content
 
-The Studio layout blends Reed’s mountain photograph into the name panel. EE Labs and RF Lab Reference have featured previews; Gradient Ascent, Stack Ledger, and Field Catalog follow as three compact rows. Field combines a 3:4 ibex portrait and a 4:3 flycatcher frame. About pairs a small portrait of Reed with his biography and background. A separate datacenter image is explicitly captioned **Datacenter · Generated illustration**; it is not a photograph of Reed’s workplace.
+The full-height hero uses Reed’s landscape mountain photograph on larger screens and his portrait mountain photograph on phones. The name sits over a controlled fade. Display type is Barlow Condensed 600; body type is Manrope, matching the wildlife site’s font families. Restrained gold accents use `#e6ba82` in dark mode and `#80531c` in light mode. The translucent header contains the RO monogram, section navigation, and theme control.
 
-The translucent header uses an RO monogram and a collapsible phone menu. The theme button cycles Auto, Dark, and Light and saves the choice under `reed-hub-theme`. Auto follows the device and is the default. Share `?theme=dark` or `?theme=light` to open a specific appearance. Photographs and project previews retain their original colors in both themes. Controls include keyboard focus styles and phone tap targets; reduced-motion preferences suppress transitions.
+All five project artboards are **1200 × 900 (4:3)**. EE Labs shows a working Signal Lab filter example; RF uses the verified Smith figure; Gradient Ascent uses the native level stack; Stack Ledger and Field Catalog preserve their existing screenshots with letterboxing. These are local assets and a small mathematical demonstration, not embedded apps. EE motion starts only when requested and includes pause controls. Keep technical diagrams uncropped and undistorted.
 
-Reed supplied the mountain and portrait JPEGs. They are copied byte-for-byte, already web-sized, with no GPS metadata found. Wildlife exports come from his public photography repository. Only 3:4 and 4:3 wildlife frames are used; cropping is done in CSS. Keep replacement photographs under about 400 KB, preserve filenames or update every reference, and update their actual `width`, `height`, and descriptive `alt`. Check the crop and text contrast in both themes at phone and desktop widths. Aim for 4.5:1 for body text and 3:1 for large headings.
+Field uses one 3:4 heron frame with a link to the wildlife site. About retains Reed’s portrait. The symmetric datacenter scene is visibly labeled as a generated illustration and does not depict an employer facility. The footer groups identity, section navigation, and profile links, with review-layout links below.
 
-All five project visuals link to the real project: RLC response, an analytically verified Smith figure, the actual Gradient Ascent map, infrastructure spending charts, and Field Catalog’s published library screenshot. They are local static assets, not live embeds. Keep technical diagrams uncropped and do not recolor or distort them. The Smith example has readable HTML values below its plot.
+[CONTENT.md](CONTENT.md) records sources, exact replacement copy, the remaining email TODO, and biography limits. [Datacenter provenance](assets/images/datacenter-symmetry-PROVENANCE.md) contains the exact generation prompt. Original assets retained for archived studies are not all used on the current homepage.
 
-[CONTENT.md](CONTENT.md) records the image sources, exact alt text, replacement instructions, biography limits, and the remaining email TODO. [Datacenter provenance](assets/images/datacenter-PROVENANCE.md) includes the exact generation prompt. The earlier alternatives remain at [`design-directions/`](design-directions/) as review studies.
+## Replace images
+
+Keep master photographs elsewhere. Use web-sized files, normally below 400 KB, and update the HTML `src`, actual `width`/`height`, and descriptive `alt`. Use only 3:4 or 4:3 standalone wildlife frames; CSS crops rather than stretches. The hero is a responsive full-screen scene, with separate portrait and landscape sources. Preserve subjects when checking phone and desktop crops.
+
+Keep project artboards at 1200 × 900. Refresh screenshots from the real tools, preserve their native colors and geometry, and letterbox if their captured ratio differs. Generated or reconstructed technical visuals must remain clearly identified in the provenance. Check both themes, keyboard focus, reduced-motion behavior, and text contrast after replacement.
 
 `hello@` is a labeled, non-clickable placeholder. Replace it only with a verified address. Update the static footer year when needed.
 
@@ -60,10 +67,10 @@ All five project visuals link to the real project: RLC response, an analytically
 - Instagram: https://www.instagram.com/reed.wildlife.photography/
 - LinkedIn: https://www.linkedin.com/in/reed-osaki/
 
-Links open in the same tab. Project counts are supplied editorial copy, not live statistics; update them in `index.html` when the projects change.
+Project counts are supplied editorial copy, not live statistics. Update them in `index.html` when the projects change.
 
 ## Files and fonts
 
-`index.html` holds the content, `styles.css` all styling and responsive rules, and `main.js` the mobile menu and theme controls. `404.html` is the matching error page. `.nojekyll` disables Jekyll processing. `assets/` holds the local photographs, illustration, previews, and fonts. No installation step is required.
+`index.html` holds content; `styles.css` holds all styling; `main.js` handles navigation, theme/layout controls, and the optional filter demonstration. `404.html` is the matching error page. `.nojekyll` disables Jekyll processing. `assets/` contains local images, previews, and fonts.
 
-The site uses local Latin-subset Barlow 400/500, Barlow Condensed 600, and IBM Plex Mono 400. The map embeds its native DM Sans 600. Their SIL Open Font License files are included in `assets/fonts/`; keep them with the fonts.
+The main design uses Barlow Condensed 600 and Manrope, with IBM Plex Mono for technical labels. Barlow 400/500 remains for archived studies. Native Gradient Ascent exports embed DM Sans. SIL Open Font License files are included in `assets/fonts/`; retain them with the fonts.

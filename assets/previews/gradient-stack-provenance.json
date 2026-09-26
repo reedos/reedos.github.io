@@ -1,0 +1,22 @@
+{
+  "file": "assets/previews/gradient-stack.svg",
+  "dimensions": [
+    1200,
+    900
+  ],
+  "source": "https://reedos.github.io/gradient_ascent/",
+  "sourceComponent": "https://github.com/reedos/gradient_ascent/blob/6eab6d6141178b8cb83a2269529c8eaa0ecec9e4/site/src/components/islands/LevelStack.tsx",
+  "sourceStyles": "https://reedos.github.io/gradient_ascent/_astro/Base.LvompToB.css",
+  "sourceRevision": "6eab6d6141178b8cb83a2269529c8eaa0ecec9e4",
+  "downloaded": "2026-09-26",
+  "type": "Native source SVG export, not a screenshot",
+  "nativeViewBox": "0 0 585 710",
+  "nativeGeometryUnchanged": true,
+  "notes": [
+    "Native dark palette and DM Sans 400 embedded.",
+    "Standalone 4:3 artboard preserves the full native viewbox without distortion.",
+    "Only label change: remove trailing external-link arrow at Reed's request.",
+    "DM Sans uses OFL-1.1; license retained in assets/fonts/DM-Sans-OFL.txt.",
+    "Static links stripped. No app UI or features invented."
+  ]
+}

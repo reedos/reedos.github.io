@@ -1,60 +1,94 @@
 # Content handoff
 
-Project descriptions and the core biography come from Reed’s supplied brief. The background section adds the limited public facts documented below. No formal job title, employment dates, degree-conferral date, award, testimonial, or phone number has been invented.
+Project descriptions and the core biography come from Reed’s supplied brief. The background section adds the limited public facts below. No formal job title, employment dates, degree-conferral date, award, testimonial, or phone number has been invented.
 
-## Preview publication
+## Preview publication and layouts
 
-Reed requested a live, unlisted preview with no search indexing. The review site at `https://reedos.github.io/` is publicly accessible and carries `noindex, nofollow, noimageindex` on the main page, error page, and design studies. These are crawler instructions, not authentication. The canonical tag is omitted until launch; README.md records the exact changes for enabling search discovery. The email and biography follow-ups below remain editable during review.
+The public review site at `https://reedos.github.io/` carries `noindex, nofollow, noimageindex` on the main page, error page, and archived studies. These are crawler instructions, not authentication. No canonical tag is present during review; README.md explains the changes for search discovery.
 
-## Reed’s photographs
+The current page has two presentations of the same content: **Cinematic chapters**, the default vertical sequence at `?layout=chapters`, and **Project gallery**, a horizontal swipeable sequence at `?layout=gallery`. Each retains Work, Field, About, and Contact anchors. Theme links accept `theme=dark`, `theme=light`, or `theme=system` (Auto). Dark is the default unless a theme has been saved. The footer groups identity, page navigation, and external profiles; its lower row contains copyright and GitHub Pages credit, with design-review links below.
 
-The Field section’s primary “View photographs” link opens Reed’s [wildlife photography site](https://reedos.github.io/wildlife-site/index.html). Instagram remains available in the header and Contact section.
+Barlow Condensed 600 supplies the display typography and Manrope the body text, following Reed’s wildlife site. IBM Plex Mono is reserved for technical labels. Gold accents are `#e6ba82` on dark backgrounds and `#80531c` on light backgrounds. Photography and project art retain their own colors.
 
-No stock-photo placeholders remain. Reed supplied the new mountain and personal portrait photographs in this conversation on 2026-09-26. Their original JPEG bytes are preserved. Both files have normal orientation and no GPS, capture-date, camera, or location EXIF; the remaining EXIF records only resolution, color space, and dimensions. No generative editing or photo content changes were made. No capture locations or dates are asserted in the page.
+## Current photographs
 
-The two wildlife images in the main page come from Reed’s public [wildlife-site repository](https://github.com/reedos/wildlife-site). Its [About page](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/about.html) attributes the collection to Reed and links his Instagram handle. Species labels come from that collection. These website exports were downloaded on 2026-09-25, proportionally resized and compressed to WebP without copying EXIF; the complete exported frame remains in each asset.
+The Field section links to Reed’s [wildlife photography site](https://reedos.github.io/wildlife-site/index.html). Instagram remains available among the profile links. No stock-photo placeholders remain.
 
-The Studio layout presents all standalone photographs in 3:4 or 4:3 CSS frames. The hero’s 4:3 mountain frame blends at the edge into the current theme’s name panel. The source photographs are not stretched. Only the hero loads eagerly.
+Reed supplied the mountain and personal portrait photographs on 2026-09-26. The JPEGs are copied byte-for-byte, with normal orientation and no GPS, capture-date, camera, or location EXIF found. Their remaining EXIF describes resolution, dimensions, orientation, and color space. No generative photo edits were made. The page does not claim a capture location or date.
 
-| File in `assets/images/` | Main-page placement / frame | Source | Original asset dimensions | Bytes |
+The heron image comes from Reed’s public [wildlife-site repository](https://github.com/reedos/wildlife-site). Its [About page](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/about.html) attributes the collection to Reed and links his Instagram handle. Its species label comes from that collection. The export was downloaded on 2026-09-25, proportionally resized, and compressed to WebP without copying EXIF.
+
+| File in `assets/images/` | Current placement | Source | Asset dimensions | Bytes |
 | --- | --- | --- | --- | --- |
-| `mountain-ridge.jpg` | Blended hero / 4:3 | User attachment `5-Photo-5.jpg`, copied byte-for-byte | 1280 × 853 | 291,313 |
-| `reed-portrait.jpg` | About / 3:4, `object-position: 50% 70%` | User attachment `3-Photo-3.jpg`, copied byte-for-byte | 853 × 1280 | 135,784 |
-| `alpine-ibex.webp` | Field / 3:4 | [Alpine ibex original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/2ae43b029c597789f1bf-2400.jpg) | 900 × 1200 | 52,992 |
-| `vermilion-flycatcher.webp` | Field / 4:3 | [Vermilion flycatcher original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/ffe9c2a7b1b8bc50bd43-2400.jpg) | 1920 × 1280 | 85,642 |
+| `mountain-ridge.jpg` | Full-height hero, desktop landscape source | User attachment `5-Photo-5.jpg` | 1280 × 853 | 291,313 |
+| `mountain-portrait.jpg` | Full-height hero, phone portrait source | User attachment `1-Photo-1.jpg` | 959 × 1280 | 256,624 |
+| `reed-portrait.jpg` | About / 3:4 frame | User attachment `3-Photo-3.jpg` | 853 × 1280 | 135,784 |
+| `great-blue-heron.webp` | Field / one 3:4 frame | [Great blue heron original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/5649e4f4a7ff13066089-2400.jpg) | 800 × 1200 | 101,198 |
 
-Attachments `1-Photo-1.jpg` and `2-Photo-2.jpg` were alternatives and are not published. Attachment `4-Photo-4.jpg` was a datacenter reference only; its pixels were not copied into the site or passed as an image-generation input.
+The responsive hero uses landscape and portrait sources in one `picture` element and crops to the viewport composition. It is not a standalone wildlife frame. The single Field photograph keeps a 3:4 CSS frame; no photograph is stretched. Attachment `2-Photo-2.jpg` remains an unused alternative. The datacenter reference attachment `4-Photo-4.jpg` is not published and was not an image-generation input.
 
-### Swapping photographs
+### Exact photo replacement text
 
-Use another confirmed Reed photograph and keep the filename, or update the HTML `src`. Set `width` and `height` to the replacement asset’s actual dimensions and replace its literal alt sentence. Keep masters elsewhere; web files should normally remain below 400 KB. Preserve the 3:4 and 4:3 wildlife frames. Check the subject’s head and body in the CSS crop on phones and desktops. Recheck the hero’s text contrast and fade in both light and dark themes.
+Replace the relevant source, actual dimensions, and literal alt sentence when supplying a different photograph:
 
-Exact main-page alt sentences to replace:
+- Hero, shared by both mountain sources: “Snow-covered mountain peaks beneath a blue sky. Photograph by Reed Cameron Osaki.”
+- About portrait: “Reed Cameron Osaki wearing a hiking backpack in front of a mountain landscape.”
+- Field: “A great blue heron standing in green, plant-covered water. Photograph by Reed Cameron Osaki.”
+- Field species caption: “Great blue heron”.
 
-- `mountain-ridge.jpg`: “A snow-covered mountain ridge beneath a blue sky. Photograph by Reed Cameron Osaki.”
-- `reed-portrait.jpg`: “Reed Cameron Osaki wearing a hiking backpack in front of a mountain landscape.”
-- `alpine-ibex.webp`: “An Alpine ibex standing on a snow-covered rock ledge. Photograph by Reed Cameron Osaki.”
-- `vermilion-flycatcher.webp`: “A vermilion flycatcher perched on a branch. Photograph by Reed Cameron Osaki.”
-
-Update the matching species caption if the image changes. Keep generic landscape wording unless Reed supplies the actual place. “Southern California” describes Reed’s location, not where any photograph was taken.
-
-### Assets retained for earlier design studies
-
-The following older exports remain available to the archived `design-directions/` studies and are not part of the main Studio page. Do not treat their presence as a requirement to add more images to the homepage.
-
-| File in `assets/images/` | Public original | Dimensions | Bytes |
-| --- | --- | --- | --- |
-| `red-fox.webp` | [Red fox](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/36353a3b6336e039c0b2-2400.jpg) | 1920 × 1280 | 48,310 |
-| `american-robin.webp` | [American robin](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/67c8705a99b85a472e85-3840.jpg) | 1440 × 960 | 84,918 |
-| `great-blue-heron.webp` | [Great blue heron](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/5649e4f4a7ff13066089-2400.jpg) | 800 × 1200 | 101,198 |
-
-These files retain their original provenance. Update any archived-study alt text if replacing one of them. The previous stock landscape, rack, and deer placeholders are not included.
+Keep source masters elsewhere; web photos should normally remain below 400 KB. Preserve 3:4 or 4:3 standalone wildlife frames, and check the subject’s head and body after CSS cropping. When changing the hero, update both portrait and landscape sources and check the name overlay on both screen orientations and themes. Keep generic mountain wording unless Reed supplies the actual place. “Southern California” describes Reed’s location, not where the photos were taken.
 
 ## Generated datacenter illustration
 
-`assets/images/datacenter-illustration.webp` is an original fictional datacenter illustration made on 2026-09-26 using the built-in `image_gen` tool, with no CLI or reference-image input. The website export is 1400 × 1050 (4:3), 186,658 bytes. Its visible caption is **Datacenter · Generated illustration**. It does not depict Reed’s workplace or an identifiable employer facility, and it is not attributed to his photography.
+The current `assets/images/datacenter-symmetry.webp` is an original fictional datacenter illustration created on 2026-09-26 using the built-in image-generation tool. The 1400 × 1050 (4:3) web export is 183,276 bytes. It uses a centered one-point perspective, balanced rack and ceiling architecture, cool cyan lighting, and polished reflections. It is not an image of Reed’s workplace, any identified employer facility, or his photography. Small generated details are not guaranteed to be pixel-identical across the centerline.
 
-The full final prompt and export details are in [datacenter-PROVENANCE.md](assets/images/datacenter-PROVENANCE.md). The workspace production record is `work/generated-assets/datacenter-provenance.md` outside the site repository. If replacing this asset, keep the generated label unless the new image is a verified photograph. For a verified photograph, replace the entire caption with its accurate subject and credit, and update its alt text and this provenance entry. Do not identify a facility or employer without confirmation.
+- Exact visible caption: **Datacenter / Generated illustration**
+- Exact alt: “Generated symmetrical datacenter illustration with dark racks, cyan lighting, and a central vanishing point.”
+- Exact generation prompt and processing record: [datacenter-symmetry-PROVENANCE.md](assets/images/datacenter-symmetry-PROVENANCE.md).
+
+The user’s original datacenter reference informed the requested style; none of its pixels were copied into this image. No CLI fallback was used. Keep the generated label for replacement illustrations. If Reed supplies a verified photograph instead, replace the entire caption with an accurate subject and credit, update the alt and provenance, and identify a facility only with confirmation.
+
+## Current project visuals
+
+All five project artboards are **1200 × 900, 4:3**. They are local assets; their primary links open the actual tools. Browser capture was unavailable for this revision, so these are not newly captured screenshots. The existing screenshots are retained without cropping or distortion, and the technical artwork is identified below.
+
+| Local asset in `assets/previews/` | Source and treatment |
+| --- | --- |
+| `ee-signal-preview.svg` | Mathematical Signal Lab preview and no-JavaScript fallback for the interactive filter demonstration; not an app screenshot. |
+| `rf-smith-wide.svg` | Existing verified Smith figure uniformly scaled onto a 4:3 artboard, with a separate readout panel. |
+| `gradient-stack.svg` | Gradient Ascent’s actual native isometric level-stack SVG, exported from the rendered source with its geometry and palette preserved. |
+| `stack-ledger-wide.webp` | Existing real Stack Ledger capital-spending screenshot, uniformly rescaled and letterboxed. |
+| `field-catalog-wide.webp` | Existing published Field Catalog library screenshot, uniformly rescaled and letterboxed. |
+
+The two screenshots use a dark `#090d11` stage. Native app colors are retained in both page themes. They are not live readings. [Wide-preview provenance](assets/previews/wide-preview-provenance.json) records source/output hashes, exact transformations, and RF reference values.
+
+### EE Labs Signal Lab demonstration
+
+The default matches the real “Low-pass a square” preset: a 250 Hz, amplitude-1 square wave through a second-order low-pass filter, cutoff 700 Hz, Q = 1/√2, sample rate 8000 Hz, and 20 ms time span. Waveforms use the upstream sample rule and biquad processor with 4096 warmup samples. The frequency plot is the exact transfer magnitude, not an FFT of the square wave. Lines connect discrete samples; they are not continuous-time reconstruction.
+
+The low-pass/high-pass buttons and cutoff control calculate actual results. The optional sweep is user-started, with pause controls; it does not autoplay. The comparison keeps 8000 Hz for both filters, while the native app’s separate high-pass preset uses 16000 Hz. This is a small mathematical demonstration, not a recording or imitation of the full application.
+
+Source revision: [EE Labs `fbfb067d187b85f8e1e4081ea7c485dc032de714`](https://github.com/reedos/ee-labs/tree/fbfb067d187b85f8e1e4081ea7c485dc032de714). Relevant source: [biquad math](https://github.com/reedos/ee-labs/blob/fbfb067d187b85f8e1e4081ea7c485dc032de714/packages/dsp/src/biquad.js), [waveforms](https://github.com/reedos/ee-labs/blob/fbfb067d187b85f8e1e4081ea7c485dc032de714/packages/dsp/src/signals.js), and [presets](https://github.com/reedos/ee-labs/blob/fbfb067d187b85f8e1e4081ea7c485dc032de714/apps/signal-lab/src/presets.js#L484). The [MIT license](assets/previews/EE-Labs-MIT.txt) is retained. [Demo provenance and numerical checks](assets/previews/ee-demo-provenance.json).
+
+### RF Smith chart
+
+This is a scientific figure, not an app screenshot. The existing `rf-smith-portfolio.svg` is nested at 900 × 900 with its original 1000 × 1000 viewBox, an exact uniform scale of 0.9. The separate readout panel occupies the remaining 300 pixels. Grid geometry, colors, marker, and original source labels are unchanged.
+
+For normalized impedance z = r+jx = Z/Z₀, resistance circles have center (r/(1+r), 0), radius 1/(1+r); reactance circles have center (1, 1/x), radius 1/|x|, clipped to the unit disk. The image inverts the vertical coordinate. Checks against [the corrected RF module](https://github.com/reedos/rf_lab_reference/blob/1bfb19688897ebef5b9aceb65743e741d26dbb4a/js/rf.js) recorded circle residuals below 2×10⁻¹⁵.
+
+For Z = 75+j35 Ω and Z₀ = 50 Ω, Γ = 0.258160+j0.207715, |Γ| = 0.331349, VSWR = 1.991098, and return loss = 9.594282 dB. The dashed circle is constant |Γ|; the radial line is the reflection vector, not a measured frequency sweep. If the example load changes, update the SVG title/description and readouts together. This figure does not alter the live app.
+
+### Gradient Ascent stack
+
+The current stack replaces the map. It was exported on 2026-09-26 from the native SVG in [LevelStack.tsx](https://github.com/reedos/gradient_ascent/blob/6eab6d6141178b8cb83a2269529c8eaa0ecec9e4/site/src/components/islands/LevelStack.tsx) at revision `6eab6d6141178b8cb83a2269529c8eaa0ecec9e4`. Slab paths, symbols, labels, and coordinates retain the source geometry; the trailing external-link arrows were removed as requested. Its native 585 × 710 viewBox is fitted intact within the 1200 × 900 artboard. Native dark colors and DM Sans 400 are embedded.
+
+[Stack provenance](assets/previews/gradient-stack-provenance.json) records the source and export. No interaction code, remote requests, or invented application UI are included. To refresh, export the real stack again and preserve its geometry. Keep the [DM Sans license](assets/fonts/DM-Sans-OFL.txt).
+
+### Screenshot refreshes
+
+The original Stack Ledger capture is from 2026-09-25 and shows “The investment taking physical shape.” The original Field Catalog screenshot was downloaded from its [published documentation](https://raw.githubusercontent.com/reedos/field-catalog/b2b7f6679e41ca761622136498c037786b122d40/docs/screenshots/library.jpg) that day; its actual capture date is not asserted. The app screenshot includes its own captions and controls; the hub makes no additional species or location claims.
+
+For a fresh screenshot, capture the actual application, preserve its native styling, and fit it intact to a 1200 × 900 artboard. Compress to WebP, normally below 300 KB. Update the alt, caption, source URL, capture date, and provenance. Do not create animated interface recordings from invented data. Keep all primary and source links listed in README.md unchanged.
 
 ## Experience and education
 
@@ -63,68 +97,42 @@ Public sources checked on 2026-09-25:
 - [Reed’s LinkedIn profile](https://www.linkedin.com/in/reed-osaki/), as rendered in the public search index: Marvell Technology affiliation and hardware engineering; UCLA Extension coursework in analog, mixed-signal, RF, and microwave circuit design, 2021–2022. Direct profile access was blocked, and the indexed view hides formal roles, employment dates, and much of the education history.
 - [CSULB’s 2022 College of Engineering commencement program](https://www.csulb.edu/sites/default/files/document/coe-program-2022.pdf), printed page 12 / PDF page 7: Reed Cameron Osaki appears under Master of Science, Electrical Engineering. The program lists degree candidates, so the website says **graduate study** without asserting degree conferral or a graduation date.
 
-The compact About block links to LinkedIn for the full profile. It does not claim to be a complete employment or education history.
-
-Still needed from Reed: exact current title, earlier roles to include with employer and years, completed degree names, institutions, and optional graduation years. Replace the exact sentence `Hardware engineering.` with his confirmed title and dates if desired. Replace `Graduate study in electrical engineering.` with the confirmed completed degree; add a year only when confirmed. UCLA Extension is coursework, not an asserted degree or certificate. Add earlier roles as additional rows only after Reed supplies them.
-
-## Actual project previews
-
-These five previews represent the real projects: three screenshots, Gradient Ascent’s exported technique map, and a Smith figure verified against RF Lab Reference. They are local static images, not fabricated interfaces or live embeds. Each links to the corresponding primary destination from the brief. Screenshots and the technique map preserve their captured geometry. The Smith figure uses exact analytical geometry with labels arranged for the portfolio. Do not interpret preview numbers as live readings.
-
-| Local file | Actual source/view | Dimensions | Size |
-| --- | --- | --- | --- |
-| `assets/previews/ee-labs.webp` | [Circuit Lab](https://reedos.github.io/ee-labs/circuit-lab/), Resonance → “Q is how sharp, and R sets it.” Series RLC, R=20 Ω, L=10 mH, C=100 nF, output across C. | 1440 × 900 | 76,102 bytes |
-| `assets/previews/rf-smith-portfolio.svg` | [Impedance & match](https://reedos.github.io/rf_lab_reference/match.html), exact normalized impedance Smith geometry checked against the corrected tool; 75+j35 Ω example load, 50 Ω reference. | 1000 × 1000 | 24,894 bytes |
-| `assets/previews/gradient-map.svg` | [Gradient Ascent technique map](https://reedos.github.io/gradient_ascent/map/), exported from its live SVG with native dark styling and default relationship visibility. | 1120 × 1085 | 154,861 bytes |
-| `assets/previews/stack-ledger.webp` | [Stack Ledger](https://reedos.github.io/stack_ledger/), “The investment taking physical shape,” capital-spending charts and guidance. | 1440 × 900 | 120,036 bytes |
-| `assets/previews/field-catalog.webp` | [Published library screenshot](https://raw.githubusercontent.com/reedos/field-catalog/b2b7f6679e41ca761622136498c037786b122d40/docs/screenshots/library.jpg), from the Field Catalog repository at the pinned commit. | 1440 × 810 | 145,844 bytes |
-
-Public web apps were captured on 2026-09-25. The Field Catalog image was downloaded from its public documentation on that date; its original capture date is not asserted. The screenshot includes its own photo captions and app controls; the hub makes no additional species or location claims.
-
-To refresh a project preview, capture the actual app at approximately 1440px wide, preserve the app’s native styling, compress to WebP, and replace the corresponding file. Update its dimensions, alt text, caption, and source record if the view changes. Keep screenshots under 300 KB where practical. The existing primary and source links should stay unchanged. All five previews load lazily.
-
-### RF Smith chart figure
-
-This replaces the earlier sparse native-chart export. It is a scientific figure composed for the portfolio, not a screenshot of the app. All values and grid geometry are checked against [the corrected RF calculation module](https://github.com/reedos/rf_lab_reference/blob/1bfb19688897ebef5b9aceb65743e741d26dbb4a/js/rf.js). The plot is black with major/minor grid hierarchy, labeled resistance and reactance, and the tool’s teal reflection marker. HTML below the image shows the example load, VSWR, and return loss, so those values remain readable on a phone and when text is enlarged.
-
-For normalized impedance z = r+jx = Z/Z₀, each resistance circle has center (r/(1+r), 0) and radius 1/(1+r); each reactance circle has center (1, 1/x) and radius 1/|x|, clipped to the unit disk. The image inverts the vertical coordinate. Checks against the application’s impedance transform have a maximum circle residual below 2×10⁻¹⁵.
-
-For Z = 75+j35 Ω and Z₀ = 50 Ω, Γ = 0.258160+j0.207715, |Γ| = 0.331349, VSWR = 1.991098, and return loss = 9.594282 dB. The marker is at (602.748, 417.329), above and right of the center (500, 500), on a chart with radius 398. The dashed circle is constant |Γ|; the straight teal line is the reflection vector, not a measured frequency sweep. The example is labeled as such.
-
-The SVG embeds the same licensed IBM Plex Mono font as the tool. No scripts, controls, or external requests are included. Refresh the analytical circles and calculate the example using the RF tool; do not approximate the geometry. If the load changes, update the SVG title/description, the HTML alt text, and all three `.smith-readout` values together. This figure does not alter the live RF app.
-
-### Gradient Ascent map export
-
-The map replaces the worked-example screenshot. It was exported on 2026-09-25 from the public `/map/` page, corresponding to [TechniqueMap.astro at the recorded source commit](https://github.com/reedos/gradient_ascent/blob/6eab6d6141178b8cb83a2269529c8eaa0ecec9e4/site/src/components/TechniqueMap.astro). Node positions, labels, and paths are unchanged. Native colors and default visible prerequisite/upgrade paths are baked into the standalone SVG. The diagram’s surrounding controls and HTML sidebar are outside this export. No interaction code or remote dependencies are included.
-
-The native DM Sans 600 font is embedded in the SVG. Its SIL Open Font License is included at `assets/fonts/DM-Sans-OFL.txt`.
-
-To refresh it, export the real map again rather than drawing a replacement. Preserve its native geometry and default relationship visibility; update dimensions and the table above if they change. The hub’s project counts remain the editorial copy from Reed’s brief.
+About links to LinkedIn for the full profile and does not claim to be a complete history. Still needed from Reed: exact current title, earlier roles with employer and years, completed degree names, institutions, and optional graduation years. Replace `Hardware engineering.` with his confirmed title and dates if desired. Replace `Graduate study in electrical engineering.` only with a confirmed completed degree. UCLA Extension is coursework, not an asserted degree or certificate.
 
 ## Email TODO
 
-No email address was supplied. `hello@` is deliberately incomplete, labeled, and not a link. The exact visible sentence to replace is:
+No email address was supplied. `hello@` is deliberately incomplete, labeled, and not linked. The exact visible sentence to replace is:
 
 > Email to be added.
 
-Replace the **whole paragraph** below in `index.html`, including the incomplete address:
+Replace this whole paragraph in `index.html`:
 
 ```html
-<p class="email-placeholder"><span aria-label="Incomplete email placeholder">hello@</span> <span class="email-note">Email to be added.</span></p>
+<p class="email-placeholder"><span aria-label="Incomplete email placeholder">hello@</span><span>Email to be added.</span></p>
 ```
 
-With this structure, substituting Reed’s verified address in **both** places before saving (the braces are instructions, not a publishable value):
+With a verified address in both places below; the braces are instructions, not publishable values:
 
 ```html
 <a class="action-link" href="mailto:{VERIFIED_EMAIL}">{VERIFIED_EMAIL}</a>
 ```
 
-Remove the adjacent email TODO comment afterward. No other biography or project copy needs to change when Reed supplies photos or an address.
+Remove the adjacent email TODO comment afterward.
 
-## Replacement checks
+## Retained assets for earlier studies
 
-- Update real image dimensions and clear, descriptive alt text for each replaced photograph or screenshot.
-- Preserve photo provenance and the font licenses.
-- Verify legibility, crop, focus indicators, and navigation on a phone and desktop.
-- Keep descriptions in sentence case. Keep outbound project URLs exactly as listed in `README.md`.
-- The copyright year is static: `© 2026` in the main page and error page.
+These are historical exports, not instructions to add more pictures to the current page. They remain available to `design-directions/` and earlier source records.
+
+| Asset | Recorded source |
+| --- | --- |
+| `red-fox.webp` | [Reed’s red fox original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/36353a3b6336e039c0b2-2400.jpg), 1920 × 1280 export. |
+| `american-robin.webp` | [Reed’s American robin original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/67c8705a99b85a472e85-3840.jpg), 1440 × 960 export. |
+| `alpine-ibex.webp` | [Reed’s Alpine ibex original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/2ae43b029c597789f1bf-2400.jpg), 900 × 1200 export. |
+| `vermilion-flycatcher.webp` | [Reed’s vermilion flycatcher original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/ffe9c2a7b1b8bc50bd43-2400.jpg), 1920 × 1280 export. |
+| `datacenter-illustration.webp` | Earlier generated 1400 × 1050 matte-rack scene, 186,658 bytes. [Original prompt](assets/images/datacenter-PROVENANCE.md). Replaced on the homepage. |
+| `ee-labs.webp` | Real [Circuit Lab](https://reedos.github.io/ee-labs/circuit-lab/) capture, “Q is how sharp, and R sets it,” series RLC with R=20 Ω, L=10 mH, C=100 nF, output across C; 1440 × 900, captured 2026-09-25. |
+| `rf-smith-portfolio.svg` | Verified original 1000 × 1000 analytical figure, now also the source of the wide export. |
+| `gradient-map.svg` | Native technique-map export from [TechniqueMap.astro](https://github.com/reedos/gradient_ascent/blob/6eab6d6141178b8cb83a2269529c8eaa0ecec9e4/site/src/components/TechniqueMap.astro), downloaded 2026-09-25, 1120 × 1085, native DM Sans 600 embedded. Replaced by the level stack. |
+| `stack-ledger.webp` / `field-catalog.webp` | Original screenshot exports, 1440 × 900 and 1440 × 810 respectively; sources of the current letterboxed versions. |
+
+No stock landscape, rack, or deer placeholders are included. Preserve original provenance and font licenses when editing retained studies. The copyright year is static: **© 2026**.
