@@ -167,3 +167,8 @@ The current homepage uses consistent project copy/preview placement, stacking be
 The wildlife gallery is wider, supporting headings are quieter, and the datacenter band is shorter. The heading reads “Senior Staff Engineer” with normal spaces. The hero omits Southern California; the footer retains the location. The datacenter disclosure remains in alt text rather than a visible caption. Its motion button appears on hover-capable pointer hover or keyboard focus. Reduced-motion behavior remains in place.
 
 The header uses sun/moon action icons with accessible labels indicating the destination theme. Explicit selection switches between light and dark and saves the preference. An existing system preference is honored until the visitor selects a theme.
+
+
+## Home-screen icon
+
+`apple-touch-icon.png` is an opaque 180 × 180 PNG for iPhone/iPad home-screen bookmarks. Its editable source is `assets/home-icon.svg`: near-white RO lettering and a gold vertical rule on black. The artwork uses vector paths and no external font. iOS applies its own corner mask. The suggested home-screen name is Reed Osaki. The existing browser favicon remains `assets/mark.svg`.

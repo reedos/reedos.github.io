@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+  <title>Reed Osaki</title>
+  <rect width="180" height="180" fill="#000000"/>
+  <path d="M32 43v94" stroke="#e6ba82" stroke-width="4"/>
+  <g fill="none" stroke="#f0f0fa" stroke-width="8" stroke-linejoin="round">
+    <path d="M57 128V52h17a19 19 0 0 1 0 38H57m17 0 24 38"/>
+    <rect x="113" y="52" width="34" height="76" rx="17"/>
+  </g>
+</svg>
