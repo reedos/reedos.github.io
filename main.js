@@ -1,58 +1,44 @@
-/* Native Gradient Ascent hover demonstration. Runs only while visible. */
+/* Shared source-based layer previews: synchronized information and stack artwork. */
 (() => {
-  const svg = document.querySelector('.gradient-preview');
-  const button = document.querySelector('.stack-motion-toggle');
-  if (!svg || !button) return;
-  const slabs = [...svg.querySelectorAll('.slab')];
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const sequence = [7, 6, 5, 4, 3, 2, 1, 0, 1, 2, 3, 4, 5, 6];
-  let step = 0;
-  let visible = false;
-  let paused = false;
-  let motionOptIn = false;
-  let focused = false;
-  let interval;
-  let highlight;
-  const clear = () => {
-    clearInterval(interval);
-    clearTimeout(highlight);
-    interval = undefined;
-    svg.classList.remove('is-playing');
-    slabs.forEach(slab => slab.classList.remove('is-demo-active'));
-  };
-  const visit = () => {
-    const level = sequence[step++ % sequence.length];
-    // Cycle the native layer highlight without an illustrative mouse pointer.
-    highlight = setTimeout(() => {
-      slabs.forEach(slab => slab.classList.remove('is-demo-active'));
-      slabs.find(slab => Number(slab.dataset.level) === level)?.classList.add('is-demo-active');
-    }, 250);
-  };
-  const sync = () => {
-    clear();
-    const motionAllowed = !reduced.matches || motionOptIn;
-    svg.dataset.motionOptIn = String(motionOptIn);
-    button.textContent = !motionAllowed || paused ? 'Play animation' : 'Pause animation';
-    button.setAttribute('aria-pressed', String(!paused && motionAllowed));
-    if (paused || !motionAllowed || !visible || document.hidden || focused) return;
-    svg.classList.add('is-playing');
-    slabs.find(slab => Number(slab.dataset.level) === sequence[step % sequence.length])?.classList.add('is-demo-active');
-    visit();
-    interval = setInterval(visit, 900);
-  };
-  button.hidden = false;
-  button.addEventListener('click', () => {
-    if (reduced.matches && !motionOptIn) { motionOptIn = true; paused = false; }
-    else paused = !paused;
-    sync();
+  document.querySelectorAll('[data-layer-demo]').forEach(demo => {
+    const svg = demo.querySelector('.layer-preview');
+    const button = demo.querySelector('.stack-motion-toggle');
+    const layers = [...svg.querySelectorAll('.slab')];
+    const number = svg.querySelector('[data-active-number]');
+    const name = svg.querySelector('[data-active-name]');
+    const detail = svg.querySelector('[data-active-detail]');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const ascending = layers.map((_, i) => i);
+    const sequence = [...ascending, ...ascending.slice(1, -1).reverse()];
+    let step = 0, visible = false, paused = false, motionOptIn = false, timer;
+    const paint = () => {
+      const active = layers[sequence[step]];
+      layers.forEach(layer => layer.classList.toggle('is-demo-active', layer === active));
+      number.textContent = `${svg.dataset.layerKind === 'gradient' ? 'LEVEL' : 'LAYER'} ${active.dataset.layerNumber}`;
+      name.textContent = active.dataset.layerName;
+      detail.textContent = active.dataset.layerDetail;
+      number.setAttribute('fill', active.style.color);
+    };
+    const sync = () => {
+      clearInterval(timer);
+      const allowed = !reduced.matches || motionOptIn;
+      button.textContent = paused || !allowed ? 'Play animation' : 'Pause animation';
+      button.setAttribute('aria-pressed', String(!paused && allowed));
+      if (visible && !paused && allowed && !document.hidden) {
+        timer = setInterval(() => { step = (step + 1) % sequence.length; paint(); }, 800);
+      }
+    };
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      if (reduced.matches && !motionOptIn) { motionOptIn = true; paused = false; }
+      else paused = !paused;
+      sync();
+    });
+    document.addEventListener('visibilitychange', sync);
+    reduced.addEventListener('change', () => { motionOptIn = false; sync(); });
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(svg);
+    paint(); sync();
   });
-  const link = svg.closest('a');
-  link.addEventListener('focus', () => { focused = true; sync(); });
-  link.addEventListener('blur', () => { focused = false; sync(); });
-  document.addEventListener('visibilitychange', sync);
-  reduced.addEventListener('change', () => { motionOptIn = false; sync(); });
-  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(svg);
-  sync();
 })();
 
 /* Appearance and the small-screen menu. All content and links work without JavaScript. */
