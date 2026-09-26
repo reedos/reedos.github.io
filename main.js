@@ -727,14 +727,15 @@ function paths(mode, cutoff) {
     const build = () => {
       const time = animation?.currentTime || 0;
       animation?.cancel();
-      const travel = film ? Math.max(0, film.getBoundingClientRect().height - scene.querySelector('.ledger-window').clientHeight) : 0;
+      // Finish with the investment capture aligned to the viewport's top.
+      const travel = film ? scene.querySelector('.ledger-capture-crop').offsetTop : 0;
       const first = film ? 'translateY(0px)' : 'scale(1)';
       const last = film ? `translateY(-${travel}px)` : 'scale(1.08)';
       animation = target.animate([
         { transform: first, offset: 0 },
         { transform: first, offset: .12 },
-        { transform: last, offset: .45 },
-        { transform: last, offset: .57 },
+        { transform: last, offset: film ? .4 : .45 },
+        { transform: last, offset: film ? .65 : .57 },
         { transform: first, offset: .9 },
         { transform: first, offset: 1 }
       ], { duration: film ? 12000 : 13000, iterations: Infinity, easing: 'ease-in-out' });
@@ -749,7 +750,12 @@ function paths(mode, cutoff) {
     document.addEventListener('visibilitychange', sync);
     reduced.addEventListener('change', () => { motionOptIn = false; sync(); });
     new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(scene);
-    new ResizeObserver(build).observe(scene);
+    const resize = new ResizeObserver(build);
+    resize.observe(scene);
+    if (film) {
+      resize.observe(film);
+      film.querySelectorAll('img').forEach(image => image.addEventListener('load', build));
+    }
     build();
   });
 })();
