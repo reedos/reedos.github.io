@@ -31,7 +31,7 @@ Visit `http://localhost:8000`. Python is only for local preview. Preview `404.ht
 
 ## Design and content
 
-All five sites are personal projects created outside Reed’s professional work. One Personal Projects section groups them into Engineering Tools (EE Labs, RF Reference), Research & Guides (Gradient Ascent, Stack Ledger), and Photography Tools (Field Catalog). The grouped navigation and category labels appear throughout the project section. Professional background is kept in About; the photography collection has its own Field section. Public-facing copy uses American English.
+All five sites are personal projects created outside Reed’s professional work. One Personal Projects section groups them into Engineering Tools (EE Labs, RF Reference), Research & Guides (Gradient Ascent, Stack Ledger), and Photography Tools (Field Catalog). The grouped navigation and category labels appear throughout the project section. About shows the current role and awarded master’s degree, with technical details, coursework, and credentials in a native expandable section. Background entries omit dates and credential IDs; the photography collection has its own Field section. Public-facing copy uses American English.
 
 The full-height hero uses Reed’s landscape mountain photograph on larger screens and his portrait mountain photograph on phones. The name sits over a controlled fade. Display type is Barlow Condensed 600; body type is Manrope, matching the wildlife site’s font families. Restrained gold accents use `#e6ba82` in dark mode and `#80531c` in light mode. The translucent header contains the RO monogram, section navigation, and theme control.
 

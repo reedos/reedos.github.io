@@ -102,9 +102,9 @@ For a fresh screenshot, capture the actual application, preserve its native styl
 Public sources checked on 2026-09-25:
 
 - [Reed’s LinkedIn profile](https://www.linkedin.com/in/reed-osaki/), as rendered in the public search index: Marvell Technology affiliation and hardware engineering; UCLA Extension coursework in analog, mixed-signal, RF, and microwave circuit design, 2021–2022. Direct profile access was blocked, and the indexed view hides formal roles, employment dates, and much of the education history.
-- [CSULB’s 2022 College of Engineering commencement program](https://www.csulb.edu/sites/default/files/document/coe-program-2022.pdf), printed page 12 / PDF page 7: Reed Cameron Osaki appears under Master of Science, Electrical Engineering. The program lists degree candidates, so the website says **graduate study** without asserting degree conferral or a graduation date.
+- [CSULB’s 2022 College of Engineering commencement program](https://www.csulb.edu/sites/default/files/document/coe-program-2022.pdf), printed page 12 / PDF page 7: Reed Cameron Osaki appears under Master of Science, Electrical Engineering. The program lists degree candidates, so the initial site used **graduate study**. Reed has since directly confirmed the awarded master’s degree.
 
-Reed directly confirmed his current title as **Senior Staff Engineer** at **Marvell Technology** on 2026-09-26. The datacenter scene and About background list use this confirmed title. The scene specialty line is “Datacenter interconnect · High-speed · RF”; its image remains labeled as a generated illustration. About links to LinkedIn for the full profile and does not claim to be a complete history. Earlier roles, employment dates, completed degree names, and graduation years remain unconfirmed. Replace `Graduate study in electrical engineering.` only with a confirmed completed degree. UCLA Extension is coursework, not an asserted degree or certificate.
+Reed directly confirmed his current title as **Senior Staff Engineer** at **Marvell Technology** on 2026-09-26. The datacenter scene and About background list use this confirmed title. The scene specialty line is “Datacenter interconnect · High-speed · RF”; its image remains labeled as a generated illustration. About links to LinkedIn for the full profile and does not claim to be a complete history. Earlier roles and other completed degrees remain unconfirmed; no background dates are displayed. The awarded degree is now directly confirmed by Reed; see the confirmation below. UCLA Extension is coursework, not an asserted degree or certificate.
 
 ## Contact
 
@@ -141,3 +141,9 @@ The generated datacenter illustration has a centered scale animation from 1 to 1
 ## Field Catalog theme blending
 
 The current artboard uses the original `assets/previews/field-catalog.webp` (1440 × 810), centered inside a 4:3 frame. The frame background is `var(--paper)`, so it matches the light or dark page. A CSS alpha mask fades the upper and lower 4% of the native image to transparency. The screenshot’s center and its proportions are preserved. The earlier `field-catalog-wide.webp` retains baked-in letterbox bars and is no longer used on the homepage.
+
+## Confirmed education and credentials
+
+Reed directly confirmed that his Master of Science in Electrical Engineering from California State University, Long Beach was awarded. This confirmation supersedes the earlier cautious “graduate study” wording based on a candidate list. His supplied LinkedIn screenshots support the expanded RF/microwave, signal integrity, test automation, chip bring-up, and modeling summary, plus these credential entries: RF Technology Certification (Besser Associates); S-Parameters for Signal Integrity, Advanced Gigabit Channel Design, and Essential Principles of Signal Integrity (Teledyne LeCroy); and the Fundamentals of Engineering Electrical and Computer Exam (NCEES). The FE entry is presented as an examination, not a professional engineering license. No PE or EIT status is inferred.
+
+The current role and awarded degree remain visible. A native expandable “Technical background & credentials” section contains supporting technical details, UCLA Extension coursework, and the credential list. Per Reed’s instruction, no employment, education, or credential dates or years are shown. Credential IDs and screenshot UI are not published.

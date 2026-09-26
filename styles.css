@@ -197,7 +197,7 @@ html[data-layout='gallery'] .gallery-controls:not([hidden]) { display: flex; ali
 .about-portrait img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 70%; }
 .background-heading { margin-top: 4rem; }
 .background-heading h3 { margin-block: 0.6rem 1.75rem; font-size: 2rem; letter-spacing: 0.01em; }
-.background-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.background-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
 .background-list > div { border-top: 1px solid var(--line); padding-top: 1.25rem; }
 .background-list dt { font: 400 0.6875rem/1.5 var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
 .background-list strong { display: block; font-size: 0.9375rem; }
@@ -349,3 +349,17 @@ html[data-layout='gallery'] .gallery-controls:not([hidden]) { display: flex; ali
 /* Native app capture floats in a theme-colored 4:3 artboard without baked-in bars. */
 .catalog-stage { display: flex; align-items: center; overflow: hidden; background: var(--paper); }
 .catalog-stage img { width: 100%; height: auto; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent); }
+
+/* Keep the current role and degree visible; native disclosure holds supporting details. */
+.credentials-details { margin-top: 2.5rem; border-block: 1px solid var(--line); }
+.credentials-details summary { cursor: pointer; padding-block: 1.25rem; min-height: 44px; font-size: .875rem; font-weight: 600; }
+.credentials-details summary::marker { color: var(--accent); }
+.credentials-content { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); padding-block: .5rem 2rem; font-size: .9375rem; }
+.credentials-content h4 { margin: 0 0 1rem; color: var(--accent); font: 400 .6875rem/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.credentials-content p, .technical-list { color: var(--muted); }
+.technical-list { padding-left: 1.2rem; margin: 0 0 2rem; }
+.technical-list li + li { margin-top: .6rem; }
+.credential-list > div + div { border-top: 1px solid var(--line); margin-top: 1rem; padding-top: 1rem; }
+.credential-list dt { font-weight: 600; }
+.credential-list dd { color: var(--muted); margin-top: .25rem; }
+@media (max-width: 700px) { .credentials-content { grid-template-columns: minmax(0, 1fr); } }
