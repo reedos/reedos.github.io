@@ -1,17 +1,12 @@
 # Reed Cameron Osaki
 
-A static personal hub for **https://reedos.github.io**. HTML, one CSS file, and a small JavaScript file. No build, package manager, server runtime, analytics, or external font requests. Content and navigation remain available without JavaScript.
+A static personal hub for **https://reedos.github.io**. HTML, one CSS file, and small JavaScript files. No build, package manager, server runtime, analytics, or external font requests. Content and navigation remain available without JavaScript.
 
 ## Review preview
 
 The main page, error page, and archived design studies carry `noindex, nofollow, noimageindex`. The URL and repository are public; these tags request exclusion from supporting search engines, not sign-in protection. No sitemap or canonical tag is included during review.
 
-Compare the same content in two layouts:
-
-- [Chapters](https://reedos.github.io/?layout=chapters): vertical project sections, the default.
-- [Gallery](https://reedos.github.io/?layout=gallery): a horizontal project gallery with swipe and button navigation.
-
-Add `&theme=dark` or `&theme=light` to either URL for a specific appearance. Dark is the default unless a theme has been saved; Auto follows the device. Layout links are also available in the footer; earlier studies remain in [design-directions/](design-directions/).
+**Cinematic Chapters** is the selected live layout. Older `layout` query parameters now show chapters as well. Use `?theme=dark` or `?theme=light` for a specific appearance. Dark is the default unless a theme has been saved; Auto follows the device. Earlier studies remain in [design-directions/](design-directions/), and the photo comparison remains at [photo-options.html](photo-options.html).
 
 For feedback updates, edit, commit, and push to `main`. Pages republishes the root automatically. No Tailscale connection is needed. Do not add a root `robots.txt` with `Disallow: /`: crawlers need to read the noindex tag, and this hostname also serves Reed’s project sites. When ready for search discovery, remove the robots tag from `index.html` and restore `<link rel="canonical" href="https://reedos.github.io/">`. Keep error and study pages excluded. [Google’s noindex documentation](https://developers.google.com/search/docs/crawling-indexing/block-indexing).
 
@@ -36,13 +31,13 @@ Visit `http://localhost:8000`. Python is only for local preview. Preview `404.ht
 
 ## Design and content
 
-All five sites are personal projects created outside Reed’s professional work. One Personal Projects section groups them into Engineering Tools (EE Labs, RF Reference), Research & Guides (Gradient Ascent, Stack Ledger), and Photography Tools (Field Catalog). The grouped navigation and category labels appear in both layouts. Professional background is kept in About; the photography collection has its own Field section. Public-facing copy uses American English.
+All five sites are personal projects created outside Reed’s professional work. One Personal Projects section groups them into Engineering Tools (EE Labs, RF Reference), Research & Guides (Gradient Ascent, Stack Ledger), and Photography Tools (Field Catalog). The grouped navigation and category labels appear throughout the project section. Professional background is kept in About; the photography collection has its own Field section. Public-facing copy uses American English.
 
 The full-height hero uses Reed’s landscape mountain photograph on larger screens and his portrait mountain photograph on phones. The name sits over a controlled fade. Display type is Barlow Condensed 600; body type is Manrope, matching the wildlife site’s font families. Restrained gold accents use `#e6ba82` in dark mode and `#80531c` in light mode. The translucent header contains the RO monogram, section navigation, and theme control.
 
-All five project artboards are **1200 × 900 (4:3)**. EE Labs shows a working Signal Lab filter example; RF uses the verified Smith figure; Gradient Ascent uses the native level stack; Stack Ledger and Field Catalog preserve their existing screenshots with letterboxing. These are local assets and a small mathematical demonstration, not embedded apps. EE motion starts only when requested and includes pause controls. Keep technical diagrams uncropped and undistorted.
+All five project artboards are **1200 × 900 (4:3)**. EE Labs shows a working Signal Lab filter example; RF uses the verified Smith figure; Gradient Ascent uses the native level stack; Stack Ledger and Field Catalog preserve their existing screenshots with letterboxing. These are local assets and a small mathematical demonstration, not embedded apps. EE motion starts only when requested and includes pause controls. Gradient Ascent automatically demonstrates its native layer hover effect while visible, with an illustrative pointer, Pause control, and reduced-motion support. Keep technical diagrams uncropped and undistorted.
 
-Field uses one 3:4 heron frame with a link to the wildlife site. About retains Reed’s portrait. The symmetric datacenter scene is visibly labeled as a generated illustration and does not depict an employer facility. The footer groups identity, section navigation, and profile links, with review-layout links below.
+Field uses a swipeable 4:3 gallery: red fox, American robin, then vermilion flycatcher. Playback is optional, advances every seven seconds, and stops on interaction or when hidden. Reduced-motion preferences disable playback. About retains Reed’s portrait. The symmetric datacenter scene is visibly labeled as a generated illustration and does not depict an employer facility. The footer groups identity, section navigation, and profile links, without design-review controls.
 
 [CONTENT.md](CONTENT.md) records sources, exact replacement copy, contact links and biography limits. [Datacenter provenance](assets/images/datacenter-symmetry-PROVENANCE.md) contains the exact generation prompt. Original assets retained for archived studies are not all used on the current homepage.
 

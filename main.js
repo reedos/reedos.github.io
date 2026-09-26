@@ -1,3 +1,57 @@
+/* Native Gradient Ascent hover demonstration. Runs only while visible. */
+(() => {
+  const svg = document.querySelector('.gradient-preview');
+  const button = document.querySelector('.stack-motion-toggle');
+  if (!svg || !button) return;
+  const slabs = [...svg.querySelectorAll('.slab')];
+  const cursor = svg.querySelector('.stack-demo-cursor');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const sequence = [7, 6, 5, 4, 3, 2, 1, 0, 1, 2, 3, 4, 5, 6];
+  let step = 0;
+  let visible = false;
+  let paused = false;
+  let hovering = false;
+  let focused = false;
+  let interval;
+  let highlight;
+  const clear = () => {
+    clearInterval(interval);
+    clearTimeout(highlight);
+    interval = undefined;
+    svg.classList.remove('is-playing');
+    slabs.forEach(slab => slab.classList.remove('is-demo-active'));
+  };
+  const visit = () => {
+    const level = sequence[step++ % sequence.length];
+    cursor.style.transform = `translate(280px, ${478 - level * 63 + 55}px)`;
+    slabs.forEach(slab => slab.classList.remove('is-demo-active'));
+    highlight = setTimeout(() => {
+      slabs.find(slab => Number(slab.dataset.level) === level)?.classList.add('is-demo-active');
+    }, 650);
+  };
+  const sync = () => {
+    clear();
+    button.disabled = reduced.matches;
+    button.textContent = reduced.matches ? 'Reduced motion enabled' : paused ? 'Play animation' : 'Pause animation';
+    button.setAttribute('aria-pressed', String(!paused && !reduced.matches));
+    if (paused || reduced.matches || !visible || document.hidden || hovering || focused) return;
+    svg.classList.add('is-playing');
+    visit();
+    interval = setInterval(visit, 1800);
+  };
+  button.hidden = false;
+  button.addEventListener('click', () => { paused = !paused; sync(); });
+  svg.addEventListener('pointerenter', () => { hovering = true; sync(); });
+  svg.addEventListener('pointerleave', () => { hovering = false; sync(); });
+  const link = svg.closest('a');
+  link.addEventListener('focus', () => { focused = true; sync(); });
+  link.addEventListener('blur', () => { focused = false; sync(); });
+  document.addEventListener('visibilitychange', sync);
+  reduced.addEventListener('change', sync);
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(svg);
+  sync();
+})();
+
 /* Appearance and the small-screen menu. All content and links work without JavaScript. */
 (() => {
   const root = document.documentElement;

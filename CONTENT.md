@@ -6,7 +6,7 @@ Project descriptions and the core biography come from Reed’s supplied brief. T
 
 The public review site at `https://reedos.github.io/` carries `noindex, nofollow, noimageindex` on the main page, error page, and archived studies. These are crawler instructions, not authentication. No canonical tag is present during review; README.md explains the changes for search discovery.
 
-The current page has two presentations of the same content: **Cinematic chapters**, the default vertical sequence at `?layout=chapters`, and **Project gallery**, a horizontal swipeable sequence at `?layout=gallery`. Each retains Work, Field, About, and Contact anchors. Theme links accept `theme=dark`, `theme=light`, or `theme=system` (Auto). Dark is the default unless a theme has been saved. The footer groups identity, page navigation, and external profiles; its lower row contains copyright and GitHub Pages credit, with design-review links below.
+Cinematic Chapters is the selected live layout, including for older layout query URLs. The design-review footer has been removed. Theme links accept `theme=dark`, `theme=light`, or `theme=system` (Auto). Dark is the default unless a theme has been saved. The public, noindex review status remains unchanged.
 
 Barlow Condensed 600 supplies the display typography and Manrope the body text, following Reed’s wildlife site. IBM Plex Mono is reserved for technical labels. Gold accents are `#e6ba82` on dark backgrounds and `#80531c` on light backgrounds. Photography and project art retain their own colors.
 
@@ -22,16 +22,16 @@ The Field section links to Reed’s [wildlife photography site](https://reedos.g
 
 Reed supplied the mountain and personal portrait photographs on 2026-09-26. The JPEGs are copied byte-for-byte, with normal orientation and no GPS, capture-date, camera, or location EXIF found. Their remaining EXIF describes resolution, dimensions, orientation, and color space. No generative photo edits were made. The page does not claim a capture location or date.
 
-The heron image comes from Reed’s public [wildlife-site repository](https://github.com/reedos/wildlife-site). Its [About page](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/about.html) attributes the collection to Reed and links his Instagram handle. Its species label comes from that collection. The export was downloaded on 2026-09-25, proportionally resized, and compressed to WebP without copying EXIF.
+The wildlife images come from Reed’s public [wildlife-site repository](https://github.com/reedos/wildlife-site). Its [About page](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/about.html) attributes the collection to Reed and links his Instagram handle. Their species labels come from that collection. The export was downloaded on 2026-09-25, proportionally resized, and compressed to WebP without copying EXIF.
 
 | File in `assets/images/` | Current placement | Source | Asset dimensions | Bytes |
 | --- | --- | --- | --- | --- |
 | `mountain-ridge.jpg` | Full-height hero, desktop landscape source | User attachment `5-Photo-5.jpg` | 1280 × 853 | 291,313 |
 | `mountain-portrait.jpg` | Full-height hero, phone portrait source | User attachment `1-Photo-1.jpg` | 959 × 1280 | 256,624 |
 | `reed-portrait.jpg` | About / 3:4 frame | User attachment `3-Photo-3.jpg` | 853 × 1280 | 135,784 |
-| `great-blue-heron.webp` | Field / one 3:4 frame | [Great blue heron original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/5649e4f4a7ff13066089-2400.jpg) | 800 × 1200 | 101,198 |
+| `great-blue-heron.webp` | Archived / unused on homepage | [Great blue heron original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/5649e4f4a7ff13066089-2400.jpg) | 800 × 1200 | 101,198 |
 
-The responsive hero uses landscape and portrait sources in one `picture` element and crops to the viewport composition. It is not a standalone wildlife frame. The single Field photograph keeps a 3:4 CSS frame; no photograph is stretched. Attachment `2-Photo-2.jpg` remains an unused alternative. The datacenter reference attachment `4-Photo-4.jpg` is not published and was not an image-generation input.
+The responsive hero uses landscape and portrait sources in one `picture` element and crops to the viewport composition. It is not a standalone wildlife frame. The Field gallery uses three 4:3 frames: red fox (right-aligned crop), American robin (left-aligned crop), and vermilion flycatcher (center crop). No photograph is stretched. Sources for these assets are listed below. The seven-second slideshow is opt-in, with swipe, keyboard, Previous/Next, and Play/Pause controls. Playback stops on interaction, offscreen, or in a hidden tab, and is disabled with reduced motion. Attachment `2-Photo-2.jpg` remains an unused alternative. The datacenter reference attachment `4-Photo-4.jpg` is not published and was not an image-generation input.
 
 ### Exact photo replacement text
 
@@ -39,8 +39,9 @@ Replace the relevant source, actual dimensions, and literal alt sentence when su
 
 - Hero, shared by both mountain sources: “Snow-covered mountain peaks beneath a blue sky. Photograph by Reed Cameron Osaki.”
 - About portrait: “Reed Cameron Osaki wearing a hiking backpack in front of a mountain landscape.”
-- Field: “A great blue heron standing in green, plant-covered water. Photograph by Reed Cameron Osaki.”
-- Field species caption: “Great blue heron”.
+- Field 1: “A red fox walking across snow, facing the camera. Photograph by Reed Cameron Osaki.” Caption: “Red fox”.
+- Field 2: “An American robin searching the forest floor. Photograph by Reed Cameron Osaki.” Caption: “American robin”.
+- Field 3: “A vermilion flycatcher perched beneath branches against a soft green background. Photograph by Reed Cameron Osaki.” Caption: “Vermilion flycatcher”.
 
 Keep source masters elsewhere; web photos should normally remain below 400 KB. Preserve 3:4 or 4:3 standalone wildlife frames, and check the subject’s head and body after CSS cropping. When changing the hero, update both portrait and landscape sources and check the name overlay on both screen orientations and themes. Keep generic mountain wording unless Reed supplies the actual place. “Southern California” describes Reed’s location, not where the photos were taken.
 
@@ -88,7 +89,7 @@ For Z = 75+j35 Ω and Z₀ = 50 Ω, Γ = 0.258160+j0.207715, |Γ| = 0.331349, VS
 
 The current stack replaces the map. It was exported on 2026-09-26 from the native SVG in [LevelStack.tsx](https://github.com/reedos/gradient_ascent/blob/6eab6d6141178b8cb83a2269529c8eaa0ecec9e4/site/src/components/islands/LevelStack.tsx) at revision `6eab6d6141178b8cb83a2269529c8eaa0ecec9e4`. Slab paths, symbols, labels, and coordinates retain the source geometry; the trailing external-link arrows were removed as requested. Its native 585 × 710 viewBox is fitted intact within the 1200 × 900 artboard. Native dark colors and DM Sans 400 are embedded.
 
-[Stack provenance](assets/previews/gradient-stack-provenance.json) records the source and export. No interaction code, remote requests, or invented application UI are included. To refresh, export the real stack again and preserve its geometry. Keep the [DM Sans license](assets/fonts/DM-Sans-OFL.txt).
+[Stack provenance](assets/previews/gradient-stack-provenance.json) records the source and export. The homepage now inlines this artwork and demonstrates the native CSS hover effect: a 6-unit upward lift, brightness 1.3, and a 250 ms transition. A clearly illustrative pointer visits each layer at 1.8-second intervals. The loop pauses outside the viewport, in hidden tabs, during real pointer/focus interaction, or via its Pause button. Reduced motion leaves a static stack. This is a local interaction preview, not a screen recording or embedded app; no runtime remote requests are made. To refresh, export the real stack again and preserve its geometry. Keep the [DM Sans license](assets/fonts/DM-Sans-OFL.txt).
 
 ### Screenshot refreshes
 
