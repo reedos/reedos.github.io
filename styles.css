@@ -1,4 +1,17 @@
 @font-face { font-family: Barlow; src: url('assets/fonts/barlow-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+/* Isolated photo-selection study; the portfolio layout remains unchanged. */
+.photo-review { padding-block: 1.5rem 4rem; }
+.photo-review main { max-width: 960px; padding-top: 3rem; }
+.photo-review h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); line-height: 1; margin-block: 1rem; }
+.photo-review-intro, .photo-review-note { max-width: 62ch; margin-block: 1.5rem; }
+.photo-review-controls { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-block: 1.5rem; }
+.photo-review-controls button { background: transparent; }
+.photo-review-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; }
+.photo-review-track figure { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; }
+.photo-review-track img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.photo-review-track figcaption { padding-block: 1.5rem; padding-right: 1rem; }
+.photo-review-track h2 { font-size: clamp(2.5rem, 6vw, 4rem); margin-block: .75rem; }
+.photo-review-track figcaption > p:last-child { max-width: 55ch; }
 @font-face { font-family: 'Barlow Condensed'; src: url('assets/fonts/barlow-condensed-600.woff2') format('woff2'); font-style: normal; font-weight: 600; font-display: swap; }
 @font-face { font-family: Manrope; src: url('assets/fonts/manrope-latin.woff2') format('woff2'); font-style: normal; font-weight: 200 800; font-display: swap; }
 @font-face { font-family: 'IBM Plex Mono'; src: url('assets/fonts/ibm-plex-mono-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
