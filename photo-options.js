@@ -4,11 +4,20 @@
   // The shipped gallery has no visible transport controls. Any interaction
   // permanently holds playback for this visit, preserving manual exploration.
   if (track.classList.contains('field-track')) {
+    // Autoplay while visible. Manual browsing (a swipe, a sideways scroll, arrow keys, keyboard
+    // focus) holds it for the visit; a mouse resting on the photos pauses it only while there.
+    // Scrolling the page past the gallery, or the page moving under a still pointer, is not
+    // interaction with the gallery and must not stop it.
     const slides = [...track.querySelectorAll('figure')];
     const status = document.querySelector('[data-photo-status]');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     let visible = false;
     let held = false;
+    let hovering = false;
+    let touching = false;
+    let settling = false;
+    let swiped = false;
+    let touchStartLeft = 0;
     let timer;
     const current = () => Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / track.clientWidth)));
     const move = (step) => {
@@ -17,20 +26,38 @@
     };
     const sync = () => {
       clearInterval(timer);
-      if (visible && !held && !document.hidden && !reduced.matches) timer = setInterval(() => move(1), 4000);
+      if (visible && !held && !hovering && !touching && !document.hidden && !reduced.matches) timer = setInterval(() => move(1), 4000);
     };
     const hold = () => { held = true; sync(); status.setAttribute('aria-live', 'polite'); };
-    track.addEventListener('pointerdown', hold);
-    track.addEventListener('mouseenter', hold);
+    track.addEventListener('mousemove', (event) => {
+      if (!hovering && (event.movementX || event.movementY)) { hovering = true; sync(); }
+    });
+    track.addEventListener('mouseleave', () => { if (hovering) { hovering = false; sync(); } });
+    track.addEventListener('touchstart', () => { touching = true; swiped = false; touchStartLeft = track.scrollLeft; sync(); }, { passive: true });
+    const touchDone = () => {
+      if (!touching) return;
+      touching = false;
+      settling = true;
+      // A sideways swipe, even one that snaps back to the same photo, is manual browsing; a touch
+      // that only scrolled the page vertically is not. Let a flick settle before deciding.
+      setTimeout(() => { settling = false; if (swiped) hold(); else sync(); }, 400);
+    };
+    track.addEventListener('touchend', touchDone, { passive: true });
+    track.addEventListener('touchcancel', touchDone, { passive: true });
+    track.addEventListener('wheel', (event) => {
+      if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) hold();
+    }, { passive: true });
     track.addEventListener('focusin', hold);
-    track.addEventListener('wheel', hold, { passive: true });
     track.addEventListener('keydown', (event) => {
       hold();
       if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
         event.preventDefault(); move(event.key === 'ArrowRight' ? 1 : -1);
       }
     });
-    track.addEventListener('scroll', () => { status.textContent = `${current() + 1} / ${slides.length}`; }, { passive: true });
+    track.addEventListener('scroll', () => {
+      if ((touching || settling) && Math.abs(track.scrollLeft - touchStartLeft) > 8) swiped = true;
+      status.textContent = `${current() + 1} / ${slides.length}`;
+    }, { passive: true });
     document.addEventListener('visibilitychange', sync);
     reduced.addEventListener('change', sync);
     new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(track);
