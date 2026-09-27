@@ -110,7 +110,23 @@
   document.documentElement.classList.add('menu-ready');
 
   toggle.addEventListener('click', () => {
-    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    setOpen(open);
+    if (open && smallScreen.matches) {
+      const first = navigation.querySelector('a');
+      if (first) first.focus();
+    }
+  });
+
+  // The links come before the toggle in the page, so a plain Tab would leave the header and the
+  // focusin handler below would close the menu. While it is open, Tab cycles links and toggle.
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab' || toggle.getAttribute('aria-expanded') !== 'true' || !smallScreen.matches) return;
+    const stops = [...navigation.querySelectorAll('a'), toggle];
+    const at = stops.indexOf(document.activeElement);
+    const next = at === -1 ? 0 : (at + (event.shiftKey ? -1 : 1) + stops.length) % stops.length;
+    event.preventDefault();
+    stops[next].focus();
   });
 
   navigation.addEventListener('click', (event) => {

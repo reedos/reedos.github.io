@@ -480,3 +480,55 @@ html[data-theme='light'] .sun-icon { display: none; }
 }
 
 .ee-harmonic-legend { display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin-top: 1rem; color: var(--muted); font-size: .75rem; }
+
+/* ---------- Hero: responsive photograph, title line, three routes ----------
+   Own class names, so none of the .hero rules above apply. The header is fixed over the photo. */
+@font-face { font-family: Barlow; src: url('assets/fonts/barlow-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+.intro-hero { position: relative; isolation: isolate; min-height: 100svh; display: flex; align-items: flex-end; background: #000; color: #f0f0fa; font-family: Barlow, var(--body); }
+.intro-hero-media { position: absolute; inset: 0; z-index: -2; }
+.intro-hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.intro-hero-scrim { position: absolute; inset: 0; z-index: -1; background:
+  linear-gradient(to top, rgba(4,5,7,0.92) 0%, rgba(4,5,7,0.92) 8%, transparent 62%),
+  linear-gradient(to bottom, rgba(4,5,7,0.55) 0%, transparent 30%); }
+html[data-theme='light'] .intro-hero-scrim { background:
+  linear-gradient(to top, rgba(12,11,8,0.72) 0%, rgba(12,11,8,0.72) 8%, transparent 62%),
+  linear-gradient(to bottom, rgba(20,18,12,0.18) 0%, transparent 30%); }
+.intro-hero-inner { padding-block: 64px 56px; } /* width comes from .page-width, which keeps the gutter */
+.intro-hero-kicker { font-family: var(--mono); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #ffe8c4;
+  background: rgba(8,8,6,0.4); display: inline-block; padding: 8px 14px; border-radius: 999px; margin: 0 0 22px; border: 1px solid rgba(255,255,255,0.18); }
+.intro-hero h1 { font-family: var(--display); font-weight: 600; text-transform: none; line-height: 1.02; letter-spacing: 0.2px; margin: 0;
+  font-size: clamp(48px, 9vw, 108px); color: #fff; text-shadow: 0 2px 30px rgba(0,0,0,0.35); }
+.intro-hero-sub { margin: 20px 0 0; max-width: 46ch; font-size: clamp(17px, 2vw, 20px); line-height: 1.5; color: #eef0f2; }
+.intro-hero-doors { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+.intro-hero .door { display: inline-flex; flex-direction: column; gap: 3px; padding: 15px 22px; border-radius: 10px; text-decoration: none; min-height: 44px; justify-content: center; }
+.intro-hero .door-label { font-weight: 600; font-size: 16px; }
+.intro-hero .door-sub { font-size: 13px; opacity: 0.85; }
+.intro-hero .door-primary { background: #e6ba82; color: #171008; }
+.intro-hero .door-primary:hover { filter: brightness(1.08); }
+.intro-hero .door-secondary { background: rgba(10,10,8,0.36); color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
+.intro-hero .door-secondary:hover { border-color: #fff; background: rgba(10,10,8,0.5); }
+.intro-hero :focus-visible { outline: 2px solid #e6ba82; outline-offset: 3px; }
+.intro-hero-foot { position: absolute; left: 0; right: 0; bottom: 18px; z-index: 1; display: flex; justify-content: space-between; gap: 12px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: rgba(255,255,255,0.78); }
+@media (max-width: 640px) {
+  .intro-hero-foot { display: none; }
+  .intro-hero-kicker { display: block; background: none; border: 0; padding: 0; font-size: 12px; letter-spacing: 0.06em; margin-bottom: 14px; text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
+  .intro-hero-doors { flex-direction: column; gap: 10px; margin-top: 28px; }
+  .intro-hero .door { width: 100%; padding: 13px 18px; }
+  .intro-hero-inner { padding-block: 40px 32px; }
+  .intro-hero-scrim, html[data-theme='light'] .intro-hero-scrim { background:
+    linear-gradient(to top, rgba(8,8,6,0.9) 0%, rgba(8,8,6,0.74) 42%, rgba(8,8,6,0.55) 60%, rgba(8,8,6,0.22) 74%, transparent 86%),
+    linear-gradient(to bottom, rgba(4,5,7,0.55) 0%, transparent 30%); }
+}
+/* Technical background & credentials, always visible (replaces the collapsed <details>) */
+.cred-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 4rem); }
+.cred-group h4 { margin: 0 0 0.25rem; font: 400 0.6875rem/1.5 var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+.cred-group dl { margin: 0; }
+.cred-group dl > div { border-top: 1px solid var(--line); padding-block: 1rem; }
+.cred-group dl > div:first-child { margin-top: 0.75rem; }
+.cred-group dt { font-size: 0.9375rem; font-weight: 600; line-height: 1.4; }
+.cred-group dd { margin: 0.3rem 0 0; color: var(--muted); font-size: 0.875rem; line-height: 1.55; }
+@media (max-width: 1100px) { .cred-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cred-group:first-child { grid-column: 1 / -1; } }
+@media (max-width: 700px) { .cred-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; } }
+/* gallery photos are no longer links; keep the frame the <a> used to give them */
+.field-track figure > .field-photo { display: block; }

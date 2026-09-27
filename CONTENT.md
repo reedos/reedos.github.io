@@ -26,18 +26,18 @@ The wildlife images come from Reed’s public [wildlife-site repository](https:/
 
 | File in `assets/images/` | Current placement | Source | Asset dimensions | Bytes |
 | --- | --- | --- | --- | --- |
-| `mountain-ridge.jpg` | Full-height hero, desktop landscape source | User attachment `5-Photo-5.jpg` | 1280 × 853 | 291,313 |
-| `mountain-portrait.jpg` | Full-height hero, phone portrait source | User attachment `1-Photo-1.jpg` | 959 × 1280 | 256,624 |
+| `mountain-ridge.jpg` | Previous hero (desktop); replaced by `assets/hero/` on 09/26/2026 | User attachment `5-Photo-5.jpg` | 1280 × 853 | 291,313 |
+| `mountain-portrait.jpg` | Previous hero (phone); replaced by `assets/hero/` on 09/26/2026 | User attachment `1-Photo-1.jpg` | 959 × 1280 | 256,624 |
 | `reed-portrait.jpg` | About / 3:4 frame | User attachment `3-Photo-3.jpg` | 853 × 1280 | 135,784 |
 | `great-blue-heron.webp` | Archived / unused on homepage | [Great blue heron original](https://github.com/reedos/wildlife-site/blob/d48ce94f6a0abd6d297521456f495cf4125ac224/img/5649e4f4a7ff13066089-2400.jpg) | 800 × 1200 | 101,198 |
 
-The responsive hero uses landscape and portrait sources in one `picture` element and crops to the viewport composition. It is not a standalone wildlife frame. The Field gallery uses three 4:3 frames: red fox (right-aligned crop), American robin (left-aligned crop), and vermilion flycatcher (center crop). No photograph is stretched. Sources for these assets are listed below. The four-second slideshow starts automatically when visible, with swipe and keyboard navigation. There are no visible Previous/Next or Play/Pause buttons. Touch, focus, hover, or wheel interaction holds playback for the rest of the visit; offscreen and hidden-tab playback is suspended. Reduced motion disables automatic photo playback. Attachment `2-Photo-2.jpg` remains an unused alternative. The datacenter reference attachment `4-Photo-4.jpg` is not published and was not an image-generation input.
+The responsive hero uses AVIF and WebP sources with width descriptors from `assets/hero/` (landscape 3:2 at 1280 to 3840 px, and a 3:4 portrait crop centered on the summit for phones) in one `picture` element, with a 1920 px JPEG fallback, and crops to the viewport composition. `assets/hero/share-card.jpg` (1200 × 630) is the link-preview image. Gallery photos are no longer links; the section’s buttons lead to the wildlife site. It is not a standalone wildlife frame. The Field gallery uses three 4:3 frames: red fox (right-aligned crop), American robin (left-aligned crop), and vermilion flycatcher (center crop). No photograph is stretched. Sources for these assets are listed below. The four-second slideshow starts automatically when visible, with swipe and keyboard navigation. There are no visible Previous/Next or Play/Pause buttons. Touch, focus, hover, or wheel interaction holds playback for the rest of the visit; offscreen and hidden-tab playback is suspended. Reduced motion disables automatic photo playback. Attachment `2-Photo-2.jpg` remains an unused alternative. The datacenter reference attachment `4-Photo-4.jpg` is not published and was not an image-generation input.
 
 ### Exact photo replacement text
 
 Replace the relevant source, actual dimensions, and literal alt sentence when supplying a different photograph:
 
-- Hero, shared by both mountain sources: “Snow-covered mountain peaks beneath a blue sky. Photograph by Reed Cameron Osaki.”
+- Hero, shared by every source: “Snow-covered mountain peaks beneath a blue sky, with clouds along the ridge.” The visible credit reads “Photograph: Reed Cameron Osaki”.
 - About portrait: “Reed Cameron Osaki wearing a hiking backpack in front of a mountain landscape.”
 - Field 1: “A red fox walking across snow, facing the camera. Photograph by Reed Cameron Osaki.” Caption: “Red fox”.
 - Field 2: “An American robin searching the forest floor. Photograph by Reed Cameron Osaki.” Caption: “American robin”.
@@ -146,7 +146,7 @@ The current artboard uses the original `assets/previews/field-catalog.webp` (144
 
 Reed directly confirmed that his Master of Science in Electrical Engineering from California State University, Long Beach was awarded. This confirmation supersedes the earlier cautious “graduate study” wording based on a candidate list. His supplied LinkedIn screenshots support the expanded RF/microwave, signal integrity, test automation, chip bring-up, and modeling summary, plus these credential entries: RF Technology Certification (Besser Associates); S-Parameters for Signal Integrity, Advanced Gigabit Channel Design, and Essential Principles of Signal Integrity (Teledyne LeCroy); and the Fundamentals of Engineering Electrical and Computer Exam (NCEES). The FE entry is presented as an examination, not a professional engineering license. No PE or EIT status is inferred.
 
-The current role and awarded degree remain visible. A native expandable “Technical background & credentials” section contains supporting technical details, UCLA Extension coursework, and the credential list. Per Reed’s instruction, no employment, education, or credential dates or years are shown. Credential IDs and screenshot UI are not published.
+The current role and awarded degree remain visible. An always-visible “Expertise & credentials” grid shows the technical background, education (California State University, Long Beach, and UCLA Extension coursework), and the credential list; the hero carries the title and employer, so About’s first sentence does not repeat them. Per Reed’s instruction, no employment, education, or credential dates or years are shown. Credential IDs and screenshot UI are not published.
 
 ## Earlier SVG layer introductions (superseded by refined chapters)
 
@@ -164,7 +164,7 @@ The same controller steps through both previews at 800 ms per layer, then revers
 
 The current homepage uses consistent project copy/preview placement, stacking below 1100px in DOM reading order. Layer introductions use responsive HTML copy beside native SVG stacks within fixed 4:3 frames; the standalone `gradient-layers.svg` and `stack-layers.svg` files document the earlier illustration treatment. The active label changes every 800ms, while the explanatory caption remains stable.
 
-The wildlife gallery is wider, supporting headings are quieter, and the datacenter band is shorter. The heading reads “Senior Staff Engineer” with normal spaces. The hero omits Southern California; the footer retains the location. The datacenter disclosure remains in alt text rather than a visible caption. Its motion button appears on hover-capable pointer hover or keyboard focus. Reduced-motion behavior remains in place.
+The wildlife gallery is wider, supporting headings are quieter, and the datacenter band is shorter. The heading reads “Senior Staff Engineer” with normal spaces. The hero’s role line includes Southern California (Reed approved this with the new hero on 09/26/2026); the footer also keeps the location. The datacenter disclosure remains in alt text rather than a visible caption. Its motion button appears on hover-capable pointer hover or keyboard focus. Reduced-motion behavior remains in place.
 
 The header uses sun/moon action icons with accessible labels indicating the destination theme. Explicit selection switches between light and dark and saves the preference. An existing system preference is honored until the visitor selects a theme.
 
