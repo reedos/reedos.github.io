@@ -495,7 +495,7 @@ html[data-theme='light'] .intro-hero-scrim { background:
   linear-gradient(to bottom, rgba(20,18,12,0.18) 0%, transparent 30%); }
 .intro-hero-inner { padding-block: 64px 56px; } /* width comes from .page-width, which keeps the gutter */
 .intro-hero-kicker { font-family: var(--mono); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #ffe8c4;
-  background: rgba(8,8,6,0.4); display: inline-block; padding: 8px 14px; border-radius: 999px; margin: 0 0 22px; border: 1px solid rgba(255,255,255,0.18); }
+  display: block; margin: 0 0 18px; text-shadow: 0 0 2px rgba(0,0,0,0.75), 0 1px 4px rgba(0,0,0,0.6), 0 1px 14px rgba(0,0,0,0.5); }
 .intro-hero h1 { font-family: var(--display); font-weight: 600; text-transform: none; line-height: 1.02; letter-spacing: 0.2px; margin: 0;
   font-size: clamp(48px, 9vw, 108px); color: #fff; text-shadow: 0 2px 30px rgba(0,0,0,0.35); }
 .intro-hero-sub { margin: 20px 0 0; max-width: 46ch; font-size: clamp(17px, 2vw, 20px); line-height: 1.5; color: #eef0f2; }
@@ -532,3 +532,14 @@ html[data-theme='light'] .intro-hero-scrim { background:
 @media (max-width: 700px) { .cred-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; } }
 /* gallery photos are no longer links; keep the frame the <a> used to give them */
 .field-track figure > .field-photo { display: block; }
+
+/* Larger screens: a soft shade behind the hero's text block, wherever it lands, keeps the plain title
+   line and the role line readable over bright snow and cloud. It fades to clear inside its own box
+   (closest-side), and the hero clips it so it can never widen the page. Phones keep their own
+   stronger scrim and no shade. */
+.intro-hero { overflow: hidden; overflow: clip; }
+.intro-hero-inner { position: relative; }
+.intro-hero-inner::before { content: ''; position: absolute; z-index: -1; pointer-events: none;
+  left: -14%; right: 6%; top: -38%; bottom: -16%;
+  background: radial-gradient(closest-side, rgba(4,5,7,0.64) 0%, rgba(4,5,7,0.56) 42%, rgba(4,5,7,0.3) 72%, transparent 100%); }
+@media (max-width: 640px) { .intro-hero-inner::before { display: none; } }
