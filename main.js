@@ -815,3 +815,40 @@ function paths(mode, cutoff) {
   device.addEventListener('change', apply);
   apply();
 })();
+
+/* The Intelligence Factory: a loop rendered frame by frame from the site's own 3D. Plays only while on screen. */
+(() => {
+  const video = document.querySelector('.if-film');
+  const button = document.querySelector('.if-motion-toggle');
+  if (!video || !button) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let visible = false, paused = false, motionOptIn = false;
+  function label() {
+    const playing = !paused && (!reduced.matches || motionOptIn);
+    button.textContent = playing ? 'Pause video' : 'Play video';
+    button.setAttribute('aria-pressed', String(playing));
+  }
+  function sync() {
+    label();
+    const allowed = !reduced.matches || motionOptIn;
+    if (visible && !paused && allowed && !document.hidden) {
+      video.play().catch(() => { paused = true; label(); });   // autoplay refused (e.g. Low Power Mode): the poster stays
+    } else if (!video.paused) video.pause();
+  }
+  video.muted = true;
+  button.hidden = false;
+  button.addEventListener('click', () => {
+    if (reduced.matches && !motionOptIn) { motionOptIn = true; paused = false; }
+    else paused = !paused;
+    sync();
+  });
+  document.addEventListener('visibilitychange', sync);
+  reduced.addEventListener('change', () => { motionOptIn = false; sync(); });
+  if (!('IntersectionObserver' in window)) { visible = true; sync(); return; }
+  // start fetching a screen ahead, play only while at least a fifth of it shows
+  new IntersectionObserver(([entry], observer) => {
+    if (entry.isIntersecting) { video.preload = 'auto'; observer.disconnect(); }
+  }, { rootMargin: '100% 100%' }).observe(video);
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(video);
+  label();
+})();
