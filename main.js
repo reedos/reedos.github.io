@@ -823,6 +823,83 @@ function paths(mode, cutoff) {
   if (!video || !button) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = false, paused = false, motionOptIn = false;
+  // Level labels, synced to the video's own clock. Names and scale lines are the factory's own (#steps, pinned
+  // scenario). Each entry starts at a loop time in seconds; level 0 is a gap while the iris closes, so the next
+  // level is named in the black of the dive, before it is revealed.
+  const LEVELS = ['', 'Scale across', 'Grid & campus', 'Power room & data hall', 'The rack', 'Compute tray', 'GPU package & tokens'];
+  const SCALES = {
+    '1 power': '345 kV · 2,000 km across', '2 power': '345 kV · 1.6 km across', '2 heat': '100 MW out · 1.6 km across',
+    '3 power': '800 V · 70 m across', '4 power': '50 V · 2.3 m tall',
+    '5 power': '12 V · 44 cm wide', '5 data': '800G · 44 cm wide', '5 heat': 'cold plates · 44 cm wide',
+    '6 power': '0.8 V · 10 cm across', '6 data': 'HBM · 10 cm across',
+  };
+  const TIMELINE = [
+    [0, 6, 'power'], [0.2, 6, 'data'], [3.0, 5, 'power'], [4.0, 5, 'data'], [5.2, 5, 'heat'], [6.2, 2, 'heat'],
+    [9.0, 1, 'power'], [10.17, 0], [10.25, 2, 'power'], [11.11, 0], [11.19, 3, 'power'], [12.04, 0], [12.12, 4, 'power'],
+    [13.0, 0], [13.08, 5, 'power'], [13.95, 0], [14.03, 6, 'power'],
+  ];
+  // what the moving lines and colors are: the factory's own legend for that level and layer (its #legend)
+  const LEGENDS = {
+    '1 power': [["#b69cff", "345–500 kV grid"]],
+    '2 power': [["#b69cff", "345 kV"], ["#ffb14e", "34.5 kV"]],
+    '2 heat': [["#ff5a6e", "Warm water up"], ["#ff8a4a", "Warm air out"], ["#d6e6ff", "Evaporation"], ["#3f8cff", "Makeup water"]],
+    '3 power': [["#ffb14e", "34.5 kV"], ["#e8ff5a", "800 V DC"], ["#3f8cff", "Supply water"], ["#ff5a6e", "Return water"]],
+    '4 power': [["#e8ff5a", "800 V DC"], ["#47cfff", "≈50 V DC"], ["#3f8cff", "Supply"], ["#ff5a6e", "Return"]],
+    '5 power': [["#47cfff", "≈50 V"], ["#5ce1c6", "12 V"], ["#e9fbff", "≈0.8 V"], ["#3f8cff", "Supply"], ["#ff5a6e", "Return"]],
+    '5 data': [["#ff5fd2", "NVLink"], ["#ffa3e4", "NVLink-C2C"], ["#a6f35a", "To the NIC and optics"]],
+    '5 heat': [["#ffc34a", "Heat into the plates"], ["#3f8cff", "Supply"], ["#ff5a6e", "Return"], ["#ff8a4a", "Fan air"]],
+    '6 power': [["#e9fbff", "≈0.8 V, rising"]],
+    '6 data': [["#b08cff", "HBM"], ["#7fe3ff", "Die to die"], ["#ff5fd2", "NVLink out"]],
+  };
+  const LOOP = 14.8, FADE_IN = .15, FADE_OUT = .1;
+  const tag = video.parentElement.querySelector('.if-level');
+  const kicker = tag && tag.querySelector('[data-if-kicker]');
+  const name = tag && tag.querySelector('[data-if-name]');
+  const scale = tag && tag.querySelector('[data-if-scale]');
+  const layers = video.parentElement.querySelector('.if-layers');
+  const layerNames = layers ? [...layers.querySelectorAll('[data-if-layer]')] : [];
+  const legend = layers && layers.querySelector('[data-if-legend]');
+  let shown = '';
+  function paintLevel(time) {
+    if (!tag) return;
+    const t = ((time % LOOP) + LOOP) % LOOP;
+    let i = TIMELINE.length - 1;
+    while (i > 0 && TIMELINE[i][0] > t) i--;
+    const [start, level, layer] = TIMELINE[i];
+    const prev = TIMELINE[(i + TIMELINE.length - 1) % TIMELINE.length], next = TIMELINE[(i + 1) % TIMELINE.length];
+    const end = i === TIMELINE.length - 1 ? LOOP : next[0];
+    let opacity = 0;
+    if (level) {
+      const fadeIn = prev[1] !== level ? Math.min(1, (t - start) / FADE_IN) : 1;
+      const fadeOut = next[1] !== level ? Math.min(1, (end - t) / FADE_OUT) : 1;
+      opacity = Math.max(0, Math.min(fadeIn, fadeOut));
+      const key = `${level} ${layer}`;
+      if (key !== shown) {
+        shown = key;
+        kicker.textContent = `Level ${level} / 6`;
+        name.textContent = LEVELS[level];
+        scale.textContent = SCALES[key] || '';
+        if (layers) {
+          layerNames.forEach(el => el.classList.toggle('is-active', el.dataset.ifLayer === layer));
+          legend.replaceChildren(...(LEGENDS[key] || []).map(([color, text]) => {
+            const item = document.createElement('span');
+            item.style.setProperty('--c', color);
+            item.textContent = text;
+            return item;
+          }));
+        }
+      }
+    }
+    tag.style.opacity = opacity.toFixed(3);
+    if (layers) layers.style.opacity = tag.style.opacity;
+  }
+  let ticking = false;
+  const frameTick = 'requestVideoFrameCallback' in HTMLVideoElement.prototype
+    ? () => video.requestVideoFrameCallback((now, meta) => { try { paintLevel(meta.mediaTime); } finally { tick(); } })
+    : () => requestAnimationFrame(() => { try { paintLevel(video.currentTime); } finally { tick(); } });
+  function tick() { if (video.paused) { ticking = false; return; } frameTick(); }
+  video.addEventListener('playing', () => { if (!ticking) { ticking = true; frameTick(); } });
+  ['seeked', 'pause', 'loadeddata'].forEach(type => video.addEventListener(type, () => paintLevel(video.currentTime)));
   function label() {
     const playing = !paused && (!reduced.matches || motionOptIn);
     button.textContent = playing ? 'Pause video' : 'Play video';
@@ -832,7 +909,11 @@ function paths(mode, cutoff) {
     label();
     const allowed = !reduced.matches || motionOptIn;
     if (visible && !paused && allowed && !document.hidden) {
-      video.play().catch(() => { paused = true; label(); });   // autoplay refused (e.g. Low Power Mode): the poster stays
+      video.play().catch(error => {
+        // AbortError: our own pause() interrupted it as the card left the screen, so it is not a refusal
+        if (error && error.name === 'AbortError') return;
+        paused = true; label();   // autoplay refused (e.g. Low Power Mode): the poster stays
+      });
     } else if (!video.paused) video.pause();
   }
   video.muted = true;
