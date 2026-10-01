@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reedos.dev/sitemap.xml
+Sitemap: https://reedos.dev/stack_ledger/sitemap.xml
