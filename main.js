@@ -824,33 +824,32 @@ function paths(mode, cutoff) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = false, paused = false, motionOptIn = false;
   // Level labels, synced to the video's own clock. The loop is rendered on the factory's real-campus preset for
-  // xAI Colossus 2 (mw=1100&accel=gb300&power=ac415&cooling=liquid&site=colossus2); names, scale lines and legends are the factory's own for that preset (#steps, #legend).
-  // Each entry starts at a loop time in seconds; level 0 is a gap while the iris closes, so the next level is named in
-  // the black of the dive, before it is revealed. Levels 1-2 (the map and the campus) also name the campus.
-  const SITE = 'xAI Colossus 2';
-  const LEVELS = ['', 'Scale across', 'Grid & campus', 'Power room & data hall', 'The rack', 'Compute tray', 'GPU package & tokens'];
+  // SpaceXAI Colossus 2 (mw=1460&accel=gb300&power=ac415&cooling=liquid&site=colossus2&stage=0), on the factory as overhauled in 10/2026; names, scale lines and legends are the
+  // factory's own for that preset (#steps, #legend). Each entry starts at a loop time in seconds; level 0 is a gap while
+  // the iris closes, so the next level is named in the black of the dive, before it is revealed. Levels 1-2 (the map and
+  // the campus) also name the campus.
+  const SITE = 'SpaceXAI Colossus 2';
+  const LEVELS = ['', 'Scale across', 'Grid & campus', 'Power room & data hall', 'The rack', 'GB300 compute tray', 'GPU package & tokens'];
   const SCALES = {
     '1 power': '345 kV · 2,000 km across',
     '2 power': '345 kV · ≈2.8 km across',
-    '2 heat': '1.1 GW out · ≈2.8 km across',
     '3 power': '415 V · 70 m across',
     '4 power': '50 V · 2.3 m tall',
-    '5 power': '12 V · 44 cm wide',
-    '5 data': '800G · 44 cm wide',
-    '5 heat': 'cold plates · 44 cm wide',
+    '5 power': '12 V · 44 cm wide, schematic',
+    '5 data': '800G · 44 cm wide, schematic',
+    '5 heat': 'cold plates · 44 cm wide, schematic',
     '6 power': '0.8 V · 10 cm across',
     '6 data': 'HBM · 10 cm across',
   };
   const TIMELINE = [
-    [0, 6, 'power'], [0.2, 6, 'data'], [3.0, 5, 'power'], [4.0, 5, 'data'], [5.2, 5, 'heat'], [6.2, 2, 'heat'],
-    [9.0, 1, 'power'], [10.17, 0], [10.25, 2, 'power'], [11.11, 0], [11.19, 3, 'power'], [12.06, 0], [12.14, 4, 'power'],
-    [13.02, 0], [13.1, 5, 'power'], [13.97, 0], [14.05, 6, 'power'],
+    [0, 6, 'power'], [0.2, 6, 'data'], [3.0, 5, 'power'], [4.0, 5, 'data'], [5.2, 5, 'heat'], [6.2, 2, 'power'],
+    [9.0, 1, 'power'], [10.17, 0], [10.25, 2, 'power'], [11.11, 0], [11.18, 3, 'power'], [12.07, 0], [12.15, 4, 'power'],
+    [13.03, 0], [13.11, 5, 'power'], [13.97, 0], [14.05, 6, 'power'],
   ];
   // what the moving lines and colors are: the factory's own legend for that level and layer (its #legend)
   const LEGENDS = {
     '1 power': [["#b69cff", "345–500 kV grid"]],
     '2 power': [["#b69cff", "345 kV"], ["#ffb14e", "34.5 kV"]],
-    '2 heat': [["#ff5a6e", "Return water"], ["#3f8cff", "Chilled supply"], ["#d6e6ff", "Evaporation"]],
     '3 power': [["#ffb14e", "34.5 kV"], ["#ff7f50", "480 / 415 V"], ["#3f8cff", "Supply water"], ["#ff5a6e", "Return water"]],
     '4 power': [["#ff7f50", "415 V AC"], ["#47cfff", "≈50 V DC"], ["#3f8cff", "Supply"], ["#ff5a6e", "Return"]],
     '5 power': [["#47cfff", "≈50 V"], ["#5ce1c6", "12 V"], ["#e9fbff", "≈0.8 V"], ["#3f8cff", "Supply"], ["#ff5a6e", "Return"]],

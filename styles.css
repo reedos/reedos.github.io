@@ -37,7 +37,7 @@
 .if-level-kicker { font: 400 .6875rem/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: #e6ba82; }
 .if-level strong { font: 500 1rem/1.2 var(--body); font-size: clamp(.95rem, 3cqw, 1.3rem); letter-spacing: -.01em; }
 .if-level-scale { font: 400 .6875rem/1.4 var(--mono); color: #c3ccd4; }
-.if-site { text-transform: none; letter-spacing: .02em; }
+.if-site { text-transform: none; letter-spacing: .02em; white-space: nowrap; }
 .if-layers { position: absolute; right: 0; bottom: 0; z-index: 1; display: flex; flex-direction: column; align-items: flex-end; gap: .45rem; max-width: 82%; padding: 0 5% 5% 0; color: #f0f0fa; text-shadow: 0 1px 8px rgba(0,0,0,.7); pointer-events: none; }
 .if-layers::before { content: ""; position: absolute; right: 0; bottom: 0; z-index: -1; width: 190%; height: 330%; background: radial-gradient(ellipse at 100% 100%, rgba(3,5,9,.84), rgba(3,5,9,.7) 34%, rgba(3,5,9,.38) 56%, rgba(3,5,9,0) 78%); }
 .if-layer-names { display: flex; gap: .9rem; margin: 0; font: 400 .6875rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
@@ -48,8 +48,8 @@
 .if-legend span::before { content: ""; width: .875rem; height: 3px; border-radius: 2px; background: var(--c); box-shadow: 0 0 8px var(--c); }
 @media (min-width: 700px) { .if-level-kicker, .if-level-scale, .if-layer-names, .if-legend { font-size: .75rem; } }
 /* phone-sized cards: the layer names stay, the color legend goes (it would cover the picture), shades shrink to the text */
-@container (max-width: 520px) { .if-level { gap: .15rem; padding: 3.5% 0 0 4%; } .if-level::before { width: 220%; height: 240%; } .if-level-kicker, .if-level-scale { line-height: 1.25; } .if-level strong { line-height: 1.1; } .if-layers { padding: 0 4% 4% 0; } .if-layers::before { width: 175%; height: 290%; } .if-legend { display: none; } .if-layer-names span { padding-bottom: .2rem; } }
-@supports not (container-type: inline-size) { @media (max-width: 560px) { .if-level { gap: .15rem; padding: 3.5% 0 0 4%; } .if-level::before { width: 220%; height: 240%; } .if-level-kicker, .if-level-scale { line-height: 1.25; } .if-level strong { line-height: 1.1; } .if-layers { padding: 0 4% 4% 0; } .if-layers::before { width: 175%; height: 290%; } .if-legend { display: none; } .if-layer-names span { padding-bottom: .2rem; } } }
+@container (max-width: 520px) { .if-level { gap: .15rem; max-width: 92%; padding: 3.5% 0 0 4%; } .if-level::before { width: 220%; height: 240%; } .if-level-kicker, .if-level-scale { line-height: 1.25; } .if-level strong { line-height: 1.1; } .if-layers { padding: 0 4% 4% 0; } .if-layers::before { width: 175%; height: 290%; } .if-legend { display: none; } .if-layer-names span { padding-bottom: .2rem; } }
+@supports not (container-type: inline-size) { @media (max-width: 560px) { .if-level { gap: .15rem; max-width: 92%; padding: 3.5% 0 0 4%; } .if-level::before { width: 220%; height: 240%; } .if-level-kicker, .if-level-scale { line-height: 1.25; } .if-level strong { line-height: 1.1; } .if-layers { padding: 0 4% 4% 0; } .if-layers::before { width: 175%; height: 290%; } .if-legend { display: none; } .if-layer-names span { padding-bottom: .2rem; } } }
 .if-film { display: block; width: 100%; height: 100%; object-fit: cover; background: #090d11; }
 @media (prefers-reduced-motion: reduce) {
   .gradient-preview .slab:hover { transform: none; }
