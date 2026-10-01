@@ -1,6 +1,6 @@
 # reedos.github.io
 
-Reed Cameron Osaki's personal site: https://reedos.github.io/
+Reed Cameron Osaki's personal site: https://reedos.dev/
 
 Static HTML, one stylesheet, and a few small scripts. No build step, analytics, or external
 requests. GitHub Pages publishes the root of `main`. The page carries a noindex tag while it is in
