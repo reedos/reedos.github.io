@@ -5,3 +5,5 @@ Sitemap: https://reedos.dev/sitemap.xml
 Sitemap: https://reedos.dev/stack_ledger/sitemap.xml
 Sitemap: https://reedos.dev/gradient_ascent/sitemap-index.xml
 Sitemap: https://reedos.dev/wildlife-site/sitemap.xml
+Sitemap: https://reedos.dev/ee-labs/sitemap.xml
+Sitemap: https://reedos.dev/rf_lab_reference/sitemap.xml
