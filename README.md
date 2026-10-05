@@ -1,10 +1,12 @@
-# reedos.github.io
+# Reedos.dev
 
 Reed Cameron Osaki's personal site: https://reedos.dev/
 
-Static HTML, one stylesheet, and a few small scripts. No build step, analytics, or external
-requests. GitHub Pages publishes the root of `main`. The page carries a noindex tag while it is in
-review.
+Static HTML, one stylesheet, and a few small scripts. No build step. GitHub Pages
+publishes the root of `main` at [reedos.dev](https://reedos.dev/), and search indexing
+is enabled. The page loads Cloudflare Web Analytics from
+`static.cloudflareinsights.com`; it is not an offline-only page. The beacon is
+configured in `index.html` and `404.html`.
 
 ## Preview locally
 
