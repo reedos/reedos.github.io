@@ -343,7 +343,7 @@ html[data-layout='gallery'] .gallery-controls:not([hidden]) { display: flex; ali
 .ee-demo-controls :focus-visible { outline: 2px solid var(--accent, #e6ba82); outline-offset: 4px; }
 
 /* Personal projects are grouped by purpose in both review layouts. */
-.project-picker { display: grid; grid-template-columns: 1fr 1fr 0.8fr; gap: 1.5rem; padding-block: 1rem; }
+.project-picker { display: grid; grid-template-columns: 0.9fr 0.9fr 1.5fr 0.7fr; gap: 1.5rem; padding-block: 1rem; }
 .project-category { min-width: 0; }
 .category-label { font: 400 0.625rem/1.6 var(--mono); color: var(--accent); letter-spacing: 0.07em; text-transform: uppercase; }
 .category-links { display: flex; flex-wrap: wrap; gap: 0 1.25rem; }
@@ -367,6 +367,7 @@ html[data-layout='gallery'] .gallery-controls:not([hidden]) { display: flex; ali
 .illustration-credit .scene-motion-toggle { text-decoration: underline; text-underline-offset: 4px; }
 
 /* Native app capture floats in a theme-colored 4:3 artboard without baked-in bars. */
+.model-stage { background: #000; }
 .catalog-stage { display: flex; align-items: center; overflow: hidden; background: var(--paper); }
 .catalog-stage img { width: 100%; height: auto; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent); }
 
