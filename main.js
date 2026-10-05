@@ -816,6 +816,52 @@ function paths(mode, cutoff) {
   apply();
 })();
 
+/* Captured project previews: independent controls, no motion until visible, and an explicit reduced-motion opt-in. */
+document.querySelectorAll('.project-film').forEach(video => {
+  const button = video.closest('.project-visual').querySelector('.project-motion-toggle');
+  if (!button) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let visible = false, paused = false, motionOptIn = false;
+  function label() {
+    const enabled = !paused && (!reduced.matches || motionOptIn);
+    button.textContent = enabled ? 'Pause video' : 'Play video';
+    button.setAttribute('aria-pressed', String(enabled));
+  }
+  function sync() {
+    label();
+    if (visible && !paused && (!reduced.matches || motionOptIn) && !document.hidden) {
+      video.play().catch(error => {
+        if (error && error.name === 'AbortError') return;
+        paused = true;
+        label();
+      });
+    } else {
+      video.pause();
+    }
+  }
+  video.muted = true;
+  button.hidden = false;
+  button.addEventListener('click', () => {
+    if (reduced.matches && !motionOptIn) { motionOptIn = true; paused = false; }
+    else paused = !paused;
+    sync();
+  });
+  document.addEventListener('visibilitychange', sync);
+  reduced.addEventListener('change', () => { motionOptIn = false; sync(); });
+  if (!('IntersectionObserver' in window)) { visible = true; sync(); return; }
+  new IntersectionObserver(([entry], observer) => {
+    if (entry.isIntersecting && !reduced.matches) {
+      video.preload = 'auto';
+      observer.disconnect();
+    }
+  }, { rootMargin: '100% 0px' }).observe(video);
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting && entry.intersectionRatio >= .2;
+    sync();
+  }, { threshold: .2 }).observe(video);
+  label();
+});
+
 /* The Intelligence Factory: a loop rendered frame by frame from the site's own 3D. Plays only while on screen. */
 (() => {
   const video = document.querySelector('.if-film');

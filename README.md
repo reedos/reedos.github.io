@@ -20,11 +20,14 @@ Then open http://localhost:8000.
 
 - `index.html`: the page.
 - `styles.css`: all styling.
-- `main.js`: theme, phone menu, the Signal Lab filter demonstration, and the layer and datacenter
-  animations.
+- `main.js`: theme, phone menu, the Signal Lab filter demonstration, layer animations,
+  and playback controls for the project videos.
 - `photo-options.js`: autoplay for the wildlife gallery.
 - `404.html`: the error page.
 - `assets/`: photographs, the hero exports in `assets/hero/`, project previews, and fonts.
+- `assets/project-videos/`: muted Photon to Photo and Guardian Ring previews from the
+  October 2026 portfolio reel. They play only on screen, with pause controls and
+  reduced-motion support. See the folder's README for capture and export details.
 
 ## Licenses
 

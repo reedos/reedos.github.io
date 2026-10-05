@@ -40,8 +40,8 @@
     <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-condensed-600.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-400.woff2" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=interactive-3d-1">
-    <script src="main.js?v=if-overhaul-1" defer></script>
+    <link rel="stylesheet" href="styles.css?v=project-videos-1">
+    <script src="main.js?v=project-videos-1" defer></script>
     <script src="photo-options.js?v=autoplay-real-interaction-1" defer></script>
   <!-- Cloudflare Web Analytics: cookieless page counts for reedos.dev -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7d357826b1264eb38e3db3ba16dd8319"}'></script>
@@ -363,9 +363,11 @@
             </div>
             <div class="project-visual">
               <a class="project-stage model-stage" href="https://reedos.dev/photon_to_photo/" aria-label="Open Photon to Photo from the rendered preview">
-                <img src="assets/previews/photon-to-photo.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="A cutaway DSLR with a 50 mm lens, light rays bending through the glass elements into the mirror box.">
+                <video id="p2p-film" class="project-film" width="1280" height="720" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" poster="assets/project-videos/photon-to-photo-poster-v1.webp" aria-hidden="true">
+                  <source src="assets/project-videos/photon-to-photo-v1.mp4" type="video/mp4">
+                </video>
               </a>
-              <p class="media-caption">50&nbsp;mm lens, cutaway / Rendered from the live 3D</p>
+              <div class="gradient-preview-footer"><p class="media-caption">Inside the camera: from lens and aperture to sensor and photograph.</p><button class="source-link project-motion-toggle" type="button" hidden aria-controls="p2p-film" aria-pressed="true">Pause video</button></div>
             </div>
           </article>
           <article class="project" id="project-gr" aria-labelledby="title-gr">
@@ -377,9 +379,11 @@
             </div>
             <div class="project-visual">
               <a class="project-stage model-stage" href="https://reedos.dev/guardian_ring/" aria-label="Open The Guardian Ring from the rendered preview">
-                <img src="assets/previews/guardian-ring.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Earth at night over the Americas, circled by a schematic geostationary ring with enlarged satellites.">
+                <video id="gr-film" class="project-film" width="1280" height="720" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" poster="assets/project-videos/guardian-ring-poster-v1.webp" aria-hidden="true">
+                  <source src="assets/project-videos/guardian-ring-v1.mp4" type="video/mp4">
+                </video>
               </a>
-              <p class="media-caption">The geostationary ring / Schematic, satellites enlarged</p>
+              <div class="gradient-preview-footer"><p class="media-caption">From the geostationary ring to focusing light and a rising plume. Schematic, satellites enlarged.</p><button class="source-link project-motion-toggle" type="button" hidden aria-controls="gr-film" aria-pressed="true">Pause video</button></div>
             </div>
           </article>
           <article class="project" id="project-catalog" aria-labelledby="title-catalog">
