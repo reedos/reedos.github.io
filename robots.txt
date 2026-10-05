@@ -7,3 +7,5 @@ Sitemap: https://reedos.dev/gradient_ascent/sitemap-index.xml
 Sitemap: https://reedos.dev/wildlife-site/sitemap.xml
 Sitemap: https://reedos.dev/ee-labs/sitemap.xml
 Sitemap: https://reedos.dev/rf_lab_reference/sitemap.xml
+Sitemap: https://reedos.dev/guardian_ring/sitemap.xml
+Sitemap: https://reedos.dev/photon_to_photo/sitemap.xml
