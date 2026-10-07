@@ -35,3 +35,11 @@ The fonts are under the SIL Open Font License; each license file sits next to it
 `assets/fonts/`. The Signal Lab demonstration uses DSP code from
 [reedos/ee-labs](https://github.com/reedos/ee-labs) under the MIT License
 (`assets/previews/EE-Labs-MIT.txt`).
+
+## Local link and media checks
+
+Run `python tools/check_site.py` before publishing. CI runs the same offline
+check on pushes and pull requests, covering HTML links, images, responsive image
+sources, video files/posters and CSS assets in this repository. External sites
+and separately deployed projects need their own live checks.
+Preserve `tools/`, `.github/` and this README when copying generated output.
