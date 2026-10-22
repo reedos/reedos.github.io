@@ -192,6 +192,20 @@ html[data-layout='gallery'] .gallery-controls:not([hidden]) { display: flex; ali
 .field-copy > p:not(.eyebrow) { color: var(--muted); }
 .field-copy .button-link { margin-top: 2rem; }
 .field-copy .source-link { display: flex; width: fit-content; margin-top: 0.75rem; }
+/* Worth Knowing: a click-to-play YouTube embed (the player loads only on click, from youtube-nocookie.com) */
+.video-section { padding-block: clamp(4rem, 7vw, 7rem); }
+.video-embed { min-width: 0; }
+.yt-facade, .yt-frame { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); background: #000; overflow: hidden; }
+.yt-facade { padding: 0; cursor: pointer; }
+.yt-facade img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.yt-facade:hover img { transform: scale(1.02); }
+.yt-play { position: absolute; inset: 0; display: grid; place-items: center; }
+.yt-play svg { filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); transition: transform .2s ease; }
+.yt-facade:hover .yt-play svg, .yt-facade:focus-visible .yt-play svg { transform: scale(1.1); }
+.yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-caption { display: flex; justify-content: space-between; gap: 1rem; padding-top: 1rem; margin: 0; font: 400 .6875rem/1.5 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.video-caption span:last-child { flex: none; white-space: nowrap; overflow-wrap: normal; }
+@media (prefers-reduced-motion: reduce) { .yt-facade img, .yt-play svg { transition: none; } }
 .field-frame { position: relative; width: 100%; max-width: 490px; aspect-ratio: 3 / 4; justify-self: end; background: #0e1710; }
 .field-frame > a { display: block; width: 100%; height: 100%; }
 .field-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }

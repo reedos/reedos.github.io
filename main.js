@@ -992,3 +992,17 @@ document.querySelectorAll('.project-film').forEach(video => {
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, { threshold: .2 }).observe(video);
   label();
 })();
+
+// Worth Knowing: replace the thumbnail with YouTube's privacy-enhanced player only when the visitor clicks play
+document.querySelectorAll('.yt-facade').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const wrap = document.createElement('div'), frame = document.createElement('iframe');
+    wrap.className = 'yt-frame';
+    frame.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.ytId}?autoplay=1&rel=0`;
+    frame.title = btn.dataset.ytTitle || 'YouTube video';
+    frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.allowFullscreen = true;
+    wrap.appendChild(frame); btn.replaceWith(wrap); frame.focus();
+  });
+});
